@@ -1,0 +1,45 @@
+CompositionDisque:
+    type: entity
+    table: Composition_Disque
+    indexes:
+        IDX_6F414DB4B1A3EE1:
+            columns:
+                - Code_Disque
+        IDX_6F414DB4D990D4F0:
+            columns:
+                - Code_Morceau
+    id:
+        codeContenir:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: Code_Contenir
+            generator:
+                strategy: IDENTITY
+    fields:
+        position:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: Position
+    manyToOne:
+        codeDisque:
+            targetEntity: Disque
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Disque:
+                    referencedColumnName: Code_Disque
+            orphanRemoval: false
+        codeMorceau:
+            targetEntity: Enregistrement
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Morceau:
+                    referencedColumnName: Code_Morceau
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

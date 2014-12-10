@@ -1,0 +1,80 @@
+Musicien:
+    type: entity
+    table: Musicien
+    indexes:
+        IDX_AC6BE67520B77BF2:
+            columns:
+                - Code_Pays
+        IDX_AC6BE675E1990660:
+            columns:
+                - Code_Genre
+        IDX_AC6BE675D389A975:
+            columns:
+                - Code_Instrument
+    id:
+        codeMusicien:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: Code_Musicien
+            generator:
+                strategy: IDENTITY
+    fields:
+        nomMusicien:
+            type: string
+            nullable: false
+            length: 200
+            fixed: false
+            column: Nom_Musicien
+        pr„©nomMusicien:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            column: Pr√©nom_Musicien
+        ann„©eNaissance:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: Ann√©e_Naissance
+        ann„©eMort:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: Ann√©e_Mort
+        photo:
+            type: blob
+            nullable: true
+            length: null
+            fixed: false
+            column: Photo
+    manyToOne:
+        codePays:
+            targetEntity: Pays
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Pays:
+                    referencedColumnName: Code_Pays
+            orphanRemoval: false
+        codeGenre:
+            targetEntity: Genre
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Genre:
+                    referencedColumnName: Code_Genre
+            orphanRemoval: false
+        codeInstrument:
+            targetEntity: Instrument
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Instrument:
+                    referencedColumnName: Code_Instrument
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

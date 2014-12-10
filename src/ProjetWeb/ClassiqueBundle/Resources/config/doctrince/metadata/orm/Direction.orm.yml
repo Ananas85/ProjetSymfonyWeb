@@ -1,0 +1,51 @@
+Direction:
+    type: entity
+    table: Direction
+    indexes:
+        IDX_BCBB53106DFE2C5A:
+            columns:
+                - Code_Orchestre
+        IDX_BCBB5310E694D5AB:
+            columns:
+                - Code_Musicien
+        IDX_BCBB5310D990D4F0:
+            columns:
+                - Code_Morceau
+    id:
+        codeDirection:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: Code_Direction
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        codeOrchestre:
+            targetEntity: Orchestres
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Orchestre:
+                    referencedColumnName: Code_Orchestre
+            orphanRemoval: false
+        codeMusicien:
+            targetEntity: Musicien
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Musicien:
+                    referencedColumnName: Code_Musicien
+            orphanRemoval: false
+        codeMorceau:
+            targetEntity: Enregistrement
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Morceau:
+                    referencedColumnName: Code_Morceau
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

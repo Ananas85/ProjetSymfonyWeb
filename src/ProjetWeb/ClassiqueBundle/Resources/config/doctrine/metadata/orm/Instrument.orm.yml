@@ -1,0 +1,30 @@
+Instrument:
+    type: entity
+    table: Instrument
+    uniqueConstraints:
+        IX_Instrument:
+            columns:
+                - Nom_Instrument
+    id:
+        codeInstrument:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: Code_Instrument
+            generator:
+                strategy: IDENTITY
+    fields:
+        nomInstrument:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            column: Nom_Instrument
+        image:
+            type: blob
+            nullable: true
+            length: null
+            fixed: false
+            column: Image
+    lifecycleCallbacks: {  }

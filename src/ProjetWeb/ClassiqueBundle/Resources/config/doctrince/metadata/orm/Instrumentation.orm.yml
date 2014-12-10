@@ -1,0 +1,39 @@
+Instrumentation:
+    type: entity
+    table: Instrumentation
+    indexes:
+        IDX_8B3BA89ECB48FCBD:
+            columns:
+                - Code_Oeuvre
+        IDX_8B3BA89ED389A975:
+            columns:
+                - Code_Instrument
+    id:
+        codeInstrumentation:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: Code_Instrumentation
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        codeOeuvre:
+            targetEntity: Oeuvre
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Oeuvre:
+                    referencedColumnName: Code_Oeuvre
+            orphanRemoval: false
+        codeInstrument:
+            targetEntity: Instrument
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Instrument:
+                    referencedColumnName: Code_Instrument
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

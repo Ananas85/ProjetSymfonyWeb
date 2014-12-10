@@ -1,0 +1,57 @@
+Album:
+    type: entity
+    table: Album
+    indexes:
+        IDX_F8594147E1990660:
+            columns:
+                - Code_Genre
+        IDX_F8594147EA8CE117:
+            columns:
+                - Code_Editeur
+    id:
+        codeAlbum:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: Code_Album
+            generator:
+                strategy: IDENTITY
+    fields:
+        titreAlbum:
+            type: string
+            nullable: false
+            length: 400
+            fixed: false
+            column: Titre_Album
+        ann„©eAlbum:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: Ann√©e_Album
+        pochette:
+            type: blob
+            nullable: true
+            length: null
+            fixed: false
+            column: Pochette
+    manyToOne:
+        codeGenre:
+            targetEntity: Genre
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Genre:
+                    referencedColumnName: Code_Genre
+            orphanRemoval: false
+        codeEditeur:
+            targetEntity: Editeur
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Editeur:
+                    referencedColumnName: Code_Editeur
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

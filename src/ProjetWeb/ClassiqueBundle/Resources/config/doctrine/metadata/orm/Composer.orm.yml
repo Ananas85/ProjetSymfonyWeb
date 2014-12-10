@@ -1,0 +1,39 @@
+Composer:
+    type: entity
+    table: Composer
+    indexes:
+        IDX_6105648EE694D5AB:
+            columns:
+                - Code_Musicien
+        IDX_6105648ECB48FCBD:
+            columns:
+                - Code_Oeuvre
+    id:
+        codeComposer:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: Code_Composer
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        codeMusicien:
+            targetEntity: Musicien
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Musicien:
+                    referencedColumnName: Code_Musicien
+            orphanRemoval: false
+        codeOeuvre:
+            targetEntity: Oeuvre
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Oeuvre:
+                    referencedColumnName: Code_Oeuvre
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

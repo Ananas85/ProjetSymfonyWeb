@@ -1,0 +1,34 @@
+Editeur:
+    type: entity
+    table: Editeur
+    indexes:
+        IDX_CA1A7E7320B77BF2:
+            columns:
+                - Code_Pays
+    id:
+        codeEditeur:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: Code_Editeur
+            generator:
+                strategy: IDENTITY
+    fields:
+        nomEditeur:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            column: Nom_Editeur
+    manyToOne:
+        codePays:
+            targetEntity: Pays
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Pays:
+                    referencedColumnName: Code_Pays
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

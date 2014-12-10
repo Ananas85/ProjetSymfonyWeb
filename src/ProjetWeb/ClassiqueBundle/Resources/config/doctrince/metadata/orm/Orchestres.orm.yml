@@ -1,0 +1,20 @@
+Orchestres:
+    type: entity
+    table: Orchestres
+    id:
+        codeOrchestre:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: Code_Orchestre
+            generator:
+                strategy: IDENTITY
+    fields:
+        nomOrchestre:
+            type: string
+            nullable: false
+            length: 150
+            fixed: false
+            column: Nom_Orchestre
+    lifecycleCallbacks: {  }

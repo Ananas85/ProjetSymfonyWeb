@@ -1,0 +1,39 @@
+CompositionOeuvre:
+    type: entity
+    table: Composition_Oeuvre
+    indexes:
+        IDX_AF138FE8CB48FCBD:
+            columns:
+                - Code_Oeuvre
+        IDX_AF138FE8D49D5E5D:
+            columns:
+                - Code_Composition
+    id:
+        codeComposerOeuvre:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            column: Code_Composer_Oeuvre
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        codeOeuvre:
+            targetEntity: Oeuvre
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Oeuvre:
+                    referencedColumnName: Code_Oeuvre
+            orphanRemoval: false
+        codeComposition:
+            targetEntity: Composition
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Composition:
+                    referencedColumnName: Code_Composition
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
