@@ -1,3 +1,7 @@
 projet_web_home_homepage:
     path:     /
     defaults: { _controller: ProjetWebHomeBundle:Home:index }
+
+projet_web_home_aboutpage:
+    path:     /about
+    defaults: { _controller: ProjetWebHomeBundle:Home:about }

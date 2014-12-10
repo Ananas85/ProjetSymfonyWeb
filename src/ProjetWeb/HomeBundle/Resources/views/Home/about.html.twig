@@ -1,13 +1,13 @@
 {% extends "ProjetWebHomeBundle::layout.html.twig" %}
 
 {% block title %}
-    Page d'acceuil - {{ parent() }}
+    About - {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
     {# On définit un sous-titre commun à toutes les pages du bundle, par exemple #}
-    <h1>Page d'accueil de notre site</h1>
+    <h1>A propos de nous</h1>
 
     <hr>
 
@@ -15,7 +15,7 @@
     {% block projetwebhome_body %}
         <div class="row">
             <section class="jumbotron col-lg-10 col-lg-offset-1">
-                <h2 class="text-primary">Page d'accueil de KlassiQ, l'accès direct à la base Classique Web</h2>
+                <h2 class="text-primary">Nous sommes Anaël CHARDAN et Marty LAMOUREUX et nous sommes fières de vous présenter ce site réaliser avec Symfony2</h2>
             </section>
         </div>
     {% endblock %}
