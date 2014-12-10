@@ -26,14 +26,14 @@ class Disque
      *
      * @ORM\Column(name="R√©f√©rence_Album", type="string", length=200, nullable=false)
      */
-    private $r„©f„©renceAlbum;
+    private $r√©f√©renceAlbum;
 
     /**
      * @var string
      *
      * @ORM\Column(name="R√©f√©rence_Disque", type="string", length=10, nullable=true)
      */
-    private $r„©f„©renceDisque;
+    private $r√©f√©renceDisque;
 
     /**
      * @var \Album
@@ -58,49 +58,49 @@ class Disque
     }
 
     /**
-     * Set r„©f„©renceAlbum
+     * Set r√©f√©renceAlbum
      *
-     * @param string $r„©f„©renceAlbum
+     * @param string $r√©f√©renceAlbum
      * @return Disque
      */
-    public function setR„©f„©renceAlbum($r„©f„©renceAlbum)
+    public function setR√©f√©renceAlbum($r√©f√©renceAlbum)
     {
-        $this->r„©f„©renceAlbum = $r„©f„©renceAlbum;
+        $this->r√©f√©renceAlbum = $r√©f√©renceAlbum;
 
         return $this;
     }
 
     /**
-     * Get r„©f„©renceAlbum
+     * Get r√©f√©renceAlbum
      *
      * @return string 
      */
-    public function getR„©f„©renceAlbum()
+    public function getR√©f√©renceAlbum()
     {
-        return $this->r„©f„©renceAlbum;
+        return $this->r√©f√©renceAlbum;
     }
 
     /**
-     * Set r„©f„©renceDisque
+     * Set r√©f√©renceDisque
      *
-     * @param string $r„©f„©renceDisque
+     * @param string $r√©f√©renceDisque
      * @return Disque
      */
-    public function setR„©f„©renceDisque($r„©f„©renceDisque)
+    public function setR√©f√©renceDisque($r√©f√©renceDisque)
     {
-        $this->r„©f„©renceDisque = $r„©f„©renceDisque;
+        $this->r√©f√©renceDisque = $r√©f√©renceDisque;
 
         return $this;
     }
 
     /**
-     * Get r„©f„©renceDisque
+     * Get r√©f√©renceDisque
      *
      * @return string 
      */
-    public function getR„©f„©renceDisque()
+    public function getR√©f√©renceDisque()
     {
-        return $this->r„©f„©renceDisque;
+        return $this->r√©f√©renceDisque;
     }
 
     /**

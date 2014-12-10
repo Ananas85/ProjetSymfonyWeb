@@ -32,14 +32,14 @@ class Achat
     private $codeEnregistrement;
 
     /**
-     * @var \Abonn„©
+     * @var \Abonn√©
      *
-     * @ORM\ManyToOne(targetEntity="Abonn„©")
+     * @ORM\ManyToOne(targetEntity="Abonn√©")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Code_Abonn√©", referencedColumnName="Code_Abonn√©")
      * })
      */
-    private $codeAbonn„©;
+    private $codeAbonn√©;
 
 
 
@@ -77,25 +77,25 @@ class Achat
     }
 
     /**
-     * Set codeAbonn„©
+     * Set codeAbonn√©
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Abonn„© $codeAbonn„©
+     * @param \ProjetWeb\ClassiqueBundle\Entity\Abonn√© $codeAbonn√©
      * @return Achat
      */
-    public function setCodeAbonn„©(\ProjetWeb\ClassiqueBundle\Entity\Abonn„© $codeAbonn„© = null)
+    public function setCodeAbonn√©(\ProjetWeb\ClassiqueBundle\Entity\Abonn√© $codeAbonn√© = null)
     {
-        $this->codeAbonn„© = $codeAbonn„©;
+        $this->codeAbonn√© = $codeAbonn√©;
 
         return $this;
     }
 
     /**
-     * Get codeAbonn„©
+     * Get codeAbonn√©
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Abonn„© 
+     * @return \ProjetWeb\ClassiqueBundle\Entity\Abonn√© 
      */
-    public function getCodeAbonn„©()
+    public function getCodeAbonn√©()
     {
-        return $this->codeAbonn„©;
+        return $this->codeAbonn√©;
     }
 }

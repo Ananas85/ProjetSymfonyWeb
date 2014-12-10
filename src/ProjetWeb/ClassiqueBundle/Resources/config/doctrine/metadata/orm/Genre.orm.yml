@@ -11,7 +11,7 @@ Genre:
             generator:
                 strategy: IDENTITY
     fields:
-        libell„©Abr„©g„©:
+        libell√©Abr√©g√©:
             type: string
             nullable: false
             length: 30

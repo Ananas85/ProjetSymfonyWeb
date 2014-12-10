@@ -27,8 +27,8 @@ Achat:
                 Code_Enregistrement:
                     referencedColumnName: Code_Morceau
             orphanRemoval: false
-        codeAbonn„©:
-            targetEntity: Abonn„©
+        codeAbonn√©:
+            targetEntity: Abonn√©
             cascade: {  }
             mappedBy: null
             inversedBy: null

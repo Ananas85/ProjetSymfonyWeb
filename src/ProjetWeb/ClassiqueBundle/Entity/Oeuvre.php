@@ -40,14 +40,14 @@ class Oeuvre
      *
      * @ORM\Column(name="Tonalit√©", type="string", length=20, nullable=true)
      */
-    private $tonalit„©;
+    private $tonalit√©;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="Ann√©e", type="integer", nullable=true)
      */
-    private $ann„©e;
+    private $ann√©e;
 
     /**
      * @var string
@@ -61,7 +61,7 @@ class Oeuvre
      *
      * @ORM\Column(name="Num√©ro_Opus", type="integer", nullable=true)
      */
-    private $num„©roOpus;
+    private $num√©roOpus;
 
     /**
      * @var \TypeMorceaux
@@ -132,49 +132,49 @@ class Oeuvre
     }
 
     /**
-     * Set tonalit„©
+     * Set tonalit√©
      *
-     * @param string $tonalit„©
+     * @param string $tonalit√©
      * @return Oeuvre
      */
-    public function setTonalit„©($tonalit„©)
+    public function setTonalit√©($tonalit√©)
     {
-        $this->tonalit„© = $tonalit„©;
+        $this->tonalit√© = $tonalit√©;
 
         return $this;
     }
 
     /**
-     * Get tonalit„©
+     * Get tonalit√©
      *
      * @return string 
      */
-    public function getTonalit„©()
+    public function getTonalit√©()
     {
-        return $this->tonalit„©;
+        return $this->tonalit√©;
     }
 
     /**
-     * Set ann„©e
+     * Set ann√©e
      *
-     * @param integer $ann„©e
+     * @param integer $ann√©e
      * @return Oeuvre
      */
-    public function setAnn„©e($ann„©e)
+    public function setAnn√©e($ann√©e)
     {
-        $this->ann„©e = $ann„©e;
+        $this->ann√©e = $ann√©e;
 
         return $this;
     }
 
     /**
-     * Get ann„©e
+     * Get ann√©e
      *
      * @return integer 
      */
-    public function getAnn„©e()
+    public function getAnn√©e()
     {
-        return $this->ann„©e;
+        return $this->ann√©e;
     }
 
     /**
@@ -201,26 +201,26 @@ class Oeuvre
     }
 
     /**
-     * Set num„©roOpus
+     * Set num√©roOpus
      *
-     * @param integer $num„©roOpus
+     * @param integer $num√©roOpus
      * @return Oeuvre
      */
-    public function setNum„©roOpus($num„©roOpus)
+    public function setNum√©roOpus($num√©roOpus)
     {
-        $this->num„©roOpus = $num„©roOpus;
+        $this->num√©roOpus = $num√©roOpus;
 
         return $this;
     }
 
     /**
-     * Get num„©roOpus
+     * Get num√©roOpus
      *
      * @return integer 
      */
-    public function getNum„©roOpus()
+    public function getNum√©roOpus()
     {
-        return $this->num„©roOpus;
+        return $this->num√©roOpus;
     }
 
     /**

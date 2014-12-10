@@ -24,7 +24,7 @@ Album:
             length: 400
             fixed: false
             column: Titre_Album
-        ann„©eAlbum:
+        ann√©eAlbum:
             type: integer
             nullable: true
             unsigned: false

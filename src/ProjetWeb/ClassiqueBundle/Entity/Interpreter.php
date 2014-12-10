@@ -5,12 +5,12 @@ namespace ProjetWeb\ClassiqueBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Interpr„©ter
+ * Interpr√©ter
  *
  * @ORM\Table(name="Interpr√©ter", indexes={@ORM\Index(name="IDX_12B376CFE694D5AB", columns={"Code_Musicien"}), @ORM\Index(name="IDX_12B376CFD990D4F0", columns={"Code_Morceau"}), @ORM\Index(name="IDX_12B376CFD389A975", columns={"Code_Instrument"})})
  * @ORM\Entity
  */
-class Interpr„©ter
+class Interpreter
 {
     /**
      * @var integer
@@ -19,7 +19,7 @@ class Interpr„©ter
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $codeInterpr„©ter;
+    private $codeInterpr√©ter;
 
     /**
      * @var \Musicien
@@ -54,20 +54,20 @@ class Interpr„©ter
 
 
     /**
-     * Get codeInterpr„©ter
+     * Get codeInterpr√©ter
      *
      * @return integer 
      */
-    public function getCodeInterpr„©ter()
+    public function getCodeInterpr√©ter()
     {
-        return $this->codeInterpr„©ter;
+        return $this->codeInterpr√©ter;
     }
 
     /**
      * Set codeMusicien
      *
      * @param \ProjetWeb\ClassiqueBundle\Entity\Musicien $codeMusicien
-     * @return Interpr„©ter
+     * @return Interpr√©ter
      */
     public function setCodeMusicien(\ProjetWeb\ClassiqueBundle\Entity\Musicien $codeMusicien = null)
     {
@@ -90,7 +90,7 @@ class Interpr„©ter
      * Set codeMorceau
      *
      * @param \ProjetWeb\ClassiqueBundle\Entity\Enregistrement $codeMorceau
-     * @return Interpr„©ter
+     * @return Interpr√©ter
      */
     public function setCodeMorceau(\ProjetWeb\ClassiqueBundle\Entity\Enregistrement $codeMorceau = null)
     {
@@ -113,7 +113,7 @@ class Interpr„©ter
      * Set codeInstrument
      *
      * @param \ProjetWeb\ClassiqueBundle\Entity\Instrument $codeInstrument
-     * @return Interpr„©ter
+     * @return Interpr√©ter
      */
     public function setCodeInstrument(\ProjetWeb\ClassiqueBundle\Entity\Instrument $codeInstrument = null)
     {

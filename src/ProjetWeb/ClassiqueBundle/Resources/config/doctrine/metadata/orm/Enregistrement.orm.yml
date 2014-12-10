@@ -27,13 +27,13 @@ Enregistrement:
             length: 0
             fixed: false
             column: Nom_de_Fichier
-        dur„©e:
+        dur√©e:
             type: string
             nullable: true
             length: 10
             fixed: false
             column: Dur√©e
-        dur„©eSeconde:
+        dur√©eSeconde:
             type: integer
             nullable: true
             unsigned: false

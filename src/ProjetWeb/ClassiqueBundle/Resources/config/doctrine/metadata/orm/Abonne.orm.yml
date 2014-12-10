@@ -1,4 +1,4 @@
-Abonn„©:
+Abonn√©:
     type: entity
     table: Abonn√©
     indexes:
@@ -14,7 +14,7 @@ Abonn„©:
             columns:
                 - Login
     id:
-        codeAbonn„©:
+        codeAbonn√©:
             type: integer
             nullable: false
             unsigned: false
@@ -23,13 +23,13 @@ Abonn„©:
             generator:
                 strategy: IDENTITY
     fields:
-        nomAbonn„©:
+        nomAbonn√©:
             type: string
             nullable: false
             length: 50
             fixed: false
             column: Nom_Abonn√©
-        pr„©nomAbonn„©:
+        pr√©nomAbonn√©:
             type: string
             nullable: true
             length: 20

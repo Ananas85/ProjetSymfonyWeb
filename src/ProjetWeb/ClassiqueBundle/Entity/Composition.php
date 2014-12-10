@@ -33,7 +33,7 @@ class Composition
      *
      * @ORM\Column(name="AnnÃ©e", type="integer", nullable=true)
      */
-    private $annã©e;
+    private $annÃ©e;
 
     /**
      * @var string
@@ -78,26 +78,26 @@ class Composition
     }
 
     /**
-     * Set annã©e
+     * Set annÃ©e
      *
-     * @param integer $annã©e
+     * @param integer $annÃ©e
      * @return Composition
      */
-    public function setAnnã©e($annã©e)
+    public function setAnnÃ©e($annÃ©e)
     {
-        $this->annã©e = $annã©e;
+        $this->annÃ©e = $annÃ©e;
 
         return $this;
     }
 
     /**
-     * Get annã©e
+     * Get annÃ©e
      *
      * @return integer 
      */
-    public function getAnnã©e()
+    public function getAnnÃ©e()
     {
-        return $this->annã©e;
+        return $this->annÃ©e;
     }
 
     /**

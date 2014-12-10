@@ -17,7 +17,7 @@ Composition:
             length: 0
             fixed: false
             column: Titre_Composition
-        ann„©e:
+        ann√©e:
             type: integer
             nullable: true
             unsigned: false

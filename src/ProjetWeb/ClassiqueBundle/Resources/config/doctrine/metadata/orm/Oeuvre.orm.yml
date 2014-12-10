@@ -27,13 +27,13 @@ Oeuvre:
             length: 200
             fixed: false
             column: Sous_Titre
-        tonalit„©:
+        tonalit√©:
             type: string
             nullable: true
             length: 20
             fixed: false
             column: Tonalit√©
-        ann„©e:
+        ann√©e:
             type: integer
             nullable: true
             unsigned: false
@@ -44,7 +44,7 @@ Oeuvre:
             length: 20
             fixed: false
             column: Opus
-        num„©roOpus:
+        num√©roOpus:
             type: integer
             nullable: true
             unsigned: false

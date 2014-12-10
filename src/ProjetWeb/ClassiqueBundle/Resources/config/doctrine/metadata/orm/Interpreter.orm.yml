@@ -1,31 +1,43 @@
-Instrumentation:
+Interpréter:
     type: entity
-    table: Instrumentation
+    table: Interpréter
     indexes:
-        IDX_8B3BA89ECB48FCBD:
+        IDX_12B376CFE694D5AB:
             columns:
-                - Code_Oeuvre
-        IDX_8B3BA89ED389A975:
+                - Code_Musicien
+        IDX_12B376CFD990D4F0:
+            columns:
+                - Code_Morceau
+        IDX_12B376CFD389A975:
             columns:
                 - Code_Instrument
     id:
-        codeInstrumentation:
+        codeInterpréter:
             type: integer
             nullable: false
             unsigned: false
             id: true
-            column: Code_Instrumentation
+            column: Code_Interpréter
             generator:
                 strategy: IDENTITY
     manyToOne:
-        codeOeuvre:
-            targetEntity: Oeuvre
+        codeMusicien:
+            targetEntity: Musicien
             cascade: {  }
             mappedBy: null
             inversedBy: null
             joinColumns:
-                Code_Oeuvre:
-                    referencedColumnName: Code_Oeuvre
+                Code_Musicien:
+                    referencedColumnName: Code_Musicien
+            orphanRemoval: false
+        codeMorceau:
+            targetEntity: Enregistrement
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code_Morceau:
+                    referencedColumnName: Code_Morceau
             orphanRemoval: false
         codeInstrument:
             targetEntity: Instrument

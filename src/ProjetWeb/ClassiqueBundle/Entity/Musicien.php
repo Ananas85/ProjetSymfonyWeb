@@ -33,21 +33,21 @@ class Musicien
      *
      * @ORM\Column(name="PrÃ©nom_Musicien", type="string", length=50, nullable=true)
      */
-    private $prã©nomMusicien;
+    private $prÃ©nomMusicien;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="AnnÃ©e_Naissance", type="integer", nullable=true)
      */
-    private $annã©eNaissance;
+    private $annÃ©eNaissance;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="AnnÃ©e_Mort", type="integer", nullable=true)
      */
-    private $annã©eMort;
+    private $annÃ©eMort;
 
     /**
      * @var string
@@ -122,72 +122,72 @@ class Musicien
     }
 
     /**
-     * Set prã©nomMusicien
+     * Set prÃ©nomMusicien
      *
-     * @param string $prã©nomMusicien
+     * @param string $prÃ©nomMusicien
      * @return Musicien
      */
-    public function setPrã©nomMusicien($prã©nomMusicien)
+    public function setPrÃ©nomMusicien($prÃ©nomMusicien)
     {
-        $this->prã©nomMusicien = $prã©nomMusicien;
+        $this->prÃ©nomMusicien = $prÃ©nomMusicien;
 
         return $this;
     }
 
     /**
-     * Get prã©nomMusicien
+     * Get prÃ©nomMusicien
      *
      * @return string 
      */
-    public function getPrã©nomMusicien()
+    public function getPrÃ©nomMusicien()
     {
-        return $this->prã©nomMusicien;
+        return $this->prÃ©nomMusicien;
     }
 
     /**
-     * Set annã©eNaissance
+     * Set annÃ©eNaissance
      *
-     * @param integer $annã©eNaissance
+     * @param integer $annÃ©eNaissance
      * @return Musicien
      */
-    public function setAnnã©eNaissance($annã©eNaissance)
+    public function setAnnÃ©eNaissance($annÃ©eNaissance)
     {
-        $this->annã©eNaissance = $annã©eNaissance;
+        $this->annÃ©eNaissance = $annÃ©eNaissance;
 
         return $this;
     }
 
     /**
-     * Get annã©eNaissance
+     * Get annÃ©eNaissance
      *
      * @return integer 
      */
-    public function getAnnã©eNaissance()
+    public function getAnnÃ©eNaissance()
     {
-        return $this->annã©eNaissance;
+        return $this->annÃ©eNaissance;
     }
 
     /**
-     * Set annã©eMort
+     * Set annÃ©eMort
      *
-     * @param integer $annã©eMort
+     * @param integer $annÃ©eMort
      * @return Musicien
      */
-    public function setAnnã©eMort($annã©eMort)
+    public function setAnnÃ©eMort($annÃ©eMort)
     {
-        $this->annã©eMort = $annã©eMort;
+        $this->annÃ©eMort = $annÃ©eMort;
 
         return $this;
     }
 
     /**
-     * Get annã©eMort
+     * Get annÃ©eMort
      *
      * @return integer 
      */
-    public function getAnnã©eMort()
+    public function getAnnÃ©eMort()
     {
-        return $this->annã©eMort;
+        return $this->annÃ©eMort;
     }
 
     /**

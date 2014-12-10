@@ -26,7 +26,7 @@ class Genre
      *
      * @ORM\Column(name="Libell√©_Abr√©g√©", type="string", length=30, nullable=false)
      */
-    private $libell„©Abr„©g„©;
+    private $libell√©Abr√©g√©;
 
 
 
@@ -41,25 +41,25 @@ class Genre
     }
 
     /**
-     * Set libell„©Abr„©g„©
+     * Set libell√©Abr√©g√©
      *
-     * @param string $libell„©Abr„©g„©
+     * @param string $libell√©Abr√©g√©
      * @return Genre
      */
-    public function setLibell„©Abr„©g„©($libell„©Abr„©g„©)
+    public function setLibell√©Abr√©g√©($libell√©Abr√©g√©)
     {
-        $this->libell„©Abr„©g„© = $libell„©Abr„©g„©;
+        $this->libell√©Abr√©g√© = $libell√©Abr√©g√©;
 
         return $this;
     }
 
     /**
-     * Get libell„©Abr„©g„©
+     * Get libell√©Abr√©g√©
      *
      * @return string 
      */
-    public function getLibell„©Abr„©g„©()
+    public function getLibell√©Abr√©g√©()
     {
-        return $this->libell„©Abr„©g„©;
+        return $this->libell√©Abr√©g√©;
     }
 }

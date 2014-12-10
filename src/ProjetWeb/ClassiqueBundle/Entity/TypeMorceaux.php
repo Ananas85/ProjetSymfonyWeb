@@ -26,7 +26,7 @@ class TypeMorceaux
      *
      * @ORM\Column(name="Libell√©_Type", type="string", length=20, nullable=false)
      */
-    private $libell„©Type;
+    private $libell√©Type;
 
     /**
      * @var string
@@ -48,26 +48,26 @@ class TypeMorceaux
     }
 
     /**
-     * Set libell„©Type
+     * Set libell√©Type
      *
-     * @param string $libell„©Type
+     * @param string $libell√©Type
      * @return TypeMorceaux
      */
-    public function setLibell„©Type($libell„©Type)
+    public function setLibell√©Type($libell√©Type)
     {
-        $this->libell„©Type = $libell„©Type;
+        $this->libell√©Type = $libell√©Type;
 
         return $this;
     }
 
     /**
-     * Get libell„©Type
+     * Get libell√©Type
      *
      * @return string 
      */
-    public function getLibell„©Type()
+    public function getLibell√©Type()
     {
-        return $this->libell„©Type;
+        return $this->libell√©Type;
     }
 
     /**

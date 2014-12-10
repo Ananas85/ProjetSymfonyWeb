@@ -40,14 +40,14 @@ class Enregistrement
      *
      * @ORM\Column(name="Dur√©e", type="string", length=10, nullable=true)
      */
-    private $dur„©e;
+    private $dur√©e;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="Dur√©e_Seconde", type="integer", nullable=true)
      */
-    private $dur„©eSeconde;
+    private $dur√©eSeconde;
 
     /**
      * @var integer
@@ -132,49 +132,49 @@ class Enregistrement
     }
 
     /**
-     * Set dur„©e
+     * Set dur√©e
      *
-     * @param string $dur„©e
+     * @param string $dur√©e
      * @return Enregistrement
      */
-    public function setDur„©e($dur„©e)
+    public function setDur√©e($dur√©e)
     {
-        $this->dur„©e = $dur„©e;
+        $this->dur√©e = $dur√©e;
 
         return $this;
     }
 
     /**
-     * Get dur„©e
+     * Get dur√©e
      *
      * @return string 
      */
-    public function getDur„©e()
+    public function getDur√©e()
     {
-        return $this->dur„©e;
+        return $this->dur√©e;
     }
 
     /**
-     * Set dur„©eSeconde
+     * Set dur√©eSeconde
      *
-     * @param integer $dur„©eSeconde
+     * @param integer $dur√©eSeconde
      * @return Enregistrement
      */
-    public function setDur„©eSeconde($dur„©eSeconde)
+    public function setDur√©eSeconde($dur√©eSeconde)
     {
-        $this->dur„©eSeconde = $dur„©eSeconde;
+        $this->dur√©eSeconde = $dur√©eSeconde;
 
         return $this;
     }
 
     /**
-     * Get dur„©eSeconde
+     * Get dur√©eSeconde
      *
      * @return integer 
      */
-    public function getDur„©eSeconde()
+    public function getDur√©eSeconde()
     {
-        return $this->dur„©eSeconde;
+        return $this->dur√©eSeconde;
     }
 
     /**

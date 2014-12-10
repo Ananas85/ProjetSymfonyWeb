@@ -33,7 +33,7 @@ class Album
      *
      * @ORM\Column(name="Ann√©e_Album", type="integer", nullable=true)
      */
-    private $ann„©eAlbum;
+    private $ann√©eAlbum;
 
     /**
      * @var string
@@ -98,26 +98,26 @@ class Album
     }
 
     /**
-     * Set ann„©eAlbum
+     * Set ann√©eAlbum
      *
-     * @param integer $ann„©eAlbum
+     * @param integer $ann√©eAlbum
      * @return Album
      */
-    public function setAnn„©eAlbum($ann„©eAlbum)
+    public function setAnn√©eAlbum($ann√©eAlbum)
     {
-        $this->ann„©eAlbum = $ann„©eAlbum;
+        $this->ann√©eAlbum = $ann√©eAlbum;
 
         return $this;
     }
 
     /**
-     * Get ann„©eAlbum
+     * Get ann√©eAlbum
      *
      * @return integer 
      */
-    public function getAnn„©eAlbum()
+    public function getAnn√©eAlbum()
     {
-        return $this->ann„©eAlbum;
+        return $this->ann√©eAlbum;
     }
 
     /**

@@ -5,12 +5,12 @@ namespace ProjetWeb\ClassiqueBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Abonn„©
+ * Abonn√©
  *
  * @ORM\Table(name="Abonn√©", uniqueConstraints={@ORM\UniqueConstraint(name="IX_Abonn√©", columns={"Nom_Abonn√©", "Pr√©nom_Abonn√©"}), @ORM\UniqueConstraint(name="IX_Abonn√©_1", columns={"Login"})}, indexes={@ORM\Index(name="IDX_F72316A520B77BF2", columns={"Code_Pays"})})
  * @ORM\Entity
  */
-class Abonn„©
+class Abonne
 {
     /**
      * @var integer
@@ -19,21 +19,21 @@ class Abonn„©
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $codeAbonn„©;
+    private $codeAbonn√©;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Nom_Abonn√©", type="string", length=50, nullable=false)
      */
-    private $nomAbonn„©;
+    private $nomAbonn√©;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Pr√©nom_Abonn√©", type="string", length=20, nullable=true)
      */
-    private $pr„©nomAbonn„©;
+    private $pr√©nomAbonn√©;
 
     /**
      * @var string
@@ -97,66 +97,66 @@ class Abonn„©
 
 
     /**
-     * Get codeAbonn„©
+     * Get codeAbonn√©
      *
      * @return integer 
      */
-    public function getCodeAbonn„©()
+    public function getCodeAbonn√©()
     {
-        return $this->codeAbonn„©;
+        return $this->codeAbonn√©;
     }
 
     /**
-     * Set nomAbonn„©
+     * Set nomAbonn√©
      *
-     * @param string $nomAbonn„©
-     * @return Abonn„©
+     * @param string $nomAbonn√©
+     * @return Abonn√©
      */
-    public function setNomAbonn„©($nomAbonn„©)
+    public function setNomAbonn√©($nomAbonn√©)
     {
-        $this->nomAbonn„© = $nomAbonn„©;
+        $this->nomAbonn√© = $nomAbonn√©;
 
         return $this;
     }
 
     /**
-     * Get nomAbonn„©
+     * Get nomAbonn√©
      *
      * @return string 
      */
-    public function getNomAbonn„©()
+    public function getNomAbonn√©()
     {
-        return $this->nomAbonn„©;
+        return $this->nomAbonn√©;
     }
 
     /**
-     * Set pr„©nomAbonn„©
+     * Set pr√©nomAbonn√©
      *
-     * @param string $pr„©nomAbonn„©
-     * @return Abonn„©
+     * @param string $pr√©nomAbonn√©
+     * @return Abonn√©
      */
-    public function setPr„©nomAbonn„©($pr„©nomAbonn„©)
+    public function setPr√©nomAbonn√©($pr√©nomAbonn√©)
     {
-        $this->pr„©nomAbonn„© = $pr„©nomAbonn„©;
+        $this->pr√©nomAbonn√© = $pr√©nomAbonn√©;
 
         return $this;
     }
 
     /**
-     * Get pr„©nomAbonn„©
+     * Get pr√©nomAbonn√©
      *
      * @return string 
      */
-    public function getPr„©nomAbonn„©()
+    public function getPr√©nomAbonn√©()
     {
-        return $this->pr„©nomAbonn„©;
+        return $this->pr√©nomAbonn√©;
     }
 
     /**
      * Set login
      *
      * @param string $login
-     * @return Abonn„©
+     * @return Abonn√©
      */
     public function setLogin($login)
     {
@@ -179,7 +179,7 @@ class Abonn„©
      * Set password
      *
      * @param string $password
-     * @return Abonn„©
+     * @return Abonn√©
      */
     public function setPassword($password)
     {
@@ -202,7 +202,7 @@ class Abonn„©
      * Set adresse
      *
      * @param string $adresse
-     * @return Abonn„©
+     * @return Abonn√©
      */
     public function setAdresse($adresse)
     {
@@ -225,7 +225,7 @@ class Abonn„©
      * Set ville
      *
      * @param string $ville
-     * @return Abonn„©
+     * @return Abonn√©
      */
     public function setVille($ville)
     {
@@ -248,7 +248,7 @@ class Abonn„©
      * Set codePostal
      *
      * @param string $codePostal
-     * @return Abonn„©
+     * @return Abonn√©
      */
     public function setCodePostal($codePostal)
     {
@@ -271,7 +271,7 @@ class Abonn„©
      * Set email
      *
      * @param string $email
-     * @return Abonn„©
+     * @return Abonn√©
      */
     public function setEmail($email)
     {
@@ -294,7 +294,7 @@ class Abonn„©
      * Set userid
      *
      * @param string $userid
-     * @return Abonn„©
+     * @return Abonn√©
      */
     public function setUserid($userid)
     {
@@ -317,7 +317,7 @@ class Abonn„©
      * Set codePays
      *
      * @param \ProjetWeb\ClassiqueBundle\Entity\Pays $codePays
-     * @return Abonn„©
+     * @return Abonn√©
      */
     public function setCodePays(\ProjetWeb\ClassiqueBundle\Entity\Pays $codePays = null)
     {
