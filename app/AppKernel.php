@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Anachardan\Bundle\GeneralBundle\AnachardanGeneralBundle(),
             new ProjetWeb\ClassiqueBundle\ProjetWebClassiqueBundle(),
+            new ProjetWeb\HomeBundle\ProjetWebHomeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
