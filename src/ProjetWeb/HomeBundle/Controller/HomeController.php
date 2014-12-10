@@ -20,6 +20,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class HomeController extends Controller {
 
     public function indexAction() {
-
+        return $this->render('ProjetWebHomeBundle:Home:index.html.twig', array());
     }
 } 
