@@ -1,0 +1,5 @@
+anachardan_general:
+    resource: "@AnachardanGeneralBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
