@@ -1,0 +1,4 @@
+services:
+#    projet_web_classique.example:
+#        class: ProjetWeb\ClassiqueBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
