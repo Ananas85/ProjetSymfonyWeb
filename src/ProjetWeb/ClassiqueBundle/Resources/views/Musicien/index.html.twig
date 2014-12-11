@@ -1,6 +1,25 @@
-<h1>Vous êtes sur la page de choix des musiciens</h1>
-<ul>
+{% extends "ProjetWebHomeBundle::layout.html.twig" %}
+
+{% block title %}
+    Musicien - {{ parent() }}
+{% endblock %}
+
+{% block classiqueweb_body %}
+
+    <h2>Liste des musicien</h2>
+
+    <ul>
     {% for musicien in liste %}
-        <li>{{ musicien.codeMusicien }}</li>
+        <li>
+        <a href="{{ path('projet_web_classique_musicienpage',{'id':musicien.codeMusicien}) }}"
+        {{ musicien.nomMusicien }} {{ musicien.prénomMusicien }}
+    </a>
+    </li>
+    {% else %}
+    Pas de musiciens ici
     {% endfor %}
-</ul>
+    </ul>
+
+
+{% endblock %}
+
