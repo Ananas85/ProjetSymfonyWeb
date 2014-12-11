@@ -22,4 +22,8 @@ class HomeController extends Controller {
     public function indexAction() {
         return $this->render('ProjetWebHomeBundle:Home:index.html.twig', array());
     }
+	
+	public function aboutAction() {
+		return $this->render('ProjetWebHomeBundle:Home:about.html.twig',array());
+	}
 } 
