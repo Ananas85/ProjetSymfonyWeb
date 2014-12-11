@@ -6,7 +6,7 @@ projet_web_classique_initialmusicienpage:
     path:     /musicien/{initial}
     defaults: { _controller: ProjetWebClassiqueBundle:Musician:initial }
     requirements:
-        initial: "[A-Z]"
+        initial: \S
 
 projet_web_classique_musicienpage:
     path:     /musicien/{id}
