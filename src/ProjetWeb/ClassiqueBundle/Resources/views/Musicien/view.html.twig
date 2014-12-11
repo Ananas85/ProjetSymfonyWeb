@@ -1,10 +1,12 @@
-{% extends "ProjetWebHomeBundle::layout.html.twig" %}
+{% extends "ProjetWebClassiqueBundle::layout.html.twig" %}
 
 {% block title %}
     Fiche d'un musicien - {{ parent() }}
 {% endblock %}
 
 {% block classiqueweb_body %}
-    Voici le musicien {{ musicien.codeMusicien }}
+    Voici le musicien de code {{ musicien.codeMusicien }} <br>
+    de nom {{ musicien.nomMusicien }} <br>
+    de prénom {{ musicien.prénomMusicien }}
 
 {% endblock %}
