@@ -24,7 +24,14 @@ class MusicianController extends Controller{
     }
 
     public function initialAction($initial){
-        return $this->render('ProjetWebClassiqueBundle:Musicien:test.html.twig',array('initial'=>$initial));
+        $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
+        $query = $repoMusicien->createQueryBuilder('m')
+                            ->where('m.nomMusicien LIKE :init')
+                            ->setParameter('init', $initial.'%')
+                            ->orderBy('m.nomMusicien', 'ASC')
+                            ->getQuery();
+        $musicien = $query->getResult();
+        return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$musicien));
     }
 
     public function viewAction($id) {
