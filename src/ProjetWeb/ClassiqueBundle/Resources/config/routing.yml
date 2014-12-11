@@ -3,7 +3,7 @@ projet_web_classique_indexmusicienpage:
     defaults: { _controller: ProjetWebClassiqueBundle:Musician:index }
 
 projet_web_classique_initialmusicienpage:
-    path:     /musicien/{initial}
+    path:     /musicien/initial/{initial}
     defaults: { _controller: ProjetWebClassiqueBundle:Musician:initial }
     requirements:
         initial: \S
