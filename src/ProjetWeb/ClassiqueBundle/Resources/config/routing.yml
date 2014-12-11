@@ -2,6 +2,12 @@ projet_web_classique_indexmusicienpage:
     path:     /musicien
     defaults: { _controller: ProjetWebClassiqueBundle:Musician:index }
 
+projet_web_classique_initialmusicienpage:
+    path:     /musicien/{initial}
+    defaults: { _controller: ProjetWebClassiqueBundle:Musician:initial }
+    requirements:
+        initial: [A-Z]
+
 projet_web_classique_musicienpage:
     path:     /musicien/{id}
     defaults: { _controller: ProjetWebClassiqueBundle:Musician:view }

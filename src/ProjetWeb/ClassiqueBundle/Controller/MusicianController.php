@@ -23,6 +23,10 @@ class MusicianController extends Controller{
         return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$musicien));
     }
 
+    public function initialAction($initial){
+        return $this->render('ProjetWebClassiqueBundle:Musicien:test.html.twig',array('initial'=>$initial));
+    }
+
     public function viewAction($id) {
         $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
         $musicien = $repoMusicien->find($id);
