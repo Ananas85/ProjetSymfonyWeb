@@ -1,3 +1,15 @@
 projet_web_classique_indexmusicienpage:
     path:     /musicien
     defaults: { _controller: ProjetWebClassiqueBundle:Musician:index }
+
+projet_web_classique_musicienpage:
+    path:     /musicien/{id}
+    defaults: { _controller: ProjetWebClassiqueBundle:Musician:view }
+    requirements:
+        id: \d+
+
+projet_web_classique_musicienimagepage:
+    path:    /musicien/image/{id}
+    defaults: { _controller: ProjetWebClassiqueBundle:Musician:image }
+    requirements:
+        id: \d+

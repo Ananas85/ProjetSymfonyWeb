@@ -22,4 +22,24 @@ class MusicianController extends Controller{
         $musicien = $repoMusicien->findAll();
         return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$musicien));
     }
+
+    public function viewAction($id) {
+        $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
+        $musicien = $repoMusicien->find($id);
+        $imageUrl = $this->generateUrl('projet_web_classique_musicienimagepage', array('id'=>$id));
+
+        return $this->render('ProjetWebClassiqueBundle:Musicien:view.html.twig',array('musicien'=>$musicien, 'image'=>$imageUrl));
+    }
+
+    public function imageAction($id) {
+        $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
+        $musicien = $repoMusicien->find($id);
+        $image = stream_get_contents($musicien->getPhoto());
+        $image = pack("H*", $image);
+        $response = new \Symfony\Component\HttpFoundation\Response();
+        $response->headers->set('Content-type', 'image/jpeg');
+        $response->headers->set('Content-Transfer-Encoding', 'binary');
+        $response->setContent($image);
+        return $response;
+    }
 } 
