@@ -1,4 +1,4 @@
-{% extends "ProjetWebHomeBundle::layout.html.twig" %}
+{% extends "ProjetWebClassiqueBundle:layout.html.twig" %}
 
 {% block title %}
     Musicien - {{ parent() }}
@@ -11,12 +11,10 @@
     <ul>
     {% for musicien in liste %}
         <li>
-        <a href="{{ path('projet_web_classique_musicienpage',{'id':musicien.codeMusicien}) }}">
-        {{ musicien.nomMusicien }}
-    </a>
-    </li>
+            <a href="{{ path('projet_web_classique_musicienpage',{'id':musicien.codeMusicien}) }}">{{ musicien.nomMusicien }}</a>
+        </li>
     {% else %}
-    Pas de musiciens ici
+        Pas de musiciens ici
     {% endfor %}
     </ul>
 
