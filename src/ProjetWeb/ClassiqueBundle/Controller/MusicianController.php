@@ -41,10 +41,9 @@ class MusicianController extends Controller{
         $anneeFin = $annee + 10;
         $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
         $query = $repoMusicien->createQueryBuilder('m')
-                              ->where('m.annéeNaissance >= :naissance')
+                              ->where('m.annéeNaissance BETWEEN :naissance AND :intervalle')
                               ->setParameter('init', $annee)
-                              ->andWhere('m.annéeNaissance < :mort')
-                              ->setParameter('mort',$anneeFin)
+                              ->setParameter('intervalle',$anneeFin)
                               ->orderBy('m.nomMusicien', 'ASC')
                               ->getQuery();
         $musicien = $query->getResult();
