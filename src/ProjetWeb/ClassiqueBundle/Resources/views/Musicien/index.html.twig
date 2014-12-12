@@ -11,7 +11,7 @@
     <p>Vous avez choisi d'avoir les musiciens : {{ contexte }}
         {% if contexte == "avec initial" %}
              {{ initial }}
-        {% elsif contexte == "par année de naissence" %}
+        {% elseif contexte == "par année de naissence" %}
              entre {{ naissance }} et {{ fin }}
         {% endif %}
 
