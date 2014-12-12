@@ -8,13 +8,21 @@
 
     <h2>Liste des musicien</h2>
 
+    <p>Vous avez choisi d'avoir les musiciens : {{ contexte }}
+        {% if contexte == "avec initial" %}
+             {{ initial }}
+        {% elsif contexte == "par année de naissence" %}
+             entre {{ naissance }} et {{ fin }}
+        {% endif %}
+
+    </p>
     <ul>
     {% for musicien in liste %}
         <li>
             <a href="{{ path('projet_web_classique_musicienpage',{'id':musicien.codeMusicien}) }}">{{ musicien.nomMusicien }}</a>
         </li>
     {% else %}
-        Pas de musiciens ici
+        Pas de musiciens pour ces paramètres là.
     {% endfor %}
     </ul>
 

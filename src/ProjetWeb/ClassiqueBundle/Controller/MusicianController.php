@@ -18,12 +18,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class MusicianController extends Controller{
 
     public function indexAction() {
+        $contexte = "Tous";
         $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
         $musicien = $repoMusicien->findAll();
-        return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$musicien));
+        return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$musicien, 'contexte'=>$contexte));
     }
 
     public function initialAction($initial){
+        $contexte = "avec initiale";
         $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
         $query = $repoMusicien->createQueryBuilder('m')
                             ->where('m.nomMusicien LIKE :init')
@@ -31,7 +33,22 @@ class MusicianController extends Controller{
                             ->orderBy('m.nomMusicien', 'ASC')
                             ->getQuery();
         $musicien = $query->getResult();
-        return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$musicien));
+        return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$musicien, 'contexte'=>$contexte,'initial'=>$initial));
+    }
+
+    public function naissanceAction($annee) {
+        $contexte = "par année de naissance";
+        $anneeFin = $annee + 10;
+        $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
+        $query = $repoMusicien->createQueryBuilder('m')
+                              ->where('m.annéeNaissance >= :naissance')
+                              ->setParameter('init', $annee)
+                              ->andWhere('m.annéeNaissance < :mort')
+                              ->setParameter('mort',$anneeFin)
+                              ->orderBy('m.nomMusicien', 'ASC')
+                              ->getQuery();
+        $musicien = $query->getResult();
+        return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$musicien, 'contexte'=>$contexte,'naissance'=>$annee,'fin'=>$anneeFin));
     }
 
     public function viewAction($id) {

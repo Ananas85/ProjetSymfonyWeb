@@ -8,6 +8,12 @@ projet_web_classique_initialmusicienpage:
     requirements:
         initial: \S
 
+projet_web_classique_naissancemusicienpage:
+    path:     /musicien/naissance/{annee}
+    defaults: { _controller: ProjetWebClassiqueBundle:Musician:naissance }
+    requirements:
+        annee: \d+
+
 projet_web_classique_musicienpage:
     path:     /musicien/{id}
     defaults: { _controller: ProjetWebClassiqueBundle:Musician:view }
