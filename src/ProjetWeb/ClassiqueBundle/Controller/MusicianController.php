@@ -36,7 +36,7 @@ class MusicianController extends Controller{
 
     public function viewAction($id) {
         $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
-        $musicien = $repoMusicien->myFindOne($id);
+        $musicien = $repoMusicien->find($id);
         $imageUrl = $this->generateUrl('projet_web_classique_musicienimagepage', array('id'=>$id));
 
         return $this->render('ProjetWebClassiqueBundle:Musicien:view.html.twig',array('musicien'=>$musicien, 'image'=>$imageUrl));
