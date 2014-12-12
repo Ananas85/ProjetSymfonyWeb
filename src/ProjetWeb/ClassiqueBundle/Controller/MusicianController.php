@@ -39,11 +39,15 @@ class MusicianController extends Controller{
     public function naissanceAction($annee) {
         $contexte = "par année de naissance";
         $anneeFin = $annee + 10;
+        $em = $this->getDoctrine()
+                   ->getManager();
+        // Utilisation de DQL
+        $query = $em->createQuery('SELECT m FROM ProjetWeb\ClassiqueBundle\Entity\Musicien m WHERE m.annéeNaissance > :naissance ORDER BY m.nomMusicien ASC' )->setParameter('naissance', $annee);
         $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
-        $query = $repoMusicien->createQueryBuilder('m')
-                              ->where('m.anneeNaissance > :naissance')
+        /*$query = $repoMusicien->createQueryBuilder('m')
+                              ->where(''.utf8_decode(m.annéeNaissance).' > :naissance')
                               ->setParameter('init', $annee)
-                              ->getQuery();
+                              ->getQuery()*/;
         $musicien = $query->getResult();
         return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$musicien, 'contexte'=>$contexte,'naissance'=>$annee,'fin'=>$anneeFin));
     }
