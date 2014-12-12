@@ -40,14 +40,14 @@ class Musicien
      *
      * @ORM\Column(name="Année_Naissance", type="integer", nullable=true)
      */
-    private $annéeNaissance;
+    private $anneeNaissance;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="Année_Mort", type="integer", nullable=true)
      */
-    private $annéeMort;
+    private $anneeMort;
 
     /**
      * @var string
@@ -150,9 +150,9 @@ class Musicien
      * @param integer $annéeNaissance
      * @return Musicien
      */
-    public function setAnnéeNaissance($annéeNaissance)
+    public function setAnneeNaissance($annéeNaissance)
     {
-        $this->annéeNaissance = $annéeNaissance;
+        $this->anneeNaissance = $annéeNaissance;
 
         return $this;
     }
@@ -162,9 +162,9 @@ class Musicien
      *
      * @return integer 
      */
-    public function getAnnéeNaissance()
+    public function getAnneeNaissance()
     {
-        return $this->annéeNaissance;
+        return $this->anneeNaissance;
     }
 
     /**
@@ -173,9 +173,9 @@ class Musicien
      * @param integer $annéeMort
      * @return Musicien
      */
-    public function setAnnéeMort($annéeMort)
+    public function setAnneeMort($annéeMort)
     {
-        $this->annéeMort = $annéeMort;
+        $this->anneeMort = $annéeMort;
 
         return $this;
     }
@@ -185,9 +185,9 @@ class Musicien
      *
      * @return integer 
      */
-    public function getAnnéeMort()
+    public function getAnneeMort()
     {
-        return $this->annéeMort;
+        return $this->anneeMort;
     }
 
     /**
