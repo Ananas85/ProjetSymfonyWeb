@@ -26,7 +26,7 @@ class CompositeurController extends Controller {
                                     ->orderBy('m.nomMusicien','ASC')
                                     ->getQuery();
         $resultat = $query->getResult();
-
+        $compositeur = array();
         foreach($resultat as $compo) {
             $compositeur[] = $compo->getCodeMusicien();
         }
