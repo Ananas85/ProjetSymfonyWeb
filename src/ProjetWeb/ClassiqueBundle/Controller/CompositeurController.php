@@ -23,7 +23,8 @@ class CompositeurController extends Controller {
         $query = $repoComposer->createQueryBuilder('c')
                                     ->join('c.codeMusicien','m')
                                     ->addSelect('m')
-                                    ->orderBy('m.nomMusicien','ASC');
+                                    ->orderBy('m.nomMusicien','ASC')
+                                    ->getQuery();
         $compositeur = $query->getResult();
         return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$compositeur, 'contexte'=>$contexte));
     }
