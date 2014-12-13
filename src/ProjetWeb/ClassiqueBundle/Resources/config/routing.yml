@@ -25,3 +25,23 @@ projet_web_classique_musicienimagepage:
     defaults: { _controller: ProjetWebClassiqueBundle:Musician:image }
     requirements:
         id: \d+
+
+projet_web_classique_indexcompositeurpage:
+    path:     /compositeur
+    defaults: { _controller: ProjetWebClassiqueBundle:Compositeur:index }
+
+projet_web_classique_initialcompositeurpage:
+    path:     /compositeur/initial/{initial}
+    defaults: { _controller: ProjetWebClassiqueBundle:Compositeur:initial }
+    requirements:
+        initial: \S
+
+projet_web_classique_indexinterpretepage:
+    path:     /interprete
+    defaults: { _controller: ProjetWebClassiqueBundle:Interprete:index }
+
+projet_web_classique_initialinterpretepage:
+    path:     /interprete/initial/{initial}
+    defaults: { _controller: ProjetWebClassiqueBundle:Interprete:initial }
+    requirements:
+        initial: \S
