@@ -1,34 +1,21 @@
-projet_web_classique_indexmusicienpage:
-    path:     /musicien
-    defaults: { _controller: ProjetWebClassiqueBundle:Musician:index }
-
-projet_web_classique_initialmusicienpage:
-    path:     /musicien/initial/{initial}
-    defaults: { _controller: ProjetWebClassiqueBundle:Musician:initial }
-    requirements:
-        initial: \S
-
-projet_web_classique_naissancemusicienpage:
-    path:     /musicien/naissance/{annee}
-    defaults: { _controller: ProjetWebClassiqueBundle:Musician:naissance }
-    requirements:
-        annee: \d+
-
-projet_web_classique_musicienpage:
-    path:     /musicien/{id}
-    defaults: { _controller: ProjetWebClassiqueBundle:Musician:view }
-    requirements:
-        id: \d+
-
 projet_web_classique_musicienimagepage:
     path:    /musicien/image/{id}
     defaults: { _controller: ProjetWebClassiqueBundle:Musician:image }
     requirements:
         id: \d+
 
+
+
+
 projet_web_classique_indexcompositeurpage:
     path:     /compositeur
     defaults: { _controller: ProjetWebClassiqueBundle:Compositeur:index }
+
+projet_web_classique_compositeurpage:
+    path:     /compositeur/{id}
+    defaults: { _controller: ProjetWebClassiqueBundle:Compositeur:view }
+    requirements:
+        id: \d+
 
 projet_web_classique_initialcompositeurpage:
     path:     /compositeur/initial/{initial}
@@ -36,12 +23,33 @@ projet_web_classique_initialcompositeurpage:
     requirements:
         initial: \S
 
+projet_web_classique_naissancecompositeurpage:
+    path:     /compositeur/naissance/{annee}
+    defaults: { _controller: ProjetWebClassiqueBundle:Compositeur:naissance }
+    requirements:
+        annee: \d+
+
+
+
+
 projet_web_classique_indexinterpretepage:
     path:     /interprete
     defaults: { _controller: ProjetWebClassiqueBundle:Interprete:index }
+
+projet_web_classique_interpretepage:
+    path:     /interprete/{id}
+    defaults: { _controller: ProjetWebClassiqueBundle:Interprete:view }
+    requirements:
+        id: \d+
 
 projet_web_classique_initialinterpretepage:
     path:     /interprete/initial/{initial}
     defaults: { _controller: ProjetWebClassiqueBundle:Interprete:initial }
     requirements:
         initial: \S
+
+projet_web_classique_naissanceinterpretepage:
+    path:     /interprete/naissance/{annee}
+    defaults: { _controller: ProjetWebClassiqueBundle:Interprete:naissance }
+    requirements:
+        annee: \d+

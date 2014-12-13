@@ -1,0 +1,28 @@
+{% extends "ProjetWebClassiqueBundle::layout.html.twig" %}
+
+{% block title %}
+    Compositeur - {{ parent() }}
+{% endblock %}
+
+{% block classiqueweb_body %}
+
+    <h2>Liste des Interprêtes</h2>
+
+    <p>Sélection par {{ contexte }} :
+        {% if initial is defined %}
+            {{ initial }}
+        {% elseif contexte == "par année de naissance" %}
+            entre {{ naissance }} et {{ fin }}
+        {% endif %}
+
+    </p>
+    <ul>
+    {% for musicien in liste %}
+        <li>
+            <a href="{{ path('projet_web_classique_interpretepage',{'id':musicien.codeMusicien}) }}">{{ musicien.nomMusicien }} {{ musicien.prénomMusicien }}</a>
+        </li>
+    {% else %}
+        Pas de musiciens pour ces paramètres là.
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "ProjetWebClassiqueBundle::layout.html.twig" %}
+
+{% block title %}
+    Musicien - {{ parent() }}
+{% endblock %}
+
+{% block classiqueweb_body %}
+
+    <h2>Liste des Compositeurs</h2>
+
+    <p>Vous avez choisi d'avoir les {{ object }} : {{ contexte }}
+        {% if initial is defined %}
+            {{ initial }}
+        {% elseif contexte == "par année de naissance" %}
+            entre {{ naissance }} et {{ fin }}
+        {% endif %}
+
+    </p>
+    <ul>
+    {% for musicien in liste %}
+        <li>
+        {% block listLink %} <a href="{{ path('projet_web_classique_compositeurpage',{'id':musicien.codeMusicien}) }}">{{ musicien.nomMusicien }} {{ musicien.prénomMusicien }}</a>
+        </li>
+        {% else %}
+        Pas de musiciens pour ces paramètres là.
+        {% endfor %}
+        </ul>
+
+
+        {% endblock %}

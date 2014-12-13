@@ -17,49 +17,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class MusicianController extends Controller{
 
-    public function indexAction() {
-        $contexte = "Tous";
-        $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
-        $musicien = $repoMusicien->findAll();
-        return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$musicien, 'contexte'=>$contexte));
-    }
-
-    public function initialAction($initial){
-        $contexte = "avec initiale";
-        $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
-        $query = $repoMusicien->createQueryBuilder('m')
-                            ->where('m.nomMusicien LIKE :init')
-                            ->setParameter('init', $initial.'%')
-                            ->orderBy('m.nomMusicien', 'ASC')
-                            ->getQuery();
-        $musicien = $query->getResult();
-        return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$musicien, 'contexte'=>$contexte,'initial'=>$initial));
-    }
-
-    public function naissanceAction($annee) {
-        $contexte = "par année de naissance";
-        $anneeFin = $annee + 10;
-        $em = $this->getDoctrine()
-                   ->getManager();
-        // Utilisation de DQL
-        $query = $em->createQuery('SELECT m FROM ProjetWeb\ClassiqueBundle\Entity\Musicien m WHERE m.annéeNaissance > :naissance ORDER BY m.nomMusicien ASC' )->setParameter('naissance', $annee);
-        $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
-        /*$query = $repoMusicien->createQueryBuilder('m')
-                              ->where(''.utf8_decode(m.annéeNaissance).' > :naissance')
-                              ->setParameter('init', $annee)
-                              ->getQuery()*/;
-        $musicien = $query->getResult();
-        return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$musicien, 'contexte'=>$contexte,'naissance'=>$annee,'fin'=>$anneeFin));
-    }
-
-    public function viewAction($id) {
-        $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
-        $musicien = $repoMusicien->find($id);
-        $imageUrl = $this->generateUrl('projet_web_classique_musicienimagepage', array('id'=>$id));
-
-        return $this->render('ProjetWebClassiqueBundle:Musicien:view.html.twig',array('musicien'=>$musicien, 'image'=>$imageUrl));
-    }
-
     public function imageAction($id) {
         $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
         $musicien = $repoMusicien->find($id);
