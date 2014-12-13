@@ -22,13 +22,14 @@ class CompositeurController extends Controller {
         $repoComposer = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Composer');
         $query = $repoComposer->createQueryBuilder('c')
                                     ->join('c.codeMusicien','m')
-                                    ->addSelect('m')
+                                    ->select('m')
                                     ->orderBy('m.nomMusicien','ASC')
                                     ->getQuery();
         $resultat = $query->getResult();
         $compositeur = array();
+        //Methode lente du dictinct mais pour l'instant rien trouvé d'autre
         foreach($resultat as $compo) {
-            if (!in_array($compo->getCodeMusicien(),$compositeur))
+            //if (!in_array($compo->getCodeMusicien(),$compositeur))
                 $compositeur[] = $compo->getCodeMusicien();
         }
 
