@@ -11,11 +11,12 @@
  
 
 namespace ProjetWeb\ClassiqueBundle\Controller;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class CompositeurControlleur extends Controller {
+class CompositeurController extends Controller {
     public function indexAction() {
         $contexte = "Tous";
         $repoComposer = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Composer');
