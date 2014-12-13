@@ -25,7 +25,12 @@ class CompositeurController extends Controller {
                                     ->addSelect('m')
                                     ->orderBy('m.nomMusicien','ASC')
                                     ->getQuery();
-        $compositeur = $query->getResult();
+        $resultat = $query->getResult();
+
+        foreach($resultat as $compo) {
+            $compositeur[] = $compo->getCodeMusicien();
+        }
+
         return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$compositeur, 'contexte'=>$contexte));
     }
 
