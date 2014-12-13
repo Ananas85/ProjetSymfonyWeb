@@ -28,8 +28,8 @@ class CompositeurController extends Controller {
         $resultat = $query->getResult();
         $compositeur = array();
         foreach($resultat as $compo) {
-            if (!in_array($compo->getMusicien(),$compositeur))
-            $compositeur[] = $compo->getCodeMusicien();
+            if (!in_array($compo->getCodeMusicien(),$compositeur))
+                $compositeur[] = $compo->getCodeMusicien();
         }
 
         return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$compositeur, 'contexte'=>$contexte));
