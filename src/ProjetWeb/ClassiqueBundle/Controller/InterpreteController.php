@@ -32,7 +32,7 @@ class InterpreteController extends Controller{
                 $interpretes[] = $compo->getCodeMusicien();
         }
 
-        return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$interpretes, 'contexte'=>$contexte));
+        return $this->render('ProjetWebClassiqueBundle:Interprete:index.html.twig',array('liste'=>$interpretes, 'contexte'=>$contexte));
     }
 
     public function initialAction($initial){
@@ -68,7 +68,7 @@ class InterpreteController extends Controller{
                               ->setParameter('init', $annee)
                               ->getQuery()*/;
         $musicien = $query->getResult();
-        return $this->render('ProjetWebClassiqueBundle:Musicien:index.html.twig',array('liste'=>$musicien, 'contexte'=>$contexte,'naissance'=>$annee,'fin'=>$anneeFin));
+        return $this->render('ProjetWebClassiqueBundle:Interprete:index.html.twig',array('liste'=>$musicien, 'contexte'=>$contexte,'naissance'=>$annee,'fin'=>$anneeFin));
     }
 
     public function viewAction($id) {
