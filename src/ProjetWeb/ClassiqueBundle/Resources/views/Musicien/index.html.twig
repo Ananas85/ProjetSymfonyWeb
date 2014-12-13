@@ -19,7 +19,7 @@
     <ul>
     {% for musicien in liste %}
         <li>
-            <a href="{{ path('projet_web_classique_musicienpage',{'id':musicien.codeMusicien}) }}">{{ musicien.nomMusicien }}</a>
+            <a href="{{ path('projet_web_classique_musicienpage',{'id':musicien.codeMusicien}) }}">{{ musicien.nomMusicien }} {{ musicien.prénomMusicien }}</a>
         </li>
     {% else %}
         Pas de musiciens pour ces paramètres là.

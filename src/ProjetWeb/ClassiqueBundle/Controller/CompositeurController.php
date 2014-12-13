@@ -23,6 +23,7 @@ class CompositeurController extends Controller {
         $query = $repoComposer->createQueryBuilder('c')
                                     ->join('c.codeMusicien','m')
                                     ->addSelect('m')
+                                    ->distinc()
                                     ->orderBy('m.nomMusicien','ASC')
                                     ->getQuery();
         $resultat = $query->getResult();
