@@ -23,7 +23,7 @@ class CompositeurController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery('SELECT distinct m
                                   FROM ProjetWeb\ClassiqueBundle\Entity\Composer c
-                                  INNER JOIN ProjetWeb\ClassiqueBundle\Entity\Musicien m ON c.codeMusicien = m.codeMusicien
+                                  JOIN ProjetWeb\ClassiqueBundle\Entity\Musicien m
                                   ORDER BY m.nomMusicien');
         $compositeur = $query->getResult();
 
