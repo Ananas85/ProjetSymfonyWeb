@@ -21,15 +21,15 @@ class CompositeurController extends Controller {
         $contexte = "Tous";
         $repoComposer = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Composer');
         $query = $repoComposer->createQueryBuilder('c')
-                                    ->join('c.codeMusicien','m')
                                     ->select('m')
+                                    ->join('c.codeMusicien','m')
                                     ->orderBy('m.nomMusicien','ASC')
                                     ->getQuery();
         $resultat = $query->getResult();
         $compositeur = array();
         //Methode lente du dictinct mais pour l'instant rien trouvé d'autre
         foreach($resultat as $compo) {
-            //if (!in_array($compo->getCodeMusicien(),$compositeur))
+            if (!in_array($compo->getCodeMusicien(),$compositeur))
                 $compositeur[] = $compo->getCodeMusicien();
         }
 
