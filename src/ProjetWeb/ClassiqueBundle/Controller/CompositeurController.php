@@ -23,12 +23,12 @@ class CompositeurController extends Controller {
         $query = $repoComposer->createQueryBuilder('c')
                                     ->join('c.codeMusicien','m')
                                     ->addSelect('m')
-                                    ->distinct('m.codeMusicien')
                                     ->orderBy('m.nomMusicien','ASC')
                                     ->getQuery();
         $resultat = $query->getResult();
         $compositeur = array();
         foreach($resultat as $compo) {
+            if (!in_array($compo->getMusicien(),$compositeur))
             $compositeur[] = $compo->getCodeMusicien();
         }
 
