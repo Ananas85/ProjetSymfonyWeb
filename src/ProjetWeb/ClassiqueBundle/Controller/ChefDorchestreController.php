@@ -48,6 +48,6 @@ class ChefDorchestreController extends Controller{
         $musicien = $repoMusicien->find($id);
         $imageUrl = $this->generateUrl('projet_web_classique_musicienimagepage', array('id'=>$id));
 
-        return $this->render('ProjetWebClassiqueBundle:ChefDorchestre:index.html.twig',array('musicien'=>$musicien, 'image'=>$imageUrl));
+        return $this->render('ProjetWebClassiqueBundle:ChefDorchestre:view.html.twig',array('musicien'=>$musicien, 'image'=>$imageUrl));
     }
 } 
