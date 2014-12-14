@@ -19,10 +19,12 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class CompositeurController extends Controller {
     public function indexAction() {
         $contexte = "Tous";
-        $repoComposer = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Composer');
-        $query = $repoComposer->createQueryBuilder('c')
-                              ->select('distinct(c.codeMusicien) AS m')
-                              ->getQuery();
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQueryBuilder()
+                    ->select('IDENTITY(c.codeMusicien)')
+                    ->from('ProjetWebClassiqueBundle:Composer','c')
+                    ->getQuery();
+
         $compositeurs = $query->getResult();
 
 
