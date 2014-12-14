@@ -19,22 +19,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class CompositeurController extends Controller {
     public function indexAction() {
         $contexte = "Tous";
-        $repoComposer = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Composer');
-        $query = $repoComposer->createQueryBuilder('c')
-                                    ->join('c.codeMusicien','m')
-                                    ->addSelect('m')
-                                    ->orderBy('m.nomMusicien','ASC')
-                                    ->getQuery();
-        $resultat = $query->getResult();
-        $compositeurs = array();
-        foreach($resultat as $compo) {
-                $compositeurs[] = $compo->getCodeMusicien();
-        }
-
-        //Permet de faire le distinct
-        $compositeurs = array_unique($compositeurs,SORT_REGULAR);
-
-        $em = $this->getDoctrine()->getManager();
+                $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassiqueBundle:Composer c WITH m.codeMusicien = c.codeMusicien' );
         $compositeurs = $query->getResult();
 
