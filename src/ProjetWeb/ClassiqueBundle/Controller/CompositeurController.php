@@ -17,8 +17,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CompositeurController extends Controller {
+
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return array
      * @Template()
      */
     public function indexAction() {
