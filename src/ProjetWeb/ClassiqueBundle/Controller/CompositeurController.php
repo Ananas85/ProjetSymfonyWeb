@@ -21,17 +21,10 @@ class CompositeurController extends Controller {
         $contexte = "Tous";
         $repoComposer = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Composer');
         $query = $repoComposer->createQueryBuilder('c')
-                                    ->join('c.codeMusicien','m')
-                                    ->addSelect('m')
-                                    ->orderBy('m.nomMusicien','ASC')
-                                    ->getQuery();
-        $resultat = $query->getResult();
-        $compositeurs = array();
-        //Methode lente du dictinct mais pour l'instant rien trouvé d'autre
-        foreach($resultat as $compo) {
-            if (!in_array($compo->getCodeMusicien(),$compositeurs))
-                $compositeurs[] = $compo->getCodeMusicien();
-        }
+                              ->select('distinct c.codeMusicien AS m')
+                              ->getQuery();
+        $compositeurs = $query->getResult();
+
 
         return $this->render('ProjetWebClassiqueBundle:Compositeur:index.html.twig',array('liste'=>$compositeurs, 'contexte'=>$contexte));
     }
