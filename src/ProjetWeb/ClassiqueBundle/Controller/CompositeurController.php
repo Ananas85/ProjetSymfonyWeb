@@ -21,7 +21,7 @@ class CompositeurController extends Controller {
         $contexte = "Tous";
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQueryBuilder()
-                    ->select('IDENTITY(c.codeMusicien)')
+                    ->select('distinct(codeMusicien)')
                     ->from('ProjetWebClassiqueBundle:Composer','c')
                     ->getQuery();
 
