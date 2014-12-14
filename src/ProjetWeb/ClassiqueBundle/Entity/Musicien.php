@@ -47,7 +47,7 @@ class Musicien
      *
      * @ORM\Column(name="Année_Mort", type="integer", nullable=true)
      */
-    private $annéeMort;
+    private $anneeMort;
 
     /**
      * @var string
@@ -173,9 +173,9 @@ class Musicien
      * @param integer $annéeMort
      * @return Musicien
      */
-    public function setAnnéeMort($annéeMort)
+    public function setAnneeMort($annéeMort)
     {
-        $this->annéeMort = $annéeMort;
+        $this->anneeMort = $anneeMort;
 
         return $this;
     }
@@ -185,9 +185,9 @@ class Musicien
      *
      * @return integer 
      */
-    public function getAnnéeMort()
+    public function getAnneeMort()
     {
-        return $this->annéeMort;
+        return $this->anneeMort;
     }
 
     /**

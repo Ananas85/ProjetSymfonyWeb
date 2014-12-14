@@ -52,12 +52,8 @@ class CompositeurController extends Controller {
         $em = $this->getDoctrine()
                    ->getManager();
         // Utilisation de DQL
-        $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m WHERE m.anneeNaissance > :naissance ORDER BY m.nomMusicien ASC' )->setParameter('naissance', $annee);
-        $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
-        /*$query = $repoMusicien->createQueryBuilder('m')
-                              ->where(''.utf8_decode(m.annéeNaissance).' > :naissance')
-                              ->setParameter('init', $annee)
-                              ->getQuery()*/;
+        $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m WHERE m.anneeNaissance > :naissance AND m.anneeNaissance <= :fin ORDER BY m.nomMusicien ASC' )->setParameter('naissance', $annee)->setParameters('fin',$anneeFin);
+
         $musicien = $query->getResult();
         return $this->render('ProjetWebClassiqueBundle:Compositeur:index.html.twig',array('liste'=>$musicien, 'contexte'=>$contexte,'naissance'=>$annee,'fin'=>$anneeFin));
     }
