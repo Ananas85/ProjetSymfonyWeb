@@ -1,12 +1,12 @@
 {% extends "ProjetWebClassiqueBundle::layout.html.twig" %}
 
 {% block title %}
-    Compositeur - {{ parent() }}
+    Musicien - {{ parent() }}
 {% endblock %}
 
 {% block classiqueweb_body %}
 
-    <h2>Liste des Interprêtes</h2>
+    <h2>Liste des Chef D'orchestre</h2>
 
     <p>Sélection {{ contexte }} :
         {% if initial is defined %}
@@ -19,10 +19,10 @@
     <ul>
     {% for musicien in liste %}
         <li>
-            <a href="{{ path('projet_web_classique_interpretepage',{'id':musicien.codeMusicien}) }}">{{ musicien.nomMusicien }} {{ musicien.prénomMusicien }}</a>
-        </li>
+        <a href="{{ path('projet_web_classique_cheforchestrepage',{'id':musicien.codeMusicien}) }}">{{ musicien.nomMusicien }} {{ musicien.prénomMusicien }}</a>
+    </li>
     {% else %}
-        Pas d'interprete pour ces paramètres là.
+    Pas de chefs pour ces paramètres là.
     {% endfor %}
     </ul>
-{% endblock %}
+    {% endblock %}

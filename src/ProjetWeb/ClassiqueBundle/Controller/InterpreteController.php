@@ -28,22 +28,10 @@ class InterpreteController extends Controller{
 
     public function initialAction($initial){
         $contexte = "avec initiale";
-        $repoInterpreter = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Interpreter');
-        $query = $repoInterpreter->createQueryBuilder('i')
-                              ->join('i.codeMusicien','m')
-                              ->addSelect('m')
-                              ->where('m.nomMusicien LIKE :init')
-                              ->setParameter('init', $initial.'%')
-                              ->orderBy('m.nomMusicien', 'ASC')
-                              ->getQuery();
-        $resultat = $query->getResult();
-        $interpretes = array();
-        //Methode lente du dictinct mais pour l'instant rien trouvé d'autre
-        foreach($resultat as $compo) {
-            if (!in_array($compo->getCodeMusicien(),$interpretes))
-                $interpretes[] = $compo->getCodeMusicien();
-        }
-        return $this->render('ProjetWebClassiqueBundle:Interprete:index.html.twig',array('liste'=>$interpretes, 'contexte'=>$contexte,'initial'=>$initial));
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassiqueBundle:Interpreter i WITH m.codeMusicien = i.codeMusicien WHERE m.nomMusicien LIKE :initial ')->setParameter('initial',$initial.'%');
+        $compositeurs = $query->getResult();
+        return $this->render('ProjetWebClassiqueBundle:Interprete:index.html.twig',array('liste'=>$compositeurs, 'contexte'=>$contexte,'initial'=>$initial));
     }
 
     public function naissanceAction($annee) {

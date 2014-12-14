@@ -57,6 +57,32 @@ projet_web_classique_naissanceinterpretepage:
 
 
 
+
+projet_web_classique_indexcheforchestrepage:
+    path:     /cheforchestre
+    defaults: { _controller: ProjetWebClassiqueBundle:ChefDorchestre:index }
+
+projet_web_classique_cheforchestrepage:
+    path:     /cheforchestre/{id}
+    defaults: { _controller: ProjetWebClassiqueBundle:ChefDorchestre:view }
+    requirements:
+        id: \d+
+
+projet_web_classique_initialcheforchestrepage:
+    path:     /cheforchestre/initial/{initial}
+    defaults: { _controller: ProjetWebClassiqueBundle:ChefDorchestre:initial }
+    requirements:
+        initial: \S
+
+projet_web_classique_naissancecheforchestrepage:
+    path:     /cheforchestre/naissance/{annee}
+    defaults: { _controller: ProjetWebClassiqueBundle:ChefDorchestre:naissance }
+    requirements:
+        annee: \d+
+
+
+
+
 projet_web_classique_albummusicien:
     path:    /album/musicien/{id}
     defaults: { _controller: ProjetWebClassiqueBundle:Album:musicien }

@@ -18,40 +18,36 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class ChefDorchestreController extends Controller{
     public function indexAction() {
         $contexte = "Tous";
-        $repoDirection = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Direction');
-        $query = $repoDirection->createQueryBuilder('d')
-                                 ->join('d.codeMusicien','m')
-                                 ->addSelect('m')
-                                 ->orderBy('m.nomMusicien','ASC')
-                                 ->getQuery();
-        $resultat = $query->getResult();
-        $interpretes = array();
-        //Methode lente du dictinct mais pour l'instant rien trouvé d'autre
-        foreach($resultat as $compo) {
-            $interpretes[] = $compo->getCodeMusicien();
-        }
-        $interpretes = array_unique($interpretes,SORT_REGULAR);
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassiqueBundle:Direction d WITH m.codeMusicien = d.codeMusicien' );
+        $chefs = $query->getResult();
 
-        return $this->render('ProjetWebClassiqueBundle:Interprete:index.html.twig',array('liste'=>$interpretes, 'contexte'=>$contexte));
+        return $this->render('ProjetWebClassiqueBundle:ChefDorchestre:index.html.twig',array('liste'=>$chefs, 'contexte'=>$contexte));
     }
 
     public function initialAction($initial){
         $contexte = "avec initiale";
-        $repoInterpreter = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Interpreter');
-        $query = $repoInterpreter->createQueryBuilder('i')
-                                 ->join('i.codeMusicien','m')
-                                 ->addSelect('m')
-                                 ->where('m.nomMusicien LIKE :init')
-                                 ->setParameter('init', $initial.'%')
-                                 ->orderBy('m.nomMusicien', 'ASC')
-                                 ->getQuery();
-        $resultat = $query->getResult();
-        $interpretes = array();
-        //Methode lente du dictinct mais pour l'instant rien trouvé d'autre
-        foreach($resultat as $compo) {
-            if (!in_array($compo->getCodeMusicien(),$interpretes))
-                $interpretes[] = $compo->getCodeMusicien();
-        }
-        return $this->render('ProjetWebClassiqueBundle:Interprete:index.html.twig',array('liste'=>$interpretes, 'contexte'=>$contexte,'initial'=>$initial));
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassiqueBundle:Direction d WITH m.codeMusicien = d.codeMusicien WHERE m.nomMusicien LIKE :initial ')->setParameter('initial',$initial.'%');
+        $chefs = $query->getResult();
+        return $this->render('ProjetWebClassiqueBundle:ChefDorchestre:index.html.twig',array('liste'=>$chefs, 'contexte'=>$contexte,'initial'=>$initial));
+    }
+
+    public function naissanceAction($annee) {
+        $contexte = "par année de naissance";
+        $anneeFin = $annee + 10;
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassiqueBundle:Direction d WITH m.codeMusicien = d.codeMusicien WHERE m.anneeNaissance > :naissance AND m.anneeNaissance <= :fin ORDER BY m.nomMusicien ASC' )->setParameter('naissance', $annee)->setParameter('fin',$anneeFin);
+
+        $chefs = $query->getResult();
+        return $this->render('ProjetWebClassiqueBundle:ChefDorchestre:index.html.twig',array('liste'=>$chefs, 'contexte'=>$contexte,'naissance'=>$annee,'fin'=>$anneeFin));
+    }
+
+    public function viewAction($id) {
+        $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
+        $musicien = $repoMusicien->find($id);
+        $imageUrl = $this->generateUrl('projet_web_classique_musicienimagepage', array('id'=>$id));
+
+        return $this->render('ProjetWebClassiqueBundle:ChefDorchestre:index.html.twig',array('musicien'=>$musicien, 'image'=>$imageUrl));
     }
 } 
