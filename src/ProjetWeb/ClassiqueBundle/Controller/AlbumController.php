@@ -18,11 +18,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class AlbumController extends Controller{
 
     public function musicienAction($id) {
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('
-                      SELECT a FROM ProjetWebClassiqueBundle:Album a
-                      JOIN ProjetWebClassiqueBundle:Genre g WITH a.codeGenre = g.codeGenre
-                      JOIN ProjetWebClassiqueBundle:Musicien m WITH g.codeGenre
-                        ')
+
     }
 } 
