@@ -12,11 +12,16 @@
 
 namespace ProjetWeb\ClassiqueBundle\Controller;
 use ProjetWeb\ClassiqueBundle\Entity\Musicien;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 class AlbumController extends Controller{
 
+    /**
+     * @param Musicien $musicien
+     * @Template()
+     */
     public function musicienAction( Musicien $musicien ) {
         $em = $this->get("doctrine.orm.entity_manager");
         $query = $em->getRepository("ProjetWebClassiqueBundle:Album")->createQueryBuilder( "a" );
@@ -24,14 +29,8 @@ class AlbumController extends Controller{
         $query->join( "g.musiciens", "m" );
         $query->where( "m.codeMusicien = :musicien" );
         $query->setParameter( "musicien", $musicien );
-
-
-        return new Response( $query->getQuery()->getSQL() );
-
-        //$albums = $query->getResult();
-
-        //return $this->render('ProjetWebClassiqueBundle:Album:index.html.twig',array('liste'=>$albums));
-
-
+        $query->setMaxResults(10);
+        $albums = $query->getQuery()->getResult();
+        return [ 'liste' => $albums ];
     }
 } 
