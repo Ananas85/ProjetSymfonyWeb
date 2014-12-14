@@ -27,11 +27,12 @@ class CompositeurController extends Controller {
                                     ->getQuery();
         $resultat = $query->getResult();
         $compositeurs = array();
-        //Methode lente du dictinct mais pour l'instant rien trouvé d'autre
         foreach($resultat as $compo) {
-            if (!in_array($compo->getCodeMusicien(),$compositeurs))
                 $compositeurs[] = $compo->getCodeMusicien();
         }
+
+        //Permet de faire le distinct
+        $compositeurs = array_unique($compositeurs);
 
         return $this->render('ProjetWebClassiqueBundle:Compositeur:index.html.twig',array('liste'=>$compositeurs, 'contexte'=>$contexte));
     }
