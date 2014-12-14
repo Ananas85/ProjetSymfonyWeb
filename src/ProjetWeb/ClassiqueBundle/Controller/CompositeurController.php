@@ -32,7 +32,7 @@ class CompositeurController extends Controller {
         }
 
         //Permet de faire le distinct
-        $compositeurs = array_unique($compositeurs);
+        $compositeurs = array_unique($compositeurs,SORT_REGULAR);
 
         return $this->render('ProjetWebClassiqueBundle:Compositeur:index.html.twig',array('liste'=>$compositeurs, 'contexte'=>$contexte));
     }
