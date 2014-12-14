@@ -28,9 +28,9 @@ class InterpreteController extends Controller{
         $interpretes = array();
         //Methode lente du dictinct mais pour l'instant rien trouvé d'autre
         foreach($resultat as $compo) {
-            if (!in_array($compo->getCodeMusicien(),$interpretes))
                 $interpretes[] = $compo->getCodeMusicien();
         }
+        $interpretes = array_unique($interpretes,SORT_REGULAR);
 
         return $this->render('ProjetWebClassiqueBundle:Interprete:index.html.twig',array('liste'=>$interpretes, 'contexte'=>$contexte));
     }

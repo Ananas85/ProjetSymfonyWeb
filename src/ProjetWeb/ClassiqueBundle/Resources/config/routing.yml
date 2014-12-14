@@ -53,3 +53,12 @@ projet_web_classique_naissanceinterpretepage:
     defaults: { _controller: ProjetWebClassiqueBundle:Interprete:naissance }
     requirements:
         annee: \d+
+
+
+
+
+projet_web_classique_albummusicien:
+    path:    /album/musicien/{id}
+    defaults: { _controller: ProjetWebClassiqueBundle:Album:musicien }
+    requirements:
+        id: \d+
