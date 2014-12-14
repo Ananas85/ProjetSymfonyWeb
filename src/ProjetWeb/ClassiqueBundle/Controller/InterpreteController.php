@@ -18,19 +18,10 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class InterpreteController extends Controller{
     public function indexAction() {
         $contexte = "Tous";
-        $repoInterpreter = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Interpreter');
-        $query = $repoInterpreter->createQueryBuilder('i')
-                              ->join('i.codeMusicien','m')
-                              ->addSelect('m')
-                              ->orderBy('m.nomMusicien','ASC')
-                              ->getQuery();
-        $resultat = $query->getResult();
-        $interpretes = array();
-        //Methode lente du dictinct mais pour l'instant rien trouvé d'autre
-        foreach($resultat as $compo) {
-                $interpretes[] = $compo->getCodeMusicien();
-        }
-        $interpretes = array_unique($interpretes,SORT_REGULAR);
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassiqueBundle:Interpreter i WITH m.codeMusicien = i.codeMusicien' );
+        $interpretes = $query->getResult();
+
 
         return $this->render('ProjetWebClassiqueBundle:Interprete:index.html.twig',array('liste'=>$interpretes, 'contexte'=>$contexte));
     }
@@ -58,15 +49,8 @@ class InterpreteController extends Controller{
     public function naissanceAction($annee) {
         $contexte = "par année de naissance";
         $anneeFin = $annee + 10;
-        $em = $this->getDoctrine()
-                   ->getManager();
-        // Utilisation de DQL
-        $query = $em->createQuery('SELECT m FROM ProjetWeb\ClassiqueBundle\Entity\Musicien m WHERE m.anneeNaissance > :naissance ORDER BY m.nomMusicien ASC' )->setParameter('naissance', $annee);
-        $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
-        /*$query = $repoMusicien->createQueryBuilder('m')
-                              ->where(''.utf8_decode(m.annéeNaissance).' > :naissance')
-                              ->setParameter('init', $annee)
-                              ->getQuery()*/;
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassiqueBundle:Interpreter i WITH m.codeMusicien = i.codeMusicien WHERE m.anneeNaissance > :naissance AND m.anneeNaissance <= :fin ORDER BY m.nomMusicien ASC' )->setParameter('naissance', $annee)->setParameter('fin',$anneeFin);
         $musicien = $query->getResult();
         return $this->render('ProjetWebClassiqueBundle:Interprete:index.html.twig',array('liste'=>$musicien, 'contexte'=>$contexte,'naissance'=>$annee,'fin'=>$anneeFin));
     }

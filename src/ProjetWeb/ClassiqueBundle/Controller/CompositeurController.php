@@ -19,7 +19,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class CompositeurController extends Controller {
     public function indexAction() {
         $contexte = "Tous";
-                $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassiqueBundle:Composer c WITH m.codeMusicien = c.codeMusicien' );
         $compositeurs = $query->getResult();
 
@@ -49,9 +49,8 @@ class CompositeurController extends Controller {
     public function naissanceAction($annee) {
         $contexte = "par année de naissance";
         $anneeFin = $annee + 10;
-        $em = $this->getDoctrine()
-                   ->getManager();
-        // Utilisation de DQL
+        $em = $this->getDoctrine()->getManager();
+
         $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassiqueBundle:Composer c WITH m.codeMusicien = c.codeMusicien WHERE m.anneeNaissance > :naissance AND m.anneeNaissance <= :fin ORDER BY m.nomMusicien ASC' )->setParameter('naissance', $annee)->setParameter('fin',$anneeFin);
 
         $musicien = $query->getResult();
