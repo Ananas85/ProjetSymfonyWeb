@@ -35,7 +35,7 @@ class CompositeurController extends Controller {
         $compositeurs = array_unique($compositeurs,SORT_REGULAR);
 
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassique:Composer c WITH m.codeMusicien = c.codeMusicien' );
+        $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassiqueBundle:Composer c WITH m.codeMusicien = c.codeMusicien' );
         $compositeurs = $query->getResult();
 
         return $this->render('ProjetWebClassiqueBundle:Compositeur:index.html.twig',array('liste'=>$compositeurs, 'contexte'=>$contexte));
