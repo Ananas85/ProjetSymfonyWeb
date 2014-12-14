@@ -61,7 +61,7 @@ class InterpreteController extends Controller{
         $em = $this->getDoctrine()
                    ->getManager();
         // Utilisation de DQL
-        $query = $em->createQuery('SELECT m FROM ProjetWeb\ClassiqueBundle\Entity\Musicien m WHERE m.annéeNaissance > :naissance ORDER BY m.nomMusicien ASC' )->setParameter('naissance', $annee);
+        $query = $em->createQuery('SELECT m FROM ProjetWeb\ClassiqueBundle\Entity\Musicien m WHERE m.anneeNaissance > :naissance ORDER BY m.nomMusicien ASC' )->setParameter('naissance', $annee);
         $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
         /*$query = $repoMusicien->createQueryBuilder('m')
                               ->where(''.utf8_decode(m.annéeNaissance).' > :naissance')
