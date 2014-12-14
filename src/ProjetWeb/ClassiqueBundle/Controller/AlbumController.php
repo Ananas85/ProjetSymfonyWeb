@@ -23,14 +23,6 @@ class AlbumController extends Controller{
      * @Template()
      */
     public function musicienAction( Musicien $musicien ) {
-        $em = $this->get("doctrine.orm.entity_manager");
-        $query = $em->getRepository("ProjetWebClassiqueBundle:Album")->createQueryBuilder( "a" );
-        $query->join( "a.codeGenre", "g" );
-        $query->join( "g.musiciens", "m" );
-        $query->where( "m.codeMusicien = :musicien" );
-        $query->setParameter( "musicien", $musicien );
-        $query->setMaxResults(10);
-        $albums = $query->getQuery()->getResult();
-        return [ 'liste' => $albums ];
+        return [ 'liste' => $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Album")->findByMusicien( $musicien ) ];
     }
 } 
