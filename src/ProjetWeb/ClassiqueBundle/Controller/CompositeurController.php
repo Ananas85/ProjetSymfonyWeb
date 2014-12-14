@@ -21,7 +21,7 @@ class CompositeurController extends Controller {
         $contexte = "Tous";
         $repoComposer = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Composer');
         $query = $repoComposer->createQueryBuilder('c')
-                              ->select('distinct c.codeMusicien AS m')
+                              ->select('distinct(c.codeMusicien) AS m')
                               ->getQuery();
         $compositeurs = $query->getResult();
 
