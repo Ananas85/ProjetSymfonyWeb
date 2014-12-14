@@ -84,7 +84,7 @@ projet_web_classique_naissancecheforchestrepage:
 
 
 projet_web_classique_albummusicien:
-    path:    /album/musicien/{id}
+    path:    /album/musicien/{codeMusicien}
     defaults: { _controller: ProjetWebClassiqueBundle:Album:musicien }
     requirements:
         id: \d+

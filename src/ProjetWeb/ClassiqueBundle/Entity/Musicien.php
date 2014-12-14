@@ -69,7 +69,7 @@ class Musicien
     /**
      * @var \Genre
      *
-     * @ORM\ManyToOne(targetEntity="Genre")
+     * @ORM\ManyToOne(targetEntity="Genre", inversedBy="musiciens")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Code_Genre", referencedColumnName="Code_Genre")
      * })

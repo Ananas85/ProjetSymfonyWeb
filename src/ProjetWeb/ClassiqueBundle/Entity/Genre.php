@@ -3,6 +3,7 @@
 namespace ProjetWeb\ClassiqueBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Genre
@@ -29,11 +30,22 @@ class Genre
     private $libelléAbrégé;
 
 
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="Musicien", mappedBy="codeGenre")
+     */
+    private $musiciens;
+
+
+    public function __construct() {
+        $this->musiciens = new ArrayCollection();
+    }
 
     /**
      * Get codeGenre
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeGenre()
     {
@@ -56,10 +68,29 @@ class Genre
     /**
      * Get libelléAbrégé
      *
-     * @return string 
+     * @return string
      */
     public function getLibelléAbrégé()
     {
         return $this->libelléAbrégé;
     }
+
+    /**
+     * @return array
+     */
+    public function getMusiciens()
+    {
+        return $this->musiciens;
+    }
+
+    /**
+     * @param array $musiciens
+     */
+    public function setMusiciens( $musiciens )
+    {
+        $this->musiciens = $musiciens;
+        return $this;
+    }
+
+
 }
