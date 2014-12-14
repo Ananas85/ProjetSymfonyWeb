@@ -34,10 +34,6 @@ class CompositeurController extends Controller {
         //Permet de faire le distinct
         $compositeurs = array_unique($compositeurs,SORT_REGULAR);
 
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT DISTINCT(m)  FROM ProjetWebClassiqueBundle:Composer c JOIN c.codeMusicien m');
-        $compositeurs = $query->getResult();
-
         return $this->render('ProjetWebClassiqueBundle:Compositeur:index.html.twig',array('liste'=>$compositeurs, 'contexte'=>$contexte));
     }
 
