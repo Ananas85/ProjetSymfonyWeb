@@ -24,7 +24,7 @@ class Composer
     /**
      * @var \Musicien
      *
-     * @ORM\ManyToOne(targetEntity="Musicien")
+     * @ORM\ManyToOne(targetEntity="Musicien", inversedBy="composers")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Code_Musicien", referencedColumnName="Code_Musicien")
      * })

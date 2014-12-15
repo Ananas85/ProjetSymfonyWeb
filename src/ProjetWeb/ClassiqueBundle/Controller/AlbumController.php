@@ -26,7 +26,6 @@ class AlbumController extends Controller{
         $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Album")->findByMusicienAdapter( $musicien );
         $pager->setCurrentPage( $page );
         $pager->setMaxPerPage( 10 );
-
         return [ 'pager' => $pager ];
     }
 } 
