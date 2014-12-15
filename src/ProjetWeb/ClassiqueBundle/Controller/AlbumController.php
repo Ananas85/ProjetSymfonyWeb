@@ -22,7 +22,12 @@ class AlbumController extends Controller{
      * @param Musicien $musicien
      * @Template()
      */
-    public function musicienAction( Musicien $musicien ) {
-        return [ 'liste' => $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Album")->findByMusicien( $musicien ) ];
+    public function musicienAction( Musicien $musicien, $page = 1 ) {
+        $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Album")->findByMusicienAdapter( $musicien );
+        $pager->setCurrentPage( $page );
+        $pager->setMaxPerPage( 10 );
+
+
+        return [ 'pager' => $pager ];
     }
 } 

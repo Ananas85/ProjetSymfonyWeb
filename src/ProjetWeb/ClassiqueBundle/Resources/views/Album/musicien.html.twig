@@ -7,9 +7,11 @@
 {% block classiqueweb_body %}
 
     <ul>
-    {%  for album in liste  %}
+    {%  for album in pager.currentPageResults  %}
 
         <li>{{ album.titreAlbum }}</li>
     {%  endfor  %}
     </ul>
+
+    {{ pagerfanta(pager) }}
 {% endblock %}
