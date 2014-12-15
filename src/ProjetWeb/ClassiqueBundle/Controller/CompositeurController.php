@@ -12,9 +12,12 @@
 
 namespace ProjetWeb\ClassiqueBundle\Controller;
 
+use Pagerfanta\Exception\NotValidCurrentPageException;
+use ProjetWeb\ClassiqueBundle\Entity\Musicien;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class CompositeurController extends Controller {
 
@@ -22,36 +25,60 @@ class CompositeurController extends Controller {
      * @return array
      * @Template()
      */
-    public function indexAction() {
+    public function indexAction($page = 1) {
         $contexte = "Tous";
-        return [ 'liste' => $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Musicien")->findAllCompositeur(), 'contexte'=>$contexte ];
+        $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Musicien")->findAllCompositeurAdapter();
+
+        $pager->setMaxPerPage(15);
+
+        try {
+            $pager->setCurrentPage($page);
+        } catch (NotValidCurrentPageException $e) {
+            throw new NotFoundHttpException();
+        }
+
+        return compact('pager','contexte');
     }
 
-    public function initialAction($initial){
+
+    public function initialAction($initial, $page = 1){
         $contexte = "avec initiale";
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassiqueBundle:Composer c WITH m.codeMusicien = c.codeMusicien WHERE m.nomMusicien LIKE :initial ')->setParameter('initial',$initial.'%');
-        $compositeurs = $query->getResult();
-        return $this->render('ProjetWebClassiqueBundle:Compositeur:index.html.twig',array('liste'=>$compositeurs, 'contexte'=>$contexte,'initial'=>$initial));
+        $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Musicien")->findCompositeurByInitialAdapter($initial);
+
+        $pager->setMaxPerPage(15);
+
+        try {
+            $pager->setCurrentPage($page);
+        } catch (NotValidCurrentPageException $e) {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->render('ProjetWebClassiqueBundle:Compositeur:index.html.twig',array('pager'=>$pager, 'contexte'=>$contexte,'initial'=>$initial));
     }
 
-    public function naissanceAction($annee) {
+    public function naissanceAction($annee, $page = 1) {
         $contexte = "par année de naissance";
-        $anneeFin = $annee + 10;
-        $em = $this->getDoctrine()->getManager();
+        $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Musicien")->findCompositeurByNaissanceAdapter($annee);
 
-        $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassiqueBundle:Composer c WITH m.codeMusicien = c.codeMusicien WHERE m.anneeNaissance > :naissance AND m.anneeNaissance <= :fin ORDER BY m.nomMusicien ASC' )->setParameter('naissance', $annee)->setParameter('fin',$anneeFin);
+        $pager->setMaxPerPage(15);
 
-        $musicien = $query->getResult();
-        return $this->render('ProjetWebClassiqueBundle:Compositeur:index.html.twig',array('liste'=>$musicien, 'contexte'=>$contexte,'naissance'=>$annee,'fin'=>$anneeFin));
+        try {
+            $pager->setCurrentPage($page);
+        } catch (NotValidCurrentPageException $e) {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->render('ProjetWebClassiqueBundle:Compositeur:index.html.twig',array('pager'=>$pager, 'contexte'=>$contexte,'naissance'=>$annee,'fin'=> $annee + 10));
     }
 
-    public function viewAction($id) {
-        $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
-        $musicien = $repoMusicien->find($id);
-        $imageUrl = $this->generateUrl('projet_web_classique_musicienimagepage', array('id'=>$id));
-
-        return $this->render('ProjetWebClassiqueBundle:Compositeur:view.html.twig',array('musicien'=>$musicien, 'image'=>$imageUrl));
+    /**
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Template()
+     */
+    public function viewAction( Musicien $musicien ) {
+        $image = $this->generateUrl('projet_web_classique_musicienimagepage', array('codeMusicien'=> $musicien->getCodeMusicien() ));
+        return compact('musicien','image');
     }
 
 } 

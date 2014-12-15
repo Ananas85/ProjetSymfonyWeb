@@ -17,9 +17,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class MusicianController extends Controller{
 
-    public function imageAction($id) {
+    public function imageAction($codeMusicien) {
         $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
-        $musicien = $repoMusicien->find($id);
+        $musicien = $repoMusicien->find($codeMusicien);
         $image = stream_get_contents($musicien->getPhoto());
         $image = pack("H*", $image);
         $response = new \Symfony\Component\HttpFoundation\Response();

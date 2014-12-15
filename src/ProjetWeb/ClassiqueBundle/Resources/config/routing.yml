@@ -1,39 +1,43 @@
 projet_web_classique_musicienimagepage:
-    path:    /musicien/image/{id}
+    path:    /musicien/image/{codeMusicien}
     defaults: { _controller: ProjetWebClassiqueBundle:Musician:image }
     requirements:
-        id: \d+
+        codeMusicien: \d+
 
 
 
 
 projet_web_classique_indexcompositeurpage:
-    path:     /compositeur
-    defaults: { _controller: ProjetWebClassiqueBundle:Compositeur:index }
+    path:     /compositeurs/{page}
+    defaults: { _controller: ProjetWebClassiqueBundle:Compositeur:index, page: 1 }
+    requirements:
+        page: \d+
 
 projet_web_classique_compositeurpage:
-    path:     /compositeur/{id}
+    path:     /compositeur/{codeMusicien}
     defaults: { _controller: ProjetWebClassiqueBundle:Compositeur:view }
     requirements:
-        id: \d+
+        codeMusicien: \d+
 
 projet_web_classique_initialcompositeurpage:
-    path:     /compositeur/initial/{initial}
-    defaults: { _controller: ProjetWebClassiqueBundle:Compositeur:initial, initial: A }
+    path:     /compositeurs/initial/{initial}/{page}
+    defaults: { _controller: ProjetWebClassiqueBundle:Compositeur:initial, initial: A, page: 1 }
     requirements:
         initial: \S
+        page: \d+
 
 projet_web_classique_naissancecompositeurpage:
-    path:     /compositeur/naissance/{annee}
-    defaults: { _controller: ProjetWebClassiqueBundle:Compositeur:naissance, annee: 1900 }
+    path:     /compositeurs/naissance/{annee}/{page}
+    defaults: { _controller: ProjetWebClassiqueBundle:Compositeur:naissance, annee: 1900, page: 1 }
     requirements:
         annee: \d+
+        page: \d+
 
 
 
 
 projet_web_classique_indexinterpretepage:
-    path:     /interprete
+    path:     /interpretes
     defaults: { _controller: ProjetWebClassiqueBundle:Interprete:index }
 
 projet_web_classique_interpretepage:
@@ -43,13 +47,13 @@ projet_web_classique_interpretepage:
         id: \d+
 
 projet_web_classique_initialinterpretepage:
-    path:     /interprete/initial/{initial}
+    path:     /interpretes/initial/{initial}
     defaults: { _controller: ProjetWebClassiqueBundle:Interprete:initial, initial: A }
     requirements:
         initial: \S
 
 projet_web_classique_naissanceinterpretepage:
-    path:     /interprete/naissance/{annee}
+    path:     /interpretes/naissance/{annee}
     defaults: { _controller: ProjetWebClassiqueBundle:Interprete:naissance, annee: 1900 }
     requirements:
         annee: \d+
@@ -59,7 +63,7 @@ projet_web_classique_naissanceinterpretepage:
 
 
 projet_web_classique_indexcheforchestrepage:
-    path:     /cheforchestre
+    path:     /cheforchestres
     defaults: { _controller: ProjetWebClassiqueBundle:ChefDorchestre:index }
 
 projet_web_classique_cheforchestrepage:
@@ -69,16 +73,20 @@ projet_web_classique_cheforchestrepage:
         id: \d+
 
 projet_web_classique_initialcheforchestrepage:
-    path:     /cheforchestre/initial/{initial}
+    path:     /cheforchestres/initial/{initial}
     defaults: { _controller: ProjetWebClassiqueBundle:ChefDorchestre:initial, initial: A }
     requirements:
         initial: \S
 
 projet_web_classique_naissancecheforchestrepage:
-    path:     /cheforchestre/naissance/{annee}
+    path:     /cheforchestres/naissance/{annee}
     defaults: { _controller: ProjetWebClassiqueBundle:ChefDorchestre:naissance, annee: 1900 }
     requirements:
         annee: \d+
+
+
+
+
 
 projet_web_classique_albummusicien:
     path:    /album/musicien/{codeMusicien}/{page}

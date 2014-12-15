@@ -8,13 +8,14 @@
  * 
  * Copyright ${PROJECT_AUTHOR} 2014
  */
- 
+
 
 namespace ProjetWeb\ClassiqueBundle\Controller;
 use ProjetWeb\ClassiqueBundle\Entity\Musicien;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+
 
 class AlbumController extends Controller{
 
@@ -24,8 +25,8 @@ class AlbumController extends Controller{
      */
     public function musicienAction( Musicien $musicien, $page = 1 ) {
         $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Album")->findByMusicienAdapter( $musicien );
-        $pager->setCurrentPage( $page );
         $pager->setMaxPerPage( 10 );
-        return [ 'pager' => $pager ];
+        $pager->setCurrentPage( $page );
+        return compact('pager');
     }
-} 
+}

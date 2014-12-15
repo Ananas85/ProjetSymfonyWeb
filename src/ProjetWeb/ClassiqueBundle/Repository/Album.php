@@ -1,11 +1,9 @@
 <?php
-
 namespace ProjetWeb\ClassiqueBundle\Repository;
-
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Query;
-use ProjetWeb\ClassiqueBundle\Entity\Musicien;
+use ProjetWeb\ClassiqueBundle\Entity\Musicien as MusicienEntity;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 
@@ -16,7 +14,7 @@ class Album extends EntityRepository {
      *
      * @return array
      */
-    public function findByMusicien( Musicien $musicien ) {
+    public function findByMusicien( MusicienEntity $musicien ) {
         $query = $this->createQueryBuilder( "a" );
         $query->join( "a.codeGenre", "g" );
         $query->join( "g.musiciens", "m" );
@@ -26,7 +24,7 @@ class Album extends EntityRepository {
         return $query->getQuery()->getResult();
     }
 
-    public function findByMusicienAdapter( Musicien $musicien ) {
+    public function findByMusicienAdapter( MusicienEntity $musicien ) {
         $query = $this->createQueryBuilder( "a" );
         $query->join( "a.codeGenre", "g" );
         $query->join( "g.musiciens", "m" );
