@@ -12,26 +12,21 @@
 
 namespace ProjetWeb\ClassiqueBundle\Controller;
 use ProjetWeb\ClassiqueBundle\Entity\Musicien;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 class AlbumController extends Controller{
 
-    public function musicienAction( Musicien $musicien ) {
-        $em = $this->get("doctrine.orm.entity_manager");
-        $query = $em->getRepository("ProjetWebClassiqueBundle:Album")->createQueryBuilder( "a" );
-        $query->join( "a.codeGenre", "g" );
-        $query->join( "g.musiciens", "m" );
-        $query->where( "m.codeMusicien = :musicien" );
-        $query->setParameter( "musicien", $musicien );
+    /**
+     * @param Musicien $musicien
+     * @Template()
+     */
+    public function musicienAction( Musicien $musicien, $page = 1 ) {
+        $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Album")->findByMusicienAdapter( $musicien );
+        $pager->setCurrentPage( $page );
+        $pager->setMaxPerPage( 10 );
 
-
-        return new Response( $query->getQuery()->getSQL() );
-
-        //$albums = $query->getResult();
-
-        //return $this->render('ProjetWebClassiqueBundle:Album:index.html.twig',array('liste'=>$albums));
-
-
+        return [ 'pager' => $pager ];
     }
 } 

@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Anachardan\Bundle\GeneralBundle\AnachardanGeneralBundle(),
             new ProjetWeb\ClassiqueBundle\ProjetWebClassiqueBundle(),
+            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new ProjetWeb\HomeBundle\ProjetWebHomeBundle(),
         );
 

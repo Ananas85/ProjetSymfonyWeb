@@ -1,0 +1,17 @@
+{% extends "ProjetWebClassiqueBundle::layout.html.twig" %}
+
+{% block title %}
+    Albums
+{% endblock %}
+
+{% block classiqueweb_body %}
+
+    <ul>
+    {%  for album in pager.currentPageResults  %}
+
+        <li>{{ album.titreAlbum }}</li>
+    {%  endfor  %}
+    </ul>
+
+    {{ pagerfanta(pager) }}
+{% endblock %}

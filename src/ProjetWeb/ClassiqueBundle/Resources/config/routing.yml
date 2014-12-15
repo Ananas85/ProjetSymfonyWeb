@@ -80,11 +80,9 @@ projet_web_classique_naissancecheforchestrepage:
     requirements:
         annee: \d+
 
-
-
-
 projet_web_classique_albummusicien:
-    path:    /album/musicien/{codeMusicien}
-    defaults: { _controller: ProjetWebClassiqueBundle:Album:musicien }
+    path:    /album/musicien/{codeMusicien}/{page}
+    defaults: { _controller: ProjetWebClassiqueBundle:Album:musicien, page: 1 }
     requirements:
-        id: \d+
+        codeMusicien: \d+
+        page: \d+
