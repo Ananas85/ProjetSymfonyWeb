@@ -17,13 +17,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CompositeurController extends Controller {
+
+    /**
+     * @return array
+     * @Template()
+     */
     public function indexAction() {
         $contexte = "Tous";
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassiqueBundle:Composer c WITH m.codeMusicien = c.codeMusicien' );
-        $compositeurs = $query->getResult();
-
-        return $this->render('ProjetWebClassiqueBundle:Compositeur:index.html.twig',array('liste'=>$compositeurs, 'contexte'=>$contexte));
+        return [ 'liste' => $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Musicien")->findAllCompositeur(), 'contexte'=>$contexte ];
     }
 
     public function initialAction($initial){

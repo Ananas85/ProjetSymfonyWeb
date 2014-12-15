@@ -2,13 +2,14 @@
 
 namespace ProjetWeb\ClassiqueBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Musicien
  *
  * @ORM\Table(name="Musicien", indexes={@ORM\Index(name="IDX_AC6BE67520B77BF2", columns={"Code_Pays"}), @ORM\Index(name="IDX_AC6BE675E1990660", columns={"Code_Genre"}), @ORM\Index(name="IDX_AC6BE675D389A975", columns={"Code_Instrument"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ProjetWeb\ClassiqueBundle\Repository\Musicien")
  */
 class Musicien
 {
@@ -86,8 +87,17 @@ class Musicien
      */
     private $codeInstrument;
 
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="Composer", mappedBy="codeMusicien")
+     */
+    private $composers;
 
 
+    public function __construct() {
+        $this->composers = new ArrayCollection();
+    }
     /**
      * Get codeMusicien
      *
@@ -280,5 +290,23 @@ class Musicien
     public function getCodeInstrument()
     {
         return $this->codeInstrument;
+    }
+
+    /**
+     * @return array
+     */
+    public function getComposers()
+    {
+        return $this->composers;
+    }
+
+    /**
+     * @param array $composers
+     */
+    public function setComposers( $composers )
+    {
+        $this->composers = $composers;
+
+        return $this;
     }
 }
