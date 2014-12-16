@@ -94,9 +94,27 @@ class Musicien
      */
     private $composers;
 
+    /**
+     * @var array
+     * @ORM\OneToMany(targetEntity="Interpreter", mappedBy="codeMusicien")
+     *
+     */
+    private $interpreters;
+
+    /**
+     * @var array
+     * @ORM\OneToMany(targetEntity="Interpreter", mappedBy="codeMusicien")
+     *
+     */
+    private $directions;
+
+
 
     public function __construct() {
         $this->composers = new ArrayCollection();
+        $this->interpreters = new ArrayCollection();
+        $this->directions = new ArrayCollection();
+
     }
     /**
      * Get codeMusicien
@@ -306,6 +324,42 @@ class Musicien
     public function setComposers( $composers )
     {
         $this->composers = $composers;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getInterpreters()
+    {
+        return $this->interpreters;
+    }
+
+    /**
+     * @param array $interpreters
+     */
+    public function setInterpreters( $interpreters )
+    {
+        $this->interpreters = $interpreters;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDirections()
+    {
+        return $this->directions;
+    }
+
+    /**
+     * @param array $directions
+     */
+    public function setDirections( $directions )
+    {
+        $this->directions = $directions;
 
         return $this;
     }

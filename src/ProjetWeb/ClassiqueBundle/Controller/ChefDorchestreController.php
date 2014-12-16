@@ -11,43 +11,65 @@
  
 
 namespace ProjetWeb\ClassiqueBundle\Controller;
+
+use Pagerfanta\Exception\NotValidCurrentPageException;
+use Pagerfanta\Pagerfanta;
+use ProjetWeb\ClassiqueBundle\Entity\Musicien;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class ChefDorchestreController extends Controller{
-    public function indexAction() {
+    /**
+     * @return array
+     * @Template()
+     */
+    public function indexAction($page = 1) {
         $contexte = "Tous";
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassiqueBundle:Direction d WITH m.codeMusicien = d.codeMusicien' );
-        $chefs = $query->getResult();
+        $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Musicien")->findAllChefAdapter();
 
-        return $this->render('ProjetWebClassiqueBundle:ChefDorchestre:index.html.twig',array('liste'=>$chefs, 'contexte'=>$contexte));
+        /** @var Pagerfanta $pager */
+        $pager->setMaxPerPage( 10 );
+        $pager->setCurrentPage( $page );
+
+        return compact('pager','contexte');
     }
 
-    public function initialAction($initial){
+    /**
+     * @Template("ProjetWebClassiqueBundle:ChefDorchestre:index")
+     */
+    public function initialAction($initial, $page = 1){
         $contexte = "avec initiale";
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassiqueBundle:Direction d WITH m.codeMusicien = d.codeMusicien WHERE m.nomMusicien LIKE :initial ')->setParameter('initial',$initial.'%');
-        $chefs = $query->getResult();
-        return $this->render('ProjetWebClassiqueBundle:ChefDorchestre:index.html.twig',array('liste'=>$chefs, 'contexte'=>$contexte,'initial'=>$initial));
+        $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Musicien")->findChefByInitialAdapter($initial);
+
+        $pager->setMaxPerPage(15);
+        $pager->setCurrentPage($page);
+
+        return compact('pager','contexte','initial');
     }
 
-    public function naissanceAction($annee) {
+    /**
+     * @Template("ProjetWebClassiqueBundle:ChefDorchestre:index")
+     */
+    public function naissanceAction($naissance, $page = 1) {
         $contexte = "par année de naissance";
-        $anneeFin = $annee + 10;
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT m FROM ProjetWebClassiqueBundle:Musicien m JOIN ProjetWebClassiqueBundle:Direction d WITH m.codeMusicien = d.codeMusicien WHERE m.anneeNaissance > :naissance AND m.anneeNaissance <= :fin ORDER BY m.nomMusicien ASC' )->setParameter('naissance', $annee)->setParameter('fin',$anneeFin);
+        $fin = $naissance + 10;
+        $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Musicien")->findChefByNaissanceAdapter($naissance);
 
-        $chefs = $query->getResult();
-        return $this->render('ProjetWebClassiqueBundle:ChefDorchestre:index.html.twig',array('liste'=>$chefs, 'contexte'=>$contexte,'naissance'=>$annee,'fin'=>$anneeFin));
+        $pager->setMaxPerPage(15);
+        $pager->setCurrentPage($page);
+
+        return compact('pager','contexte','naissance','fin');
     }
 
-    public function viewAction($id) {
-        $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
-        $musicien = $repoMusicien->find($id);
-        $imageUrl = $this->generateUrl('projet_web_classique_musicienimagepage', array('id'=>$id));
-
-        return $this->render('ProjetWebClassiqueBundle:ChefDorchestre:view.html.twig',array('musicien'=>$musicien, 'image'=>$imageUrl));
+    /**
+     * @param
+     * @return
+     * @Template()
+     */
+    public function viewAction( Musicien $musicien ) {
+        $image = $this->generateUrl('projet_web_classique_musicienimagepage', array('codeMusicien'=> $musicien->getCodeMusicien() ));
+        return compact('musicien','image');
     }
 } 

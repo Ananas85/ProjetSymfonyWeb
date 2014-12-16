@@ -13,6 +13,7 @@
 namespace ProjetWeb\ClassiqueBundle\Controller;
 
 use Pagerfanta\Exception\NotValidCurrentPageException;
+use Pagerfanta\Pagerfanta;
 use ProjetWeb\ClassiqueBundle\Entity\Musicien;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,51 +30,43 @@ class CompositeurController extends Controller {
         $contexte = "Tous";
         $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Musicien")->findAllCompositeurAdapter();
 
-        $pager->setMaxPerPage(15);
-
-        try {
-            $pager->setCurrentPage($page);
-        } catch (NotValidCurrentPageException $e) {
-            throw new NotFoundHttpException();
-        }
+        /** @var Pagerfanta $pager */
+        $pager->setMaxPerPage( 10 );
+        $pager->setCurrentPage( $page );
 
         return compact('pager','contexte');
     }
 
-
+    /**
+     * @Template("ProjetWebClassiqueBundle:Compositeur:index")
+     */
     public function initialAction($initial, $page = 1){
         $contexte = "avec initiale";
         $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Musicien")->findCompositeurByInitialAdapter($initial);
 
         $pager->setMaxPerPage(15);
+        $pager->setCurrentPage($page);
 
-        try {
-            $pager->setCurrentPage($page);
-        } catch (NotValidCurrentPageException $e) {
-            throw new NotFoundHttpException();
-        }
-
-        return $this->render('ProjetWebClassiqueBundle:Compositeur:index.html.twig',array('pager'=>$pager, 'contexte'=>$contexte,'initial'=>$initial));
-    }
-
-    public function naissanceAction($annee, $page = 1) {
-        $contexte = "par année de naissance";
-        $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Musicien")->findCompositeurByNaissanceAdapter($annee);
-
-        $pager->setMaxPerPage(15);
-
-        try {
-            $pager->setCurrentPage($page);
-        } catch (NotValidCurrentPageException $e) {
-            throw new NotFoundHttpException();
-        }
-
-        return $this->render('ProjetWebClassiqueBundle:Compositeur:index.html.twig',array('pager'=>$pager, 'contexte'=>$contexte,'naissance'=>$annee,'fin'=> $annee + 10));
+        return compact('pager','contexte','initial');
     }
 
     /**
-     * @param $id
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @Template("ProjetWebClassiqueBundle:Compositeur:index")
+     */
+    public function naissanceAction($naissance, $page = 1) {
+        $contexte = "par année de naissance";
+        $fin = $naissance + 10;
+        $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Musicien")->findCompositeurByNaissanceAdapter($naissance);
+
+        $pager->setMaxPerPage(15);
+        $pager->setCurrentPage($page);
+
+        return compact('pager','contexte','naissance','fin');
+    }
+
+    /**
+     * @param
+     * @return
      * @Template()
      */
     public function viewAction( Musicien $musicien ) {

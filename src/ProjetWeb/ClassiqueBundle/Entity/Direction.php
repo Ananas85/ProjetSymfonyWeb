@@ -34,7 +34,7 @@ class Direction
     /**
      * @var \Musicien
      *
-     * @ORM\ManyToOne(targetEntity="Musicien")
+     * @ORM\ManyToOne(targetEntity="Musicien", inversedBy="directions")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Code_Musicien", referencedColumnName="Code_Musicien")
      * })

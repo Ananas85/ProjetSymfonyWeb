@@ -15,6 +15,7 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Query;
 use Pagerfanta\Adapter\ArrayAdapter;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 
 class Musicien  extends EntityRepository {
@@ -26,9 +27,8 @@ class Musicien  extends EntityRepository {
         $query = $this->createQueryBuilder( "m" );
         $query->join( "m.composers", "c" );
 
-        $results = $query->getQuery()->getResult();
-        $adapter = new ArrayAdapter($results);
-        return new Pagerfanta($adapter);
+        $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
+        return $pagerfanta;
     }
 
     public function findCompositeurByNaissanceAdapter($naissance) {
@@ -39,9 +39,8 @@ class Musicien  extends EntityRepository {
         $query->andWhere('m.anneeNaissance > :fin');
         $query->setParameter('fin',$naissance + 10);
 
-        $results = $query->getQuery()->getResult();
-        $adapter = new ArrayAdapter($results);
-        return new Pagerfanta($adapter);
+        $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
+        return $pagerfanta;
     }
 
     public function findCompositeurByInitialAdapter($initial) {
@@ -51,9 +50,77 @@ class Musicien  extends EntityRepository {
         $query->setParameter('naissance',$initial.'%');
 
 
-        $results = $query->getQuery()->getResult();
-        $adapter = new ArrayAdapter($results);
-        return new Pagerfanta($adapter);
+        $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
+        return $pagerfanta;
     }
+
+    /**
+     * @return array
+     */
+    public function findAllInterpreteAdapter() {
+        $query = $this->createQueryBuilder( "m" );
+        $query->join( "m.interpreters", "i" );
+
+        $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
+        return $pagerfanta;
+    }
+
+    public function findInterpreteByNaissanceAdapter($naissance) {
+        $query = $this->createQueryBuilder( "m" );
+        $query->join( "m.interpreters", "i" );
+        $query->where('m.anneeNaissance > :naissance');
+        $query->setParameter('naissance',$naissance);
+        $query->andWhere('m.anneeNaissance > :fin');
+        $query->setParameter('fin',$naissance + 10);
+
+        $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
+        return $pagerfanta;
+    }
+
+    public function findInterpreteByInitialAdapter($initial) {
+        $query = $this->createQueryBuilder( "m" );
+        $query->join( "m.interpreters", "i" );
+        $query->where('m.nomMusicien LIKE :naissance');
+        $query->setParameter('naissance',$initial.'%');
+
+
+        $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
+        return $pagerfanta;
+    }
+
+    /**
+     * @return array
+     */
+    public function findAllChefAdapter() {
+        $query = $this->createQueryBuilder( "m" );
+        $query->join( "m.directions", "d" );
+
+        $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
+        return $pagerfanta;
+    }
+
+    public function findChefByNaissanceAdapter($naissance) {
+        $query = $this->createQueryBuilder( "m" );
+        $query->join( "m.directions", "d" );
+        $query->where('m.anneeNaissance > :naissance');
+        $query->setParameter('naissance',$naissance);
+        $query->andWhere('m.anneeNaissance > :fin');
+        $query->setParameter('fin',$naissance + 10);
+
+        $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
+        return $pagerfanta;
+    }
+
+    public function findChefByInitialAdapter($initial) {
+        $query = $this->createQueryBuilder( "m" );
+        $query->join( "m.directions", "d" );
+        $query->where('m.nomMusicien LIKE :naissance');
+        $query->setParameter('naissance',$initial.'%');
+
+
+        $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
+        return $pagerfanta;
+    }
+
 
 } 
