@@ -56,10 +56,10 @@ projet_web_classique_initialinterpretepage:
         page: \d+
 
 projet_web_classique_naissanceinterpretepage:
-    path:     /interpretes/naissance/{annee}/{page}
-    defaults: { _controller: ProjetWebClassiqueBundle:Interprete:naissance, annee: 1900, page: 1 }
+    path:     /interpretes/naissance/{naissance}/{page}
+    defaults: { _controller: ProjetWebClassiqueBundle:Interprete:naissance, naissance: 1900, page: 1 }
     requirements:
-        annee: \d+
+        naissance: \d+
         page: \d+
 
 
@@ -86,19 +86,9 @@ projet_web_classique_initialcheforchestrepage:
         page: \d+
 
 projet_web_classique_naissancecheforchestrepage:
-    path:     /cheforchestres/naissance/{annee}/{page}
-    defaults: { _controller: ProjetWebClassiqueBundle:ChefDorchestre:naissance, annee: 1900, page: 1 }
+    path:     /cheforchestres/naissance/{naissance}/{page}
+    defaults: { _controller: ProjetWebClassiqueBundle:ChefDorchestre:naissance, naissance: 1900, page: 1 }
     requirements:
-        annee: \d+
+        naissance: \d+
         page: \d+
 
-
-
-
-
-projet_web_classique_albummusicien:
-    path:    /albums/musicien/{codeMusicien}/{page}
-    defaults: { _controller: ProjetWebClassiqueBundle:Album:musicien, page: 1 }
-    requirements:
-        codeMusicien: \d+
-        page: \d+

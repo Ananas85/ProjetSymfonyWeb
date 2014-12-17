@@ -96,14 +96,14 @@ class Musicien
 
     /**
      * @var array
-     * @ORM\OneToMany(targetEntity="Direction", mappedBy="codeMusicien")
+     * @ORM\OneToMany(targetEntity="Interpreter", mappedBy="codeMusicien")
      *
      */
     private $interpreters;
 
     /**
      * @var array
-     * @ORM\OneToMany(targetEntity="Interpreter", mappedBy="codeMusicien")
+     * @ORM\OneToMany(targetEntity="Direction", mappedBy="codeMusicien")
      *
      */
     private $directions;

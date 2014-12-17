@@ -34,7 +34,7 @@ class Interpreter
     /**
      * @var \Enregistrement
      *
-     * @ORM\ManyToOne(targetEntity="Enregistrement")
+     * @ORM\ManyToOne(targetEntity="Enregistrement", inversedBy="interpreters")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Code_Morceau", referencedColumnName="Code_Morceau")
      * })

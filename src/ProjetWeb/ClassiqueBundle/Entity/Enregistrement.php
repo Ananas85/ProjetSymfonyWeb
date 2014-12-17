@@ -2,6 +2,7 @@
 
 namespace ProjetWeb\ClassiqueBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -73,6 +74,16 @@ class Enregistrement
      */
     private $codeComposition;
 
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="Interpreter", mappedBy="codeMorceau")
+     */
+    private $interpreters;
+
+    public function __construct() {
+        $this->interpreters = new ArrayCollection();
+    }
 
 
     /**

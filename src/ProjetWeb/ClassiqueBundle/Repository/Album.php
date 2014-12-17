@@ -36,7 +36,33 @@ class Album extends EntityRepository {
 
     public function findByCompositeur(MusicienEntity $musicien) {
         $query = $this->createQueryBuilder('a');
+        $query->join("a.disques","d");
+        $query->join("d.compositiondisques","cd");
+        $query->join("cd.codeMorceau","enr");
+        $query->join("enr.codeComposition","cc");
+        $query->join("cc.compositionoeuvres","co");
+        $query->join("co.codeOeuvre","o");
+        $query->join("o.composers","c");
+        $query->join("c.codeMusicien","m");
+        $query->where("m.codeMusicien = :musicien");
+        $query->setParameter("musicien",$musicien);
 
+        $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
+        return $pagerfanta;
+    }
+
+    public function findByInterprete(MusicienEntity $musicien) {
+        $query = $this->createQueryBuilder('a');
+        $query->join("a.disques","d");
+        $query->join("d.compositiondisques","cd");
+        $query->join("cd.codeMorceau","enr");
+        $query->join("enr.interpreters","i");
+        $query->join("i.codeMusicien","m");
+        $query->where("m.codeMusicien = :musicien");
+        $query->setParameter("musicien",$musicien);
+
+        $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
+        return $pagerfanta;
     }
 
 }

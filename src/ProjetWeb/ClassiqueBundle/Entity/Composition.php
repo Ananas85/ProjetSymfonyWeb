@@ -2,6 +2,7 @@
 
 namespace ProjetWeb\ClassiqueBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -42,6 +43,18 @@ class Composition
      */
     private $composanteComposition;
 
+
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="CompositionOeuvre", mappedBy="codeComposition")
+     */
+    private $compositionoeuvres;
+
+
+    public function __construct() {
+        $this->compositionoeuvres = new ArrayCollection();
+    }
 
 
     /**
@@ -121,5 +134,23 @@ class Composition
     public function getComposanteComposition()
     {
         return $this->composanteComposition;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCompositionoeuvres()
+    {
+        return $this->compositionoeuvres;
+    }
+
+    /**
+     * @param array $compositionoeuvres
+     */
+    public function setCompositionoeuvres( $compositionoeuvres )
+    {
+        $this->compositionoeuvres = $compositionoeuvres;
+
+        return $this;
     }
 }

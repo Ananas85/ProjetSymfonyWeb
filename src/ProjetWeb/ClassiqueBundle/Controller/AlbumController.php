@@ -24,7 +24,29 @@ class AlbumController extends Controller{
      * @Template()
      */
     public function musicienAction( Musicien $musicien, $page = 1 ) {
-        $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Album")->findByMusicienAdapter( $musicien );
+        $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Album")->findByCompositeur($musicien);
+        $pager->setMaxPerPage( 10 );
+        $pager->setCurrentPage( $page );
+        return compact('pager');
+    }
+
+    /**
+     * @param Musicien $musicien
+     * @Template("ProjetWebClassiqueBundle:Album:musicien.html.twig")
+     */
+    public function compositeurAction( Musicien $musicien, $page = 1 ) {
+        $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Album")->findByCompositeur($musicien);
+        $pager->setMaxPerPage( 10 );
+        $pager->setCurrentPage( $page );
+        return compact('pager');
+    }
+
+    /**
+     * @param Musicien $musicien
+     * @Template("ProjetWebClassiqueBundle:Album:musicien.html.twig")
+     */
+    public function interpreteAction( Musicien $musicien, $page = 1 ) {
+        $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Album")->findByInterprete($musicien);
         $pager->setMaxPerPage( 10 );
         $pager->setCurrentPage( $page );
         return compact('pager');

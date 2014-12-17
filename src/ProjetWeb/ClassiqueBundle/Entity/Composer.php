@@ -34,7 +34,7 @@ class Composer
     /**
      * @var \Oeuvre
      *
-     * @ORM\ManyToOne(targetEntity="Oeuvre")
+     * @ORM\ManyToOne(targetEntity="Oeuvre", inversedBy="composers")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Code_Oeuvre", referencedColumnName="Code_Oeuvre")
      * })

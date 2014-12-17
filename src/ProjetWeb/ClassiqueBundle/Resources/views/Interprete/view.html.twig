@@ -8,4 +8,8 @@
     <h1 class="text-primary">Fiche d'un Interprete</h1>
     {% include"ProjetWebClassiqueBundle:Musicien:view.html.twig" %}
 
+    <h2 class="text-info">Albums auquel {{ musicien.nomMusicien }} {{ musicien.prénomMusicien }} a participé </h2>
+
+    {{ render(controller("ProjetWebClassiqueBundle:Album:interprete", {'codeMusicien': musicien.codeMusicien})) }}
+
 {% endblock %}

@@ -2,6 +2,7 @@
 
 namespace ProjetWeb\ClassiqueBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -73,7 +74,16 @@ class Oeuvre
      */
     private $codeType;
 
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="Composer", mappedBy="codeOeuvre")
+     */
+    private $composers;
 
+    public function __construct() {
+        $this->composers = new ArrayCollection();
+    }
 
     /**
      * Get codeOeuvre

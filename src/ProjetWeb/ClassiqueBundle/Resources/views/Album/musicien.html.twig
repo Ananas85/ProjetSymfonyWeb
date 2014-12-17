@@ -1,19 +1,10 @@
-{% extends "ProjetWebClassiqueBundle::layout.html.twig" %}
+<ul>
+{%  for album in pager.currentPageResults  %}
 
-{% block title %}
-    Albums
-{% endblock %}
+    <li>{{ album.titreAlbum }}</li>
+{%  endfor  %}
+</ul>
 
-{% block classiqueweb_body %}
-
-    <ul>
-    {%  for album in pager.currentPageResults  %}
-
-        <li>{{ album.titreAlbum }}</li>
-    {%  endfor  %}
-    </ul>
-
-    <div class="pagerfanta">
-        {{ pagerfanta(pager, 'twitter_bootstrap3') }}
-    </div>
-{% endblock %}
+<div class="pagerfanta">
+    {{ pagerfanta(pager, 'twitter_bootstrap3') }}
+</div>
