@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Genre
  *
  * @ORM\Table(name="Genre")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ProjetWeb\ClassiqueBundle\Repository\Genre")
  */
 class Genre
 {
@@ -27,7 +27,7 @@ class Genre
      *
      * @ORM\Column(name="Libellé_Abrégé", type="string", length=30, nullable=false)
      */
-    private $libelléAbrégé;
+    private $libelleAbrege;
 
 
     /**
@@ -37,9 +37,17 @@ class Genre
      */
     private $musiciens;
 
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="Album", mappedBy="codeGenre")
+     */
+    private $albums;
+
 
     public function __construct() {
         $this->musiciens = new ArrayCollection();
+        $this->albums = new ArrayCollection();
     }
 
     /**
@@ -58,9 +66,9 @@ class Genre
      * @param string $libelléAbrégé
      * @return Genre
      */
-    public function setLibelléAbrégé($libelléAbrégé)
+    public function setLibelleAbrege($libelléAbrégé)
     {
-        $this->libelléAbrégé = $libelléAbrégé;
+        $this->libelleAbrege = $libelléAbrégé;
 
         return $this;
     }
@@ -70,9 +78,9 @@ class Genre
      *
      * @return string
      */
-    public function getLibelléAbrégé()
+    public function getLibelleAbrege()
     {
-        return $this->libelléAbrégé;
+        return $this->libelleAbrege;
     }
 
     /**
@@ -92,5 +100,22 @@ class Genre
         return $this;
     }
 
+    /**
+     * @return array
+     */
+    public function getAlbums()
+    {
+        return $this->albums;
+    }
+
+    /**
+     * @param array $albums
+     */
+    public function setAlbums( $albums )
+    {
+        $this->albums = $albums;
+
+        return $this;
+    }
 
 }

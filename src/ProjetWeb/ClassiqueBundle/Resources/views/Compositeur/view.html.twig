@@ -12,7 +12,7 @@
 
     <h2 class="text-info">Oeuvres enregistrées</h2>
 
-    {{ render(controller("ProjetWebClassiqueBundle:Album:compositeur", {'codeMusicien': musicien.codeMusicien})) }}
+    {{ render(controller("ProjetWebClassiqueBundle:Album:compositeur", {'musicien': musicien.codeMusicien})) }}
 
 
 {% endblock %}

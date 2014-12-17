@@ -44,7 +44,7 @@ class Direction
     /**
      * @var \Enregistrement
      *
-     * @ORM\ManyToOne(targetEntity="Enregistrement")
+     * @ORM\ManyToOne(targetEntity="Enregistrement", inversedBy="directions")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Code_Morceau", referencedColumnName="Code_Morceau")
      * })

@@ -7,5 +7,8 @@
 {% block classiqueweb_body %}
     <h1 class="text-primary">Fiche d'un Chef D'orchestre</h1>
     {% include"ProjetWebClassiqueBundle:Musicien:view.html.twig" %}
+    <h2 class="text-info">Oeuvres enregistrées</h2>
+
+    {{ render(controller("ProjetWebClassiqueBundle:Album:chef", {'musicien': musicien.codeMusicien})) }}
 
 {% endblock %}

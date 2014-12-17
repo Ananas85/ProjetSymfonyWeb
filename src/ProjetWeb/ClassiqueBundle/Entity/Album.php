@@ -46,7 +46,7 @@ class Album
     /**
      * @var \Genre
      *
-     * @ORM\ManyToOne(targetEntity="Genre")
+     * @ORM\ManyToOne(targetEntity="Genre", inversedBy="albums")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Code_Genre", referencedColumnName="Code_Genre")
      * })

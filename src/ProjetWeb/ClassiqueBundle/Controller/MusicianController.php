@@ -11,18 +11,18 @@
  
 
 namespace ProjetWeb\ClassiqueBundle\Controller;
+use ProjetWeb\ClassiqueBundle\Entity\Musicien;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class MusicianController extends Controller{
 
-    public function imageAction($codeMusicien) {
-        $repoMusicien = $this->getDoctrine()->getRepository('ProjetWebClassiqueBundle:Musicien');
-        $musicien = $repoMusicien->find($codeMusicien);
+    public function imageAction( Musicien $musicien ) {
         $image = stream_get_contents($musicien->getPhoto());
         $image = pack("H*", $image);
-        $response = new \Symfony\Component\HttpFoundation\Response();
+        $response = new Response();
         $response->headers->set('Content-type', 'image/jpeg');
         $response->headers->set('Content-Transfer-Encoding', 'binary');
         $response->setContent($image);

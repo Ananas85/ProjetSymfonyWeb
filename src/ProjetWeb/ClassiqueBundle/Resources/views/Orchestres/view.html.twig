@@ -1,0 +1,16 @@
+{% extends "ProjetWebClassiqueBundle::layout.html.twig" %}
+
+{% block title %}
+    Orchestre
+{% endblock %}
+
+{% block classiqueweb_body %}
+    <h1 class="text-primary">Fiche d'un Orchestre</h1>
+
+    <span class="text-info">Nom : </span>{{ orchestre.nomOrchestre }}
+
+    <h2 class="text-info">Oeuvres enregistrées</h2>
+
+    {{ render(controller("ProjetWebClassiqueBundle:Album:orchestre", {'orchestre': orchestre.codeOrchestre})) }}
+
+{% endblock %}

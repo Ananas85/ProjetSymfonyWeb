@@ -1,0 +1,32 @@
+{% extends "ProjetWebClassiqueBundle::layout.html.twig" %}
+
+{% block title %}
+    Orchestres
+{% endblock %}
+
+{% block classiqueweb_body %}
+
+    <h2>Liste des Orchestres</h2>
+
+    <p>Sélection {{ contexte }} :
+        {% if initial is defined %}
+            {{ initial }}
+        {% endif %}
+
+    </p>
+
+
+    <ul>
+    {%  for orchestre in pager.currentPageResults  %}
+
+        <li>
+        <a href="{{ path('projet_web_classique_orchestrepage',{'codeOrchestre': orchestre.codeOrchestre }) }}">{{ orchestre.nomOrchestre }}</a>
+    </li>
+    {%  endfor  %}
+    </ul>
+
+    <div class="pagerfanta">
+    {{ pagerfanta(pager, 'twitter_bootstrap3') }}
+        </div>
+
+        {% endblock %}

@@ -10,6 +10,6 @@
 
     <h2 class="text-info">Albums auquel {{ musicien.nomMusicien }} {{ musicien.prénomMusicien }} a participé </h2>
 
-    {{ render(controller("ProjetWebClassiqueBundle:Album:interprete", {'codeMusicien': musicien.codeMusicien})) }}
+    {{ render(controller("ProjetWebClassiqueBundle:Album:interprete", {'musicien': musicien.codeMusicien})) }}
 
 {% endblock %}

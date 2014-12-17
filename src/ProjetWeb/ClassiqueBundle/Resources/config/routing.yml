@@ -92,3 +92,75 @@ projet_web_classique_naissancecheforchestrepage:
         naissance: \d+
         page: \d+
 
+
+
+
+
+projet_web_classique_indexorchestrepage:
+    path:     /orchestres/{page}
+    defaults: { _controller: ProjetWebClassiqueBundle:Orchestres:index, page: 1 }
+    requirements:
+        page: \d+
+
+projet_web_classique_orchestrepage:
+    path:     /orchestre/{codeOrchestre}
+    defaults: { _controller: ProjetWebClassiqueBundle:Orchestres:view }
+    requirements:
+        codeOrchestre: \d+
+
+projet_web_classique_initialorchestrepage:
+    path:     /orchestres/initial/{initial}/{page}
+    defaults: { _controller: ProjetWebClassiqueBundle:Orchestres:initial, initial: A, page: 1 }
+    requirements:
+        initial: \S
+        page: \d+
+
+
+
+
+projet_web_classique_indexgenrepage:
+    path:     /genres/{page}
+    defaults: { _controller: ProjetWebClassiqueBundle:Genre:index, page: 1 }
+    requirements:
+        page: \d+
+
+projet_web_classique_genrepage:
+    path:     /genre/{codeGenre}
+    defaults: { _controller: ProjetWebClassiqueBundle:Genre:view }
+    requirements:
+        codeGenre: \d+
+
+projet_web_classique_initialgenrepage:
+    path:     /genres/initial/{initial}/{page}
+    defaults: { _controller: ProjetWebClassiqueBundle:Genre:initial, initial: A, page: 1 }
+    requirements:
+        initial: \S
+        page: \d+
+
+
+
+
+projet_web_classique_indexinstrumentpage:
+    path:     /instruments/{page}
+    defaults: { _controller: ProjetWebClassiqueBundle:Instrument:index, page: 1 }
+    requirements:
+        page: \d+
+
+projet_web_classique_instrumentpage:
+    path:     /instrument/{codeInstrument}
+    defaults: { _controller: ProjetWebClassiqueBundle:Instrument:view }
+    requirements:
+        codeInstrument: \d+
+
+projet_web_classique_initialinstrumentpage:
+    path:     /instruments/initial/{initial}/{page}
+    defaults: { _controller: ProjetWebClassiqueBundle:Instrument:initial, initial: A, page: 1 }
+    requirements:
+        initial: \S
+        page: \d+
+
+projet_web_classique_instrumentimagepage:
+    path:     /instrument/image/{codeInstrument}
+    defaults: { _controller: ProjetWebClassiqueBundle:Instrument:image }
+    requirements:
+        codeInstrument: \d+

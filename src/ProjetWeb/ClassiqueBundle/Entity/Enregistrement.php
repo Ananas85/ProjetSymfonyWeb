@@ -81,8 +81,17 @@ class Enregistrement
      */
     private $interpreters;
 
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="Direction", mappedBy="codeMorceau")
+     */
+    private $directions;
+
+
     public function __construct() {
         $this->interpreters = new ArrayCollection();
+        $this->directions = new ArrayCollection();
     }
 
 
@@ -255,5 +264,41 @@ class Enregistrement
     public function getCodeComposition()
     {
         return $this->codeComposition;
+    }
+
+    /**
+     * @return array
+     */
+    public function getInterpreters()
+    {
+        return $this->interpreters;
+    }
+
+    /**
+     * @param array $interpreters
+     */
+    public function setInterpreters( $interpreters )
+    {
+        $this->interpreters = $interpreters;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDirections()
+    {
+        return $this->directions;
+    }
+
+    /**
+     * @param array $directions
+     */
+    public function setDirections( $directions )
+    {
+        $this->directions = $directions;
+
+        return $this;
     }
 }

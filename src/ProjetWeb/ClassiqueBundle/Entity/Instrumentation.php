@@ -24,7 +24,7 @@ class Instrumentation
     /**
      * @var \Oeuvre
      *
-     * @ORM\ManyToOne(targetEntity="Oeuvre")
+     * @ORM\ManyToOne(targetEntity="Oeuvre", inversedBy="instrumentations")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Code_Oeuvre", referencedColumnName="Code_Oeuvre")
      * })
@@ -34,7 +34,7 @@ class Instrumentation
     /**
      * @var \Instrument
      *
-     * @ORM\ManyToOne(targetEntity="Instrument")
+     * @ORM\ManyToOne(targetEntity="Instrument", inversedBy="instrumentations")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Code_Instrument", referencedColumnName="Code_Instrument")
      * })

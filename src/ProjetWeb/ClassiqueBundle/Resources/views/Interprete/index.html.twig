@@ -18,16 +18,7 @@
     </p>
 
 
-    <ul>
-    {%  for musicien in pager.currentPageResults  %}
+    {% include("ProjetWebClassiqueBundle:Interprete:instrument.html.twig") %}
 
-    <li>
-        <a href="{{ path('projet_web_classique_interpretepage',{'codeMusicien': musicien.codeMusicien }) }}">{{ musicien.nomMusicien }} {{ musicien.prénomMusicien }}</a>
-    </li>
-    {%  endfor  %}
-    </ul>
 
-    <div class="pagerfanta">
-        {{ pagerfanta(pager, 'twitter_bootstrap3') }}
-    </div>
 {% endblock %}

@@ -1,0 +1,32 @@
+{% extends "ProjetWebClassiqueBundle::layout.html.twig" %}
+
+{% block title %}
+    Instruments
+{% endblock %}
+
+{% block classiqueweb_body %}
+
+    <h2>Liste des Instruments</h2>
+
+    <p>Sélection {{ contexte }} :
+        {% if initial is defined %}
+            {{ initial }}
+        {% endif %}
+
+    </p>
+
+
+    <ul>
+        {%  for instrument in pager.currentPageResults  %}
+
+            <li>
+                <a href="{{ path('projet_web_classique_instrumentpage',{'codeInstrument': instrument.codeInstrument }) }}">{{ instrument.nomInstrument }}</a>
+            </li>
+        {%  endfor  %}
+    </ul>
+
+    <div class="pagerfanta">
+        {{ pagerfanta(pager, 'twitter_bootstrap3') }}
+    </div>
+
+{% endblock %}

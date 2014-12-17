@@ -2,13 +2,14 @@
 
 namespace ProjetWeb\ClassiqueBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Instrument
  *
  * @ORM\Table(name="Instrument", uniqueConstraints={@ORM\UniqueConstraint(name="IX_Instrument", columns={"Nom_Instrument"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ProjetWeb\ClassiqueBundle\Repository\Instrument")
  */
 class Instrument
 {
@@ -35,7 +36,17 @@ class Instrument
      */
     private $image;
 
+    /**
+     * @var array
+     * @ORM\OneToMany(targetEntity="Instrumentation", mappedBy="codeInstrument")
+     *
+     */
+    private $instrumentations;
 
+
+    public function __construct() {
+        $this->instrumentations = new ArrayCollection();
+    }
 
     /**
      * Get codeInstrument
@@ -91,5 +102,23 @@ class Instrument
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * @return array
+     */
+    public function getInstrumentations()
+    {
+        return $this->instrumentations;
+    }
+
+    /**
+     * @param array $instrumentations
+     */
+    public function setInstrumentations( $instrumentations )
+    {
+        $this->instrumentations = $instrumentations;
+
+        return $this;
     }
 }

@@ -13,6 +13,7 @@
 namespace ProjetWeb\ClassiqueBundle\Controller;
 use Pagerfanta\Exception\NotValidCurrentPageException;
 use Pagerfanta\Pagerfanta;
+use ProjetWeb\ClassiqueBundle\Entity\Instrument;
 use ProjetWeb\ClassiqueBundle\Entity\Musicien;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -72,5 +73,16 @@ class InterpreteController extends Controller{
     public function viewAction( Musicien $musicien ) {
         $image = $this->generateUrl('projet_web_classique_musicienimagepage', array('codeMusicien'=> $musicien->getCodeMusicien() ));
         return compact('musicien','image');
+    }
+
+    /**
+     * @param Instrument $instrument
+     * @Template()
+     */
+    public function instrumentAction( Instrument $instrument, $page = 1 ) {
+        $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Musicien")->findInterpreteByInstrumentAdapter($instrument);
+        $pager->setMaxPerPage( 10 );
+        $pager->setCurrentPage( $page );
+        return compact('pager');
     }
 } 

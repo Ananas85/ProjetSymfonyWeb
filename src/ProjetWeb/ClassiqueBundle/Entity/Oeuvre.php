@@ -81,8 +81,17 @@ class Oeuvre
      */
     private $composers;
 
+    /**
+     * @var array
+     * @ORM\OneToMany(targetEntity="Instrumentation", mappedBy="codeInstrumentation")
+     *
+     */
+    private $instrumentations;
+
+
     public function __construct() {
         $this->composers = new ArrayCollection();
+        $this->instrumentations = new ArrayCollection();
     }
 
     /**
@@ -254,5 +263,41 @@ class Oeuvre
     public function getCodeType()
     {
         return $this->codeType;
+    }
+
+    /**
+     * @return array
+     */
+    public function getComposers()
+    {
+        return $this->composers;
+    }
+
+    /**
+     * @param array $composers
+     */
+    public function setComposers( $composers )
+    {
+        $this->composers = $composers;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getInstrumentations()
+    {
+        return $this->instrumentations;
+    }
+
+    /**
+     * @param array $instrumentations
+     */
+    public function setInstrumentations( $instrumentations )
+    {
+        $this->instrumentations = $instrumentations;
+
+        return $this;
     }
 }

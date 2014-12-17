@@ -17,6 +17,7 @@ use Doctrine\ORM\Query;
 use Pagerfanta\Adapter\ArrayAdapter;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
+use ProjetWeb\ClassiqueBundle\Entity\Instrument as InstrumentEntity;
 
 class Musicien  extends EntityRepository {
 
@@ -87,6 +88,19 @@ class Musicien  extends EntityRepository {
         $query->join( "m.interpreters", "i" );
         $query->where('m.nomMusicien LIKE :naissance');
         $query->setParameter('naissance',$initial.'%');
+        $query->orderBy("m.nomMusicien",'ASC');
+
+
+        $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
+        return $pagerfanta;
+    }
+
+    public function findInterpreteByInstrumentAdapter( InstrumentEntity $instrument) {
+        $query = $this->createQueryBuilder( "m" );
+        $query->join( "m.interpreters", "i" );
+        $query->join( "m.codeInstrument", "inst");
+        $query->where('m.codeInstrument = :instrument');
+        $query->setParameter('instrument',$instrument);
         $query->orderBy("m.nomMusicien",'ASC');
 
 

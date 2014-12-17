@@ -1,0 +1,32 @@
+{% extends "ProjetWebClassiqueBundle::layout.html.twig" %}
+
+{% block title %}
+    Genre
+{% endblock %}
+
+{% block classiqueweb_body %}
+
+    <h2>Liste des Genres</h2>
+
+    <p>Sélection {{ contexte }} :
+        {% if initial is defined %}
+            {{ initial }}
+        {% endif %}
+
+    </p>
+
+
+    <ul>
+        {%  for genre in pager.currentPageResults  %}
+
+            <li>
+                <a href="{{ path('projet_web_classique_genrepage',{'codeGenre': genre.codeGenre }) }}">{{ genre.libelleAbrege }}</a>
+            </li>
+        {%  endfor  %}
+    </ul>
+
+    <div class="pagerfanta">
+        {{ pagerfanta(pager, 'twitter_bootstrap3') }}
+    </div>
+
+{% endblock %}
