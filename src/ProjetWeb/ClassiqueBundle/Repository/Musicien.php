@@ -26,6 +26,7 @@ class Musicien  extends EntityRepository {
     public function findAllCompositeurAdapter() {
         $query = $this->createQueryBuilder( "m" );
         $query->join( "m.composers", "c" );
+        $query->orderBy("m.nomMusicien",'ASC');
 
         $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
         return $pagerfanta;
@@ -38,6 +39,7 @@ class Musicien  extends EntityRepository {
         $query->setParameter('naissance',$naissance);
         $query->andWhere('m.anneeNaissance > :fin');
         $query->setParameter('fin',$naissance + 10);
+        $query->orderBy("m.nomMusicien",'ASC');
 
         $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
         return $pagerfanta;
@@ -48,6 +50,7 @@ class Musicien  extends EntityRepository {
         $query->join( "m.composers", "c" );
         $query->where('m.nomMusicien LIKE :naissance');
         $query->setParameter('naissance',$initial.'%');
+        $query->orderBy("m.nomMusicien",'ASC');
 
 
         $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
@@ -60,6 +63,7 @@ class Musicien  extends EntityRepository {
     public function findAllInterpreteAdapter() {
         $query = $this->createQueryBuilder( "m" );
         $query->join( "m.interpreters", "i" );
+        $query->orderBy("m.nomMusicien",'ASC');
 
         $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
         return $pagerfanta;
@@ -72,6 +76,7 @@ class Musicien  extends EntityRepository {
         $query->setParameter('naissance',$naissance);
         $query->andWhere('m.anneeNaissance > :fin');
         $query->setParameter('fin',$naissance + 10);
+        $query->orderBy("m.nomMusicien",'ASC');
 
         $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
         return $pagerfanta;
@@ -82,6 +87,7 @@ class Musicien  extends EntityRepository {
         $query->join( "m.interpreters", "i" );
         $query->where('m.nomMusicien LIKE :naissance');
         $query->setParameter('naissance',$initial.'%');
+        $query->orderBy("m.nomMusicien",'ASC');
 
 
         $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
@@ -94,6 +100,7 @@ class Musicien  extends EntityRepository {
     public function findAllChefAdapter() {
         $query = $this->createQueryBuilder( "m" );
         $query->join( "m.directions", "d" );
+        $query->orderBy("m.nomMusicien",'ASC');
 
         $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
         return $pagerfanta;
@@ -106,9 +113,11 @@ class Musicien  extends EntityRepository {
         $query->setParameter('naissance',$naissance);
         $query->andWhere('m.anneeNaissance > :fin');
         $query->setParameter('fin',$naissance + 10);
+        $query->orderBy("m.nomMusicien",'ASC');
 
         $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
         return $pagerfanta;
+
     }
 
     public function findChefByInitialAdapter($initial) {
@@ -116,7 +125,7 @@ class Musicien  extends EntityRepository {
         $query->join( "m.directions", "d" );
         $query->where('m.nomMusicien LIKE :naissance');
         $query->setParameter('naissance',$initial.'%');
-
+        $query->orderBy("m.nomMusicien",'ASC');
 
         $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
         return $pagerfanta;

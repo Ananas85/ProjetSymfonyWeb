@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Composer
  *
  * @ORM\Table(name="Composer", indexes={@ORM\Index(name="IDX_6105648EE694D5AB", columns={"Code_Musicien"}), @ORM\Index(name="IDX_6105648ECB48FCBD", columns={"Code_Oeuvre"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ProjetWeb\ClassiqueBundle\Repository\Composer")
  */
 class Composer
 {

@@ -2,6 +2,7 @@
 
 namespace ProjetWeb\ClassiqueBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,14 +39,24 @@ class Disque
     /**
      * @var \Album
      *
-     * @ORM\ManyToOne(targetEntity="Album")
+     * @ORM\ManyToOne(targetEntity="Album", inversedBy="disques")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Code_Album", referencedColumnName="Code_Album")
      * })
      */
     private $codeAlbum;
 
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="CompositionDisque", mappedBy="codeDisque")
+     */
+    private $compositiondisques;
 
+
+    public function __construct() {
+        $this->compositiondisques = new ArrayCollection();
+    }
 
     /**
      * Get codeDisque
@@ -124,5 +135,23 @@ class Disque
     public function getCodeAlbum()
     {
         return $this->codeAlbum;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCompositiondisques()
+    {
+        return $this->compositiondisques;
+    }
+
+    /**
+     * @param array $compositiondisques
+     */
+    public function setCompositiondisques( $compositiondisques )
+    {
+        $this->compositiondisques = $compositiondisques;
+
+        return $this;
     }
 }

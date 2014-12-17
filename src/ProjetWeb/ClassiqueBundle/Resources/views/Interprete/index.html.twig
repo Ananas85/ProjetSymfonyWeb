@@ -16,13 +16,18 @@
         {% endif %}
 
     </p>
+
+
     <ul>
-    {% for musicien in liste %}
-        <li>
-            <a href="{{ path('projet_web_classique_interpretepage',{'id':musicien.codeMusicien}) }}">{{ musicien.nomMusicien }} {{ musicien.prénomMusicien }}</a>
-        </li>
-    {% else %}
-        Pas d'interprete pour ces paramètres là.
-    {% endfor %}
+    {%  for musicien in pager.currentPageResults  %}
+
+    <li>
+        <a href="{{ path('projet_web_classique_interpretepage',{'codeMusicien': musicien.codeMusicien }) }}">{{ musicien.nomMusicien }} {{ musicien.prénomMusicien }}</a>
+    </li>
+    {%  endfor  %}
     </ul>
+
+    <div class="pagerfanta">
+        {{ pagerfanta(pager, 'twitter_bootstrap3') }}
+    </div>
 {% endblock %}

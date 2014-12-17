@@ -24,6 +24,7 @@ class InterpreteController extends Controller{
     /**
      * @param int $page
      * @return array
+     * @Template()
      */
     public function indexAction($page = 1) {
         $contexte = "Tous";
@@ -37,7 +38,7 @@ class InterpreteController extends Controller{
     }
 
     /**
-     * @Template("ProjetWebClassiqueBundle:Interprete:index")
+     * @Template("ProjetWebClassiqueBundle:Interprete:index.html.twig")
      */
     public function initialAction($initial, $page = 1){
         $contexte = "avec initiale";
@@ -50,7 +51,7 @@ class InterpreteController extends Controller{
     }
 
     /**
-     * @Template("ProjetWebClassiqueBundle:Interprete:index")
+     * @Template("ProjetWebClassiqueBundle:Interprete:index.html.twig")
      */
     public function naissanceAction($naissance, $page = 1) {
         $contexte = "par année de naissance";

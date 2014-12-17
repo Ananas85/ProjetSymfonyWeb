@@ -96,7 +96,7 @@ class Musicien
 
     /**
      * @var array
-     * @ORM\OneToMany(targetEntity="Interpreter", mappedBy="codeMusicien")
+     * @ORM\OneToMany(targetEntity="Direction", mappedBy="codeMusicien")
      *
      */
     private $interpreters;

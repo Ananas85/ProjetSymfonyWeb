@@ -2,6 +2,7 @@
 
 namespace ProjetWeb\ClassiqueBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -62,8 +63,18 @@ class Album
      */
     private $codeEditeur;
 
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="Disque", mappedBy="codeAlbum")
+     */
+    private $disques;
 
 
+
+    public function __construct() {
+        $this->disques = new ArrayCollection();
+    }
     /**
      * Get codeAlbum
      *
@@ -187,5 +198,23 @@ class Album
     public function getCodeEditeur()
     {
         return $this->codeEditeur;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDisques()
+    {
+        return $this->disques;
+    }
+
+    /**
+     * @param array $disques
+     */
+    public function setDisques( $disques )
+    {
+        $this->disques = $disques;
+
+        return $this;
     }
 }

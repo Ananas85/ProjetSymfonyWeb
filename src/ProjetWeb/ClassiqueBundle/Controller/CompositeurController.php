@@ -30,6 +30,7 @@ class CompositeurController extends Controller {
         $contexte = "Tous";
         $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Musicien")->findAllCompositeurAdapter();
 
+
         /** @var Pagerfanta $pager */
         $pager->setMaxPerPage( 10 );
         $pager->setCurrentPage( $page );
@@ -38,7 +39,7 @@ class CompositeurController extends Controller {
     }
 
     /**
-     * @Template("ProjetWebClassiqueBundle:Compositeur:index")
+     * @Template("ProjetWebClassiqueBundle:Compositeur:index.html.twig")
      */
     public function initialAction($initial, $page = 1){
         $contexte = "avec initiale";
@@ -51,7 +52,7 @@ class CompositeurController extends Controller {
     }
 
     /**
-     * @Template("ProjetWebClassiqueBundle:Compositeur:index")
+     * @Template("ProjetWebClassiqueBundle:Compositeur:index.html.twig")
      */
     public function naissanceAction($naissance, $page = 1) {
         $contexte = "par année de naissance";

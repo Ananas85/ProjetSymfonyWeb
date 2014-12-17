@@ -34,4 +34,9 @@ class Album extends EntityRepository {
         return $pagerfanta;
     }
 
+    public function findByCompositeur(MusicienEntity $musicien) {
+        $query = $this->createQueryBuilder('a');
+
+    }
+
 }

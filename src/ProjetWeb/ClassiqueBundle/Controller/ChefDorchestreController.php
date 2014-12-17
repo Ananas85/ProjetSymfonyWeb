@@ -37,7 +37,7 @@ class ChefDorchestreController extends Controller{
     }
 
     /**
-     * @Template("ProjetWebClassiqueBundle:ChefDorchestre:index")
+     * @Template("ProjetWebClassiqueBundle:ChefDorchestre:index.html.twig")
      */
     public function initialAction($initial, $page = 1){
         $contexte = "avec initiale";
@@ -50,7 +50,7 @@ class ChefDorchestreController extends Controller{
     }
 
     /**
-     * @Template("ProjetWebClassiqueBundle:ChefDorchestre:index")
+     * @Template("ProjetWebClassiqueBundle:ChefDorchestre:index.html.twig")
      */
     public function naissanceAction($naissance, $page = 1) {
         $contexte = "par année de naissance";

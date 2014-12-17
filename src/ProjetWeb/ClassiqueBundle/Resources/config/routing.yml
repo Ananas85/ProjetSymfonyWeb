@@ -90,7 +90,7 @@ projet_web_classique_naissancecheforchestrepage:
     defaults: { _controller: ProjetWebClassiqueBundle:ChefDorchestre:naissance, annee: 1900, page: 1 }
     requirements:
         annee: \d+
-        page: 1
+        page: \d+
 
 
 
