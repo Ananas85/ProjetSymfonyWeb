@@ -19,11 +19,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class CompositeurController extends Controller {
 
     /**
      * @return array
+     * @Route("/compositeurs/{page}", requirements={"page" ="\d+"}, defaults={"page"=1}, name="compositeursindex")
      * @Template()
      */
     public function indexAction($page = 1) {
@@ -39,6 +41,7 @@ class CompositeurController extends Controller {
     }
 
     /**
+     * @Route("/compositeurs/initial/{initial}/{page}", requirements={"initial" = "\S", "page" ="\d+"}, defaults={"initial"= "A", "page"=1}, name="compositeursinitial")
      * @Template("ProjetWebClassiqueBundle:Compositeur:index.html.twig")
      */
     public function initialAction($initial, $page = 1){
@@ -52,6 +55,7 @@ class CompositeurController extends Controller {
     }
 
     /**
+     * @Route("/compositeurs/naissance/{naissance}/{page}", requirements={"naissance" = "\d+", "page" ="\d+"}, defaults={"naissance"= 1900, "page"=1}, name="compositeursnaissance")
      * @Template("ProjetWebClassiqueBundle:Compositeur:index.html.twig")
      */
     public function naissanceAction($naissance, $page = 1) {
@@ -68,10 +72,11 @@ class CompositeurController extends Controller {
     /**
      * @param
      * @return
+     * @Route("/compositeur/{codeMusicien}", requirements={"codeMusicien"="\d+"}, name="compositeurview")
      * @Template()
      */
     public function viewAction( Musicien $musicien ) {
-        $image = $this->generateUrl('projet_web_classique_musicienimagepage', array('codeMusicien'=> $musicien->getCodeMusicien() ));
+        $image = $this->generateUrl('musicienimage', array('codeMusicien'=> $musicien->getCodeMusicien() ));
         return compact('musicien','image');
     }
 

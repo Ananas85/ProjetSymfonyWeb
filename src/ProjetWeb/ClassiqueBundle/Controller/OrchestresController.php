@@ -16,10 +16,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class OrchestresController extends Controller {
 
     /**
+     * @Route("/orchestres/{page}", requirements={"page" ="\d+"}, defaults={"page"=1}, name="orchestresindex")
      * @return array
      * @Template()
      */
@@ -34,6 +36,7 @@ class OrchestresController extends Controller {
     }
 
     /**
+     * @Route("/orchestres/initial/{initial}/{page}", requirements={"initial" = "\S", "page" ="\d+"}, defaults={"initial"= "A", "page"=1}, name="orchestresinitial")
      * @Template("ProjetWebClassiqueBundle:Orchestres:index.html.twig")
      */
     public function initialAction($initial, $page = 1){
@@ -48,6 +51,7 @@ class OrchestresController extends Controller {
 
 
     /**
+     * @Route("/orchestre/{codeOrchestre}", requirements={"codeOrchestre"="\d+"}, name="orchestreview")
      * @param
      * @return
      * @Template()

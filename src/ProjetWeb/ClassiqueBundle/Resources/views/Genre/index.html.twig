@@ -20,7 +20,7 @@
         {%  for genre in pager.currentPageResults  %}
 
             <li>
-                <a href="{{ path('projet_web_classique_genrepage',{'codeGenre': genre.codeGenre }) }}">{{ genre.libelleAbrege }}</a>
+                <a href="{{ path('genreview',{'codeGenre': genre.codeGenre }) }}">{{ genre.libelleAbrege }}</a>
             </li>
         {%  endfor  %}
     </ul>

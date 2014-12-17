@@ -110,11 +110,9 @@ class Album extends EntityRepository {
         $query->join("a.disques","d");
         $query->join("d.compositiondisques","cd");
         $query->join("cd.codeMorceau","enr");
-        $query->join("enr.codeComposition","cc");
-        $query->join("cc.compositionoeuvres","co");
-        $query->join("co.codeOeuvre","o");
-        $query->join("o.instrumentations","i");
-        $query->where("i.codeInstrument = :instrument");
+        $query->join("enr.interpreters","int");
+        $query->join("int.codeInstrument","inst");
+        $query->where("inst.codeInstrument = :instrument");
         $query->setParameter("instrument", $instrument);
 
         $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );

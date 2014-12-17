@@ -16,12 +16,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 
 class GenreController extends Controller {
 
     /**
      * @param int $page
+     * @Route("/genres/{page}", requirements={"page" ="\d+"}, defaults={"page"=1}, name="genresindex")
      * @Template()
      */
     public function indexAction($page = 1) {
@@ -34,6 +36,7 @@ class GenreController extends Controller {
     }
 
     /**
+     * @Route("/genres/initial/{initial}/{page}", requirements={"initial" = "\S", "page" ="\d+"}, defaults={"initial"= "A", "page"=1}, name="genresinitial")
      * @Template("ProjetWebClassiqueBundle:Genre:index.html.twig")
      */
     public function initialAction($initial, $page = 1){
@@ -50,6 +53,7 @@ class GenreController extends Controller {
     /**
      * @param
      * @return
+     * @Route("/genre/{codeGenre}", requirements={"codeGenre"="\d+"}, name="genreview")
      * @Template()
      */
     public function viewAction( Genre $genre ) {

@@ -17,11 +17,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class InstrumentController extends Controller {
 
     /**
      * @return array
+     * @Route("/instruments/{page}", requirements={"page" ="\d+"}, defaults={"page"=1}, name="instrumentsindex")
      * @Template()
      */
     public function indexAction($page = 1) {
@@ -35,6 +37,7 @@ class InstrumentController extends Controller {
     }
 
     /**
+     * @Route("/instruments/initial/{initial}/{page}", requirements={"initial" = "\S", "page" ="\d+"}, defaults={"initial"= "A", "page"=1}, name="instrumentsinitial")
      * @Template("ProjetWebClassiqueBundle:Instrument:index.html.twig")
      */
     public function initialAction($initial, $page = 1){
@@ -49,14 +52,19 @@ class InstrumentController extends Controller {
 
     /**
      * @param
-     * @return
+     * @Route("/instrument/{codeInstrument}", requirements={"codeInstrument"="\d+"}, name="instrumentview")
      * @Template()
      */
     public function viewAction( Instrument $instrument ) {
-        $image = $this->generateUrl('projet_web_classique_instrumentimagepage', array('codeInstrument'=> $instrument->getCodeInstrument() ));
+        $image = $this->generateUrl('instrumentimage', array('codeInstrument'=> $instrument->getCodeInstrument() ));
         return compact('instrument','image');
     }
 
+    /**
+     * @Route("/instrument/image/{codeInstrument}", requirements={ "codeMusicien"="\d+"}, name="instrumentimage")
+     * @param Instrument $instrument
+     * @return Response
+     */
     public function imageAction( Instrument $instrument ) {
         $image = stream_get_contents($instrument->getImage());
         $image = pack("H*", $image);
@@ -66,7 +74,6 @@ class InstrumentController extends Controller {
         $response->setContent($image);
         return $response;
     }
-
 
 
 

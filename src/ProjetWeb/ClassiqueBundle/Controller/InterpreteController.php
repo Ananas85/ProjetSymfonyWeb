@@ -19,12 +19,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class InterpreteController extends Controller{
 
     /**
      * @param int $page
      * @return array
+     * @Route("/interpretes/{page}", requirements={"page" ="\d+"}, defaults={"page"=1}, name="interpretesindex")
      * @Template()
      */
     public function indexAction($page = 1) {
@@ -39,6 +41,7 @@ class InterpreteController extends Controller{
     }
 
     /**
+     * @Route("/interpretes/initial/{initial}/{page}", requirements={"initial" = "\S", "page" ="\d+"}, defaults={"initial"= "A", "page"=1}, name="interpretesinitial")
      * @Template("ProjetWebClassiqueBundle:Interprete:index.html.twig")
      */
     public function initialAction($initial, $page = 1){
@@ -52,6 +55,7 @@ class InterpreteController extends Controller{
     }
 
     /**
+     * @Route("/interpretes/naissance/{naissance}/{page}", requirements={"naissance" = "\d+", "page" ="\d+"}, defaults={"naissance"= 1900, "page"=1}, name="interpretesnaissance")
      * @Template("ProjetWebClassiqueBundle:Interprete:index.html.twig")
      */
     public function naissanceAction($naissance, $page = 1) {
@@ -68,15 +72,17 @@ class InterpreteController extends Controller{
     /**
      * @param
      * @return
+     * @Route("/interprete/{codeMusicien}", requirements={"codeMusicien"="\d+"}, name="interpreteview")
      * @Template()
      */
     public function viewAction( Musicien $musicien ) {
-        $image = $this->generateUrl('projet_web_classique_musicienimagepage', array('codeMusicien'=> $musicien->getCodeMusicien() ));
+        $image = $this->generateUrl('musicienimage', array('codeMusicien'=> $musicien->getCodeMusicien() ));
         return compact('musicien','image');
     }
 
     /**
      * @param Instrument $instrument
+     * @Route("/interpretes/instrument/{codeInstrument}/{page}", requirements={ "codeInstrument" = "\d+","page"="\d+" }, defaults={"page"=1}, name="interpretesinstrument")
      * @Template()
      */
     public function instrumentAction( Instrument $instrument, $page = 1 ) {

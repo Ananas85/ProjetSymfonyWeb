@@ -20,7 +20,7 @@
     {%  for orchestre in pager.currentPageResults  %}
 
         <li>
-        <a href="{{ path('projet_web_classique_orchestrepage',{'codeOrchestre': orchestre.codeOrchestre }) }}">{{ orchestre.nomOrchestre }}</a>
+        <a href="{{ path('orchestreview',{'codeOrchestre': orchestre.codeOrchestre }) }}">{{ orchestre.nomOrchestre }}</a>
     </li>
     {%  endfor  %}
     </ul>

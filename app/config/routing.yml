@@ -1,9 +1,11 @@
 projet_web_home:
-    resource: "@ProjetWebHomeBundle/Resources/config/routing.yml"
+    resource: "@ProjetWebHomeBundle/Controller/"
+    type:     annotation
     prefix:   /
 
 projet_web_classique:
-    resource: "@ProjetWebClassiqueBundle/Resources/config/routing.yml"
+    resource: "@ProjetWebClassiqueBundle/Controller/"
+    type:     annotation
     prefix:   /
 
 anachardan_general:

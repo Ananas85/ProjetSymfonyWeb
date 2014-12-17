@@ -2,7 +2,7 @@
     {%  for musicien in pager.currentPageResults  %}
 
     <li>
-        <a href="{{ path('projet_web_classique_interpretepage',{'codeMusicien': musicien.codeMusicien }) }}">{{ musicien.nomMusicien }} {{ musicien.prénomMusicien }}</a>
+        <a href="{{ path('interpreteview',{'codeMusicien': musicien.codeMusicien }) }}">{{ musicien.nomMusicien }} {{ musicien.prénomMusicien }}</a>
     </li>
     {%  endfor  %}
 

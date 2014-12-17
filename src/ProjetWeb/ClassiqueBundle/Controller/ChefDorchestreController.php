@@ -19,10 +19,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class ChefDorchestreController extends Controller{
     /**
      * @return array
+     * @Route("/cheforchestres/{page}", requirements={"page" = "\d+"}, defaults={"page" = 1}, name="chefindex")
      * @Template()
      */
     public function indexAction($page = 1) {
@@ -37,6 +39,7 @@ class ChefDorchestreController extends Controller{
     }
 
     /**
+     * @Route("/cheforchestres/initial/{initial}/{page}", requirements={"initial" = "\S", "page" ="\d+"}, defaults={"initial"= "A", "page"=1}, name="chefsinitial")
      * @Template("ProjetWebClassiqueBundle:ChefDorchestre:index.html.twig")
      */
     public function initialAction($initial, $page = 1){
@@ -50,6 +53,7 @@ class ChefDorchestreController extends Controller{
     }
 
     /**
+     * @Route("/cheforchestres/naissance/{naissance}/{page}", requirements={"naissance" = "\d+", "page" ="\d+"}, defaults={"naissance"= 1900, "page"=1}, name="chefsnaissance")
      * @Template("ProjetWebClassiqueBundle:ChefDorchestre:index.html.twig")
      */
     public function naissanceAction($naissance, $page = 1) {
@@ -66,10 +70,11 @@ class ChefDorchestreController extends Controller{
     /**
      * @param
      * @return
+     * @Route("/cheforchestre/{codeMusicien}", requirements={"codeMusicien"="\d+"}, name="chefview")
      * @Template()
      */
     public function viewAction( Musicien $musicien ) {
-        $image = $this->generateUrl('projet_web_classique_musicienimagepage', array('codeMusicien'=> $musicien->getCodeMusicien() ));
+        $image = $this->generateUrl('musicienimage', array('codeMusicien'=> $musicien->getCodeMusicien() ));
         return compact('musicien','image');
     }
 } 

@@ -17,6 +17,7 @@ use ProjetWeb\ClassiqueBundle\Entity\Instrument;
 use ProjetWeb\ClassiqueBundle\Entity\Musicien;
 use ProjetWeb\ClassiqueBundle\Entity\Orchestres;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 

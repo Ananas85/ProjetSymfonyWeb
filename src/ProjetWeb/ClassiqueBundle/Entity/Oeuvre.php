@@ -83,7 +83,7 @@ class Oeuvre
 
     /**
      * @var array
-     * @ORM\OneToMany(targetEntity="Instrumentation", mappedBy="codeInstrumentation")
+     * @ORM\OneToMany(targetEntity="Instrumentation", mappedBy="codeOeuvre")
      *
      */
     private $instrumentations;

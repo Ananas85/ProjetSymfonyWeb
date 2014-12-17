@@ -20,7 +20,7 @@
         {%  for instrument in pager.currentPageResults  %}
 
             <li>
-                <a href="{{ path('projet_web_classique_instrumentpage',{'codeInstrument': instrument.codeInstrument }) }}">{{ instrument.nomInstrument }}</a>
+                <a href="{{ path('instrumentview',{'codeInstrument': instrument.codeInstrument }) }}">{{ instrument.nomInstrument }}</a>
             </li>
         {%  endfor  %}
     </ul>

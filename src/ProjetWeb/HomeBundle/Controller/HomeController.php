@@ -15,15 +15,25 @@ namespace ProjetWeb\HomeBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 
 class HomeController extends Controller {
 
+    /**
+     * @Route("/", name="homepage")
+     * @Template()
+     */
     public function indexAction() {
-        return $this->render('ProjetWebHomeBundle:Home:index.html.twig', array());
+        return [];
     }
-	
+
+    /**
+     * @Route("/", name="aboutpage")
+     * @Template()
+     */
 	public function aboutAction() {
-		return $this->render('ProjetWebHomeBundle:Home:about.html.twig',array());
+		return [];
 	}
 } 
