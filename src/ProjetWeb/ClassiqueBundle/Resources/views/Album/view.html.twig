@@ -1,0 +1,39 @@
+{% extends "ProjetWebClassiqueBundle::layout.html.twig" %}
+
+{% block title %}
+    Album
+{% endblock %}
+
+{% block classiqueweb_body %}
+    <h1 class="text-primary">Fiche d'un Album</h1>
+
+    <div class="row">
+        <div class="col-lg-2">
+            <img src="{{ image }}" class="img-circle" width="100px" height="100px">
+        </div>
+        <div class="col-lg-5">
+            <div class="row">
+                <span class="text-info">Code : </span>{{ album.codeAlbum}}
+            </div>
+            <div class="row">
+                <span class="text-info">Nom : </span>{{ album.titreAlbum}}
+            </div>
+            <div class="row">
+                <span class="text-info">Genre : </span>{{ album.codeGenre.libelleAbrege }}
+            </div>
+            <div class="row">
+                <span class="text-info">Année : </span>{{ album.annéeAlbum}}
+            </div>
+            <div class="row">
+                <span class="text-info">Editeur : </span>{{ album.codeEditeur.nomEditeur}}
+            </div>
+
+        </div>
+    </div>
+
+
+    <h2 class="text-info">Disques</h2>
+
+    {{ render(controller("ProjetWebClassiqueBundle:Disque:album", {'album': album.codeAlbum})) }}
+
+{% endblock %}

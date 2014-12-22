@@ -1,0 +1,4 @@
+{% for disque in disques %}
+    <h3 class="text-success">Disque n° {{ loop.index }}</h3>
+    {{ render(controller("ProjetWebClassiqueBundle:Enregistrement:disque", {'disque': disque.codeDisque})) }}
+{% endfor %}

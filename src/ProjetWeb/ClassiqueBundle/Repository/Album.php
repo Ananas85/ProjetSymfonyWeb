@@ -12,32 +12,8 @@ use ProjetWeb\ClassiqueBundle\Entity\Genre as GenreEntity;
 
 class Album extends EntityRepository {
 
-    /**
-     * @param Musicien $musicien
-     *
-     * @return array
-     */
-    public function findByMusicien( MusicienEntity $musicien ) {
-        $query = $this->createQueryBuilder( "a" );
-        $query->join( "a.codeGenre", "g" );
-        $query->join( "g.musiciens", "m" );
-        $query->where( "m.codeMusicien = :musicien" );
-        $query->setParameter( "musicien", $musicien );
-        $query->setMaxResults(10);
-        return $query->getQuery()->getResult();
-    }
 
-    public function findByMusicienAdapter( MusicienEntity $musicien ) {
-        $query = $this->createQueryBuilder( "a" );
-        $query->join( "a.codeGenre", "g" );
-        $query->join( "g.musiciens", "m" );
-        $query->where( "m.codeMusicien = :musicien" );
-        $query->setParameter( "musicien", $musicien );
-        $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
-        return $pagerfanta;
-    }
-
-    public function findByCompositeur(MusicienEntity $musicien) {
+    public function findByCompositeur( MusicienEntity $musicien) {
         $query = $this->createQueryBuilder('a');
         $query->join("a.disques","d");
         $query->join("d.compositiondisques","cd");
@@ -48,7 +24,7 @@ class Album extends EntityRepository {
         $query->join("o.composers","c");
         $query->join("c.codeMusicien","m");
         $query->where("m.codeMusicien = :musicien");
-        $query->setParameter("musicien",$musicien);
+        $query->setParameter("musicien",$musicien->getCodeMusicien());
 
         $pagerfanta = new Pagerfanta( new DoctrineORMAdapter( $query ) );
         return $pagerfanta;

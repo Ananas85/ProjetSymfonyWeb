@@ -13,10 +13,10 @@
         </div>
         <div class="col-lg-5">
             <div class="row">
-                <span class="text-info">Code :</span>{{ instrument.codeInstrument }}
+                <span class="text-info" id="code" data-instrument="{{ instrument.codeInstrument }}">Code :</span>{{ instrument.codeInstrument }}
             </div>
             <div class="row">
-                <span class="text-info">Nom :</span>{{ instrument.nomInstrument }}
+                <span class="text-info">Nom : </span>{{ instrument.nomInstrument }}
             </div>
         </div>
     </div>
@@ -25,8 +25,33 @@
 
     <h2 class="text-info">Albums de cet instrument </h2>
 
-    {{ render(controller("ProjetWebClassiqueBundle:Album:instrument", {'instrument': instrument.codeInstrument })) }}
+    <div id="albums">
 
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function(){
+            $('#albums').html('<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">');
+            var instrumentiD = $("#code").data("instrument");
+            var url = 'http://localhost/ProjetWebServeur/web/app_dev.php/albums/instrument/'+ instrumentiD +'/page/1';
+
+
+            $("#albums").load(url, function(){
+                $('a[rel="ChangePage"]').on("click",function() {
+                    $('#albums').html('<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">');
+                    var instrumentID = $(this).data("instrument");
+                    var page = $(this ).data("page");
+                    var url = 'http://localhost/ProjetWebServeur/web/app_dev.php/albums/instrument/'+ instrumentID +'/page/' + page;
+                    $("#albums").load(url);
+                });
+            });
+
+
+        });
+    </script>
 {% endblock %}
 
 

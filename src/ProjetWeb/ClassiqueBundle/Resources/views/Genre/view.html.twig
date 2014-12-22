@@ -7,10 +7,31 @@
 {% block classiqueweb_body %}
     <h1 class="text-primary">Fiche d'un Genre</h1>
 
-    <span class="text-info">Nom : </span>{{ genre.libelleAbrege}}
+    <span class="text-info" id="code" data-genre="{{ genre.codeGenre}}">Nom : </span>{{ genre.libelleAbrege}}
 
     <h2 class="text-info">Oeuvres enregistrées</h2>
 
-    {{ render(controller("ProjetWebClassiqueBundle:Album:genre", {'genre': genre.codeGenre})) }}
+    <div id="albums">
 
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function(){
+            $('#albums').html('<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">');
+            var genreId = $("#code").data("genre");
+            var url = 'http://localhost/ProjetWebServeur/web/app_dev.php/albums/genre/'+ genreId +'/page/1';
+            $("#albums").load(url, function(){
+                $('a[rel="ChangePage"]').on("click",function() {
+                    $('#albums').html('<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">');
+                    var genreID = $(this).data("genre");
+                    var page = $(this ).data("page");
+                    var url = 'http://localhost/ProjetWebServeur/web/app_dev.php/albums/genre/'+ genreID +'/page/' + page;
+                    $("#albums").load(url);
+                });
+            });
+        });
+    </script>
 {% endblock %}

@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Enregistrement
  *
  * @ORM\Table(name="Enregistrement", indexes={@ORM\Index(name="IDX_CC3BD8F7D49D5E5D", columns={"Code_Composition"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ProjetWeb\ClassiqueBundle\Repository\Enregistrement")
  */
 class Enregistrement
 {
@@ -88,10 +88,19 @@ class Enregistrement
      */
     private $directions;
 
+    /**
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="CompositionDisque", mappedBy="codeMorceau")
+     */
+    private $compositiondisques;
+
+
 
     public function __construct() {
         $this->interpreters = new ArrayCollection();
         $this->directions = new ArrayCollection();
+        $this->compositiondisques = new ArrayCollection();
     }
 
 
@@ -298,6 +307,24 @@ class Enregistrement
     public function setDirections( $directions )
     {
         $this->directions = $directions;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCompositiondisques()
+    {
+        return $this->compositiondisques;
+    }
+
+    /**
+     * @param array $compositiondisques
+     */
+    public function setCompositiondisques( $compositiondisques )
+    {
+        $this->compositiondisques = $compositiondisques;
 
         return $this;
     }

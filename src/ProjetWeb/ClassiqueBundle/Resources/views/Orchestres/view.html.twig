@@ -7,10 +7,31 @@
 {% block classiqueweb_body %}
     <h1 class="text-primary">Fiche d'un Orchestre</h1>
 
-    <span class="text-info">Nom : </span>{{ orchestre.nomOrchestre }}
+    <span class="text-info" id="code" data-orchestre="{{ orchestre.codeOrchestre }}">Nom : </span>{{ orchestre.nomOrchestre }}
 
     <h2 class="text-info">Oeuvres enregistrées</h2>
 
-    {{ render(controller("ProjetWebClassiqueBundle:Album:orchestre", {'orchestre': orchestre.codeOrchestre})) }}
+    <div id="albums">
 
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function(){
+            $('#albums').html('<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">');
+            var orchestreiD = $("#code").data("orchestre");
+            var url = 'http://localhost/ProjetWebServeur/web/app_dev.php/albums/instrument/'+ orchestreiD +'/page/1';
+            $("#albums").load(url, function(){
+                $('a[rel="ChangePage"]').on("click",function() {
+                    $('#albums').html('<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">');
+                    var orchestreID = $(this).data("orchestre");
+                    var page = $(this ).data("page");
+                    var url = 'http://localhost/ProjetWebServeur/web/app_dev.php/albums/orchestre/'+ orchestreID +'/page/' + page;
+                    $("#albums").load(url);
+                });
+            });
+        });
+    </script>
 {% endblock %}

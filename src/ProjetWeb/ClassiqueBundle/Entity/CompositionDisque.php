@@ -41,7 +41,7 @@ class CompositionDisque
     /**
      * @var \Enregistrement
      *
-     * @ORM\ManyToOne(targetEntity="Enregistrement")
+     * @ORM\ManyToOne(targetEntity="Enregistrement", inversedBy="compositiondisques")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Code_Morceau", referencedColumnName="Code_Morceau")
      * })

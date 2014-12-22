@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class CompositeurController extends Controller {
 
@@ -75,7 +76,7 @@ class CompositeurController extends Controller {
      * @Route("/compositeur/{codeMusicien}", requirements={"codeMusicien"="\d+"}, name="compositeurview")
      * @Template()
      */
-    public function viewAction( Musicien $musicien ) {
+    public function viewAction( Musicien $musicien) {
         $image = $this->generateUrl('musicienimage', array('codeMusicien'=> $musicien->getCodeMusicien() ));
         return compact('musicien','image');
     }
