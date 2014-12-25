@@ -145,5 +145,12 @@ class Musicien  extends EntityRepository {
         return $pagerfanta;
     }
 
-
-} 
+    public function findCompositeurByPattern( $pattern ) {
+        $query = $this->createQueryBuilder( "m" );
+        $query->join( "m.composers", "c" );
+        $query->where('m.nomMusicien LIKE :pattern');
+        $query->setParameter( 'pattern' , "%{$pattern}%" );
+        $query->orderBy("m.nomMusicien",'ASC');
+        return $query->getQuery()->getResult();
+    }
+}

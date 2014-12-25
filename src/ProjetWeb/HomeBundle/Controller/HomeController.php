@@ -30,7 +30,7 @@ class HomeController extends Controller {
     }
 
     /**
-     * @Route("/", name="aboutpage")
+     * @Route("/about", name="aboutpage")
      * @Template()
      */
 	public function aboutAction() {

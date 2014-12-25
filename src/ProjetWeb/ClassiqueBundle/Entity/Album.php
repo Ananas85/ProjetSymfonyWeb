@@ -217,4 +217,25 @@ class Album
 
         return $this;
     }
+
+    public function getPrice() {
+        $price = 0;
+        foreach ( $this->disques as $disc ) {
+            $price += $disc->getPrice();
+        }
+
+        return $price;
+    }
+
+    public function getNbDisque() {
+        return count($this->disques);
+    }
+
+    public function getNbEnregistrement() {
+        $nbTotal = 0;
+        foreach( $this->disques as $disc ) {
+            $nbTotal += $disc->getNbEnregistrement();
+        }
+        return $nbTotal;
+    }
 }

@@ -6,10 +6,7 @@
 
 {% block classiqueweb_body %}
     <h1 class="text-primary">Fiche d'un Compositeur</h1>
-
-
     {% include"ProjetWebClassiqueBundle:Musicien:view.html.twig" %}
-
     <h2 class="text-info">Oeuvres enregistrées</h2>
 
     <div id="albums">
@@ -20,19 +17,26 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        $(function(){
-            $('#albums').html('<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">');
-            var musicienId = $("#code").data("musicien");
-            var url = 'http://localhost/ProjetWebServeur/web/app_dev.php/albums/compositeur/'+ musicienId +'/page/1';
-            $("#albums").load(url, function(){
-                $('a[rel="ChangePage"]').on("click",function() {
-                    $('#albums').html('<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">');
-                    var musicienId = $(this).data("musicien");
-                    var page = $(this ).data("page");
-                    var url = 'http://localhost/ProjetWebServeur/web/app_dev.php/albums/compositeur/'+ musicienId +'/page/' + page;
-                    $("#albums").load(url);
-                });
+
+        function handlePaginator() {
+            $( 'a[rel="ChangePage"]' ).on( "click", function() {
+                var page = $( this ).data( "page" );
+                loadPage( page );
+                return false;
             });
-        });
+        }
+
+        function loadPage( page ) {
+            $( '#albums' ).html( '<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">' );
+            var musicienId = {{ musicien.codeMusicien  }};
+            var url = '/ProjetWebServeur/web/app_dev.php/albums/compositeur/' + musicienId + '/page/' + page;
+            $( "#albums" ).load( url, function() {
+                handlePaginator();
+            } );
+        }
+
+        $( function() {
+            loadPage(1);
+        } );
     </script>
 {% endblock %}

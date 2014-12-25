@@ -16,6 +16,7 @@ use Pagerfanta\Exception\NotValidCurrentPageException;
 use Pagerfanta\Pagerfanta;
 use ProjetWeb\ClassiqueBundle\Entity\Musicien;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -45,16 +46,51 @@ class CompositeurController extends Controller {
      * @Route("/compositeurs/initial/{initial}/{page}", requirements={"initial" = "\S", "page" ="\d+"}, defaults={"initial"= "A", "page"=1}, name="compositeursinitial")
      * @Template("ProjetWebClassiqueBundle:Compositeur:index.html.twig")
      */
-    public function initialAction($initial, $page = 1){
+    public function initialAction($initial, $page = 1, Request  $request){
+
+        $defaultData = array('initial'=>'Tapez le début de votre compositeur');
+
+
+        $formulaire = $this->createFormBuilder($defaultData)
+                     ->add('initial', 'text',array('label' => 'Initial : '))
+                     ->add('go','submit')
+                     ->getForm();
+
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isValid()) {
+            // Les données sont un tableau avec les clés "name";
+            $data = $formulaire->getData();
+            $init = $data['initial'];
+            return $this->redirect($this->generateUrl('compositeursinitial', array( 'initial' => $init ) ) );
+        }
+
         $contexte = "avec initiale";
         $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Musicien")->findCompositeurByInitialAdapter($initial);
 
         $pager->setMaxPerPage(15);
         $pager->setCurrentPage($page);
 
-        return compact('pager','contexte','initial');
+        $form = $formulaire->createView();
+
+        return compact('pager','contexte','initial','form');
     }
 
+
+    /**
+     * @Route("/compositeurs/search", name="compositeurssearch")
+     * @Method( {"GET"})
+     */
+    public function searchAction(Request $request){
+
+        $pattern = $request->query->get('query' );
+        $results = $this->getDoctrine()->getRepository( "ProjetWebClassiqueBundle:Musicien" )->findCompositeurByPattern( $pattern );
+        $suggestions = array();
+        foreach( $results as $result ) {
+            $suggestions[] = array( 'value' => $result->getNomMusicien(), 'data' => $result->getCodeMusicien() );
+        }
+        return new JsonResponse( array( "suggestions" => $suggestions ) );
+    }
     /**
      * @Route("/compositeurs/naissance/{naissance}/{page}", requirements={"naissance" = "\d+", "page" ="\d+"}, defaults={"naissance"= 1900, "page"=1}, name="compositeursnaissance")
      * @Template("ProjetWebClassiqueBundle:Compositeur:index.html.twig")

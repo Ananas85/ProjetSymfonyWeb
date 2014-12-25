@@ -1,5 +1,9 @@
 {% extends "ProjetWebClassiqueBundle::layout.html.twig" %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/projetwebclassique/css/autocompletion.css') }}">
 
+{% endblock %}
 {% block title %}
     Liste Compositeurs
 {% endblock %}
@@ -8,14 +12,29 @@
 
     <h2>Liste des Compositeurs</h2>
 
-    <p>Sélection {{ contexte }} :
+    <input type="text" id="compopletion" />
+
+
+    <div>Sélection {{ contexte }} :
         {% if initial is defined %}
-            {{ initial }}
+            {{ initial }} <br/>
+
+            {{ form_start(form) }}
+                {{ form_errors(form) }}
+
+            <div>
+                {{ form_label(form.initial) }}
+                {{ form_errors(form.initial) }}
+                {{ form_widget(form.initial) }}
+            </div>
+
+
+            {{ form_end(form) }}
         {% elseif contexte == "par année de naissance" %}
             entre {{ naissance }} et {{ fin }}
         {% endif %}
 
-    </p>
+    </div>
 
     <ul>
         {%  for musicien in pager.currentPageResults  %}
@@ -27,7 +46,26 @@
     </ul>
 
     <div class="pagerfanta">
-        {{ pagerfanta(pager, 'twitter_bootstrap3') }}
+        {{ pagerfanta(pager, 'twitter_bootstrap3', { 'pageParameter': '[page]' } ) }}
     </div>
 
+
 {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('bundles/projetwebclassique/js/jquery.autocomplete.min.js') }}"></script>
+        <script>
+            $( function() {
+                $('#compopletion').autocomplete({
+                    serviceUrl: '{{ path( 'compositeurssearch' ) }}',
+                    dataType: 'json',
+                    onSelect: function (suggestion) {
+                        location.href = "/ProjetWebServeur/web/app_dev.php/compositeur/"+suggestion.data;
+                        //return false;
+                    }
+                });
+            } );
+        </script>
+
+    {% endblock %}

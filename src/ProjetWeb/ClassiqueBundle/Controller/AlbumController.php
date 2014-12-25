@@ -55,7 +55,6 @@ class AlbumController extends Controller{
      * @Template("ProjetWebClassiqueBundle:Album:musicien.html.twig")
      */
     public function compositeurAction( Musicien $musicien, $page = 1 ) {
-
         $pager = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:Album")->findByCompositeur($musicien);
         $albumsPaged = $pager->setMaxPerPage( 10 )->setCurrentPage( $page )->getCurrentPageResults();
         return compact('pager','albumsPaged','musicien');
