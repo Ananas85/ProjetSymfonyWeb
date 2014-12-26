@@ -86,7 +86,7 @@ class CompositeurController extends Controller
                             );
         $suggestions = array();
         foreach ($results as $result) {
-            $suggestions[] = array( 'value' => $result->getNomMusicien(), 'data' => $result->getCodeMusicien() );
+            $suggestions[] = array( 'value' => $result->getNomMusicien().' '.$result->getPrenomMusicien(), 'data' => $result->getCodeMusicien() );
         }
 
         return new JsonResponse(array( "suggestions" => $suggestions ));

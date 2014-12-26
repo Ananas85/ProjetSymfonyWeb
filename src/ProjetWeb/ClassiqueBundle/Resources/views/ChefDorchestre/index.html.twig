@@ -22,7 +22,7 @@
     {%  for musicien in pager.currentPageResults  %}
 
     <li>
-    <a href="{{ path('chefview',{'codeMusicien': musicien.codeMusicien }) }}">{{ musicien.nomMusicien }} {{ musicien.prénomMusicien }}</a>
+    <a href="{{ path('chefview',{'codeMusicien': musicien.codeMusicien }) }}">{{ musicien.nomMusicien }} {{ musicien.prenomMusicien }}</a>
     </li>
     {%  endfor  %}
     </ul>

@@ -3,7 +3,7 @@ echo "****************************************"
 echo "Test Suite - ClassicWeb"
 
 BASEDIR=$(dirname $0)
-PHP="php -d date.timezone='Europe/Paris'"
+PHP="/Applications/MAMP/bin/php/php5.5.10/bin/php -d date.timezone='Europe/Paris'"
 
 MODE="$1"
 

@@ -69,7 +69,7 @@
         {%  for musicien in pager.currentPageResults  %}
 
             <li>
-            <a href="{{ path('compositeurview',{'codeMusicien': musicien.codeMusicien }) }}">{{ musicien.nomMusicien }} {{ musicien.prénomMusicien }} ( {{ musicien.anneeNaissance }} - {{ musicien.anneeMort }} ) </a>
+            <a href="{{ path('compositeurview',{'codeMusicien': musicien.codeMusicien }) }}">{{ musicien.nomMusicien }} {{ musicien.prenomMusicien }} ( {{ musicien.anneeNaissance }} - {{ musicien.anneeMort }} ) </a>
             </li>
         {%  endfor  %}
     </ul>

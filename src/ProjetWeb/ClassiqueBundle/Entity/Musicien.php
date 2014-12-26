@@ -178,7 +178,8 @@ class Musicien
         return $this->prénomMusicien;
     }
 
-    public function getNomPrenomMusicien() {
+    public function getNomPrenomMusicien()
+    {
         return $this->getNomMusicien()." ".$this->getPrénomMusicien();
     }
 
