@@ -65,7 +65,7 @@ class Enregistrement
     private $extrait;
 
     /**
-     * @var \Composition
+     * @var Composition
      *
      * @ORM\ManyToOne(targetEntity="Composition")
      * @ORM\JoinColumns({
@@ -96,18 +96,17 @@ class Enregistrement
     private $compositiondisques;
 
 
-
-    public function __construct() {
-        $this->interpreters = new ArrayCollection();
-        $this->directions = new ArrayCollection();
+    public function __construct()
+    {
+        $this->interpreters       = new ArrayCollection();
+        $this->directions         = new ArrayCollection();
         $this->compositiondisques = new ArrayCollection();
     }
-
 
     /**
      * Get codeMorceau
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeMorceau()
     {
@@ -118,6 +117,7 @@ class Enregistrement
      * Set titre
      *
      * @param string $titre
+     *
      * @return Enregistrement
      */
     public function setTitre($titre)
@@ -130,7 +130,7 @@ class Enregistrement
     /**
      * Get titre
      *
-     * @return string 
+     * @return string
      */
     public function getTitre()
     {
@@ -141,6 +141,7 @@ class Enregistrement
      * Set nomDeFichier
      *
      * @param string $nomDeFichier
+     *
      * @return Enregistrement
      */
     public function setNomDeFichier($nomDeFichier)
@@ -153,7 +154,7 @@ class Enregistrement
     /**
      * Get nomDeFichier
      *
-     * @return string 
+     * @return string
      */
     public function getNomDeFichier()
     {
@@ -164,9 +165,10 @@ class Enregistrement
      * Set durée
      *
      * @param string $durée
+     *
      * @return Enregistrement
      */
-    public function setDurée($durée)
+    public function setDuree($durée)
     {
         $this->durée = $durée;
 
@@ -176,9 +178,9 @@ class Enregistrement
     /**
      * Get durée
      *
-     * @return string 
+     * @return string
      */
-    public function getDurée()
+    public function getDuree()
     {
         return $this->durée;
     }
@@ -187,9 +189,10 @@ class Enregistrement
      * Set duréeSeconde
      *
      * @param integer $duréeSeconde
+     *
      * @return Enregistrement
      */
-    public function setDuréeSeconde($duréeSeconde)
+    public function setDureeSeconde($duréeSeconde)
     {
         $this->duréeSeconde = $duréeSeconde;
 
@@ -199,9 +202,9 @@ class Enregistrement
     /**
      * Get duréeSeconde
      *
-     * @return integer 
+     * @return integer
      */
-    public function getDuréeSeconde()
+    public function getDureeSeconde()
     {
         return $this->duréeSeconde;
     }
@@ -210,6 +213,7 @@ class Enregistrement
      * Set prix
      *
      * @param integer $prix
+     *
      * @return Enregistrement
      */
     public function setPrix($prix)
@@ -222,7 +226,7 @@ class Enregistrement
     /**
      * Get prix
      *
-     * @return integer 
+     * @return integer
      */
     public function getPrix()
     {
@@ -233,6 +237,7 @@ class Enregistrement
      * Set extrait
      *
      * @param string $extrait
+     *
      * @return Enregistrement
      */
     public function setExtrait($extrait)
@@ -245,7 +250,7 @@ class Enregistrement
     /**
      * Get extrait
      *
-     * @return string 
+     * @return string
      */
     public function getExtrait()
     {
@@ -255,10 +260,11 @@ class Enregistrement
     /**
      * Set codeComposition
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Composition $codeComposition
+     * @param Composition $codeComposition
+     *
      * @return Enregistrement
      */
-    public function setCodeComposition(\ProjetWeb\ClassiqueBundle\Entity\Composition $codeComposition = null)
+    public function setCodeComposition(Composition $codeComposition = null)
     {
         $this->codeComposition = $codeComposition;
 
@@ -268,7 +274,7 @@ class Enregistrement
     /**
      * Get codeComposition
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Composition 
+     * @return Composition
      */
     public function getCodeComposition()
     {
@@ -286,7 +292,7 @@ class Enregistrement
     /**
      * @param array $interpreters
      */
-    public function setInterpreters( $interpreters )
+    public function setInterpreters($interpreters)
     {
         $this->interpreters = $interpreters;
 
@@ -304,7 +310,7 @@ class Enregistrement
     /**
      * @param array $directions
      */
-    public function setDirections( $directions )
+    public function setDirections($directions)
     {
         $this->directions = $directions;
 
@@ -322,7 +328,7 @@ class Enregistrement
     /**
      * @param array $compositiondisques
      */
-    public function setCompositiondisques( $compositiondisques )
+    public function setCompositiondisques($compositiondisques)
     {
         $this->compositiondisques = $compositiondisques;
 

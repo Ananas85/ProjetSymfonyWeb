@@ -29,7 +29,6 @@ class Genre
      */
     private $libelleAbrege;
 
-
     /**
      * @var array
      *
@@ -45,9 +44,10 @@ class Genre
     private $albums;
 
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->musiciens = new ArrayCollection();
-        $this->albums = new ArrayCollection();
+        $this->albums    = new ArrayCollection();
     }
 
     /**
@@ -64,6 +64,7 @@ class Genre
      * Set libelléAbrégé
      *
      * @param string $libelléAbrégé
+     *
      * @return Genre
      */
     public function setLibelleAbrege($libelléAbrégé)
@@ -94,9 +95,10 @@ class Genre
     /**
      * @param array $musiciens
      */
-    public function setMusiciens( $musiciens )
+    public function setMusiciens($musiciens)
     {
         $this->musiciens = $musiciens;
+
         return $this;
     }
 
@@ -111,11 +113,10 @@ class Genre
     /**
      * @param array $albums
      */
-    public function setAlbums( $albums )
+    public function setAlbums($albums)
     {
         $this->albums = $albums;
 
         return $this;
     }
-
 }

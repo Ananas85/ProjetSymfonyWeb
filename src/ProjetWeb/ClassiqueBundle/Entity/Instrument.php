@@ -44,14 +44,15 @@ class Instrument
     private $instrumentations;
 
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->instrumentations = new ArrayCollection();
     }
 
     /**
      * Get codeInstrument
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeInstrument()
     {
@@ -62,6 +63,7 @@ class Instrument
      * Set nomInstrument
      *
      * @param string $nomInstrument
+     *
      * @return Instrument
      */
     public function setNomInstrument($nomInstrument)
@@ -74,7 +76,7 @@ class Instrument
     /**
      * Get nomInstrument
      *
-     * @return string 
+     * @return string
      */
     public function getNomInstrument()
     {
@@ -85,6 +87,7 @@ class Instrument
      * Set image
      *
      * @param string $image
+     *
      * @return Instrument
      */
     public function setImage($image)
@@ -97,7 +100,7 @@ class Instrument
     /**
      * Get image
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
@@ -115,7 +118,7 @@ class Instrument
     /**
      * @param array $instrumentations
      */
-    public function setInstrumentations( $instrumentations )
+    public function setInstrumentations($instrumentations)
     {
         $this->instrumentations = $instrumentations;
 

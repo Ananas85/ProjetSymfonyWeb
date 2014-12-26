@@ -22,7 +22,7 @@ class Instrumentation
     private $codeInstrumentation;
 
     /**
-     * @var \Oeuvre
+     * @var Oeuvre
      *
      * @ORM\ManyToOne(targetEntity="Oeuvre", inversedBy="instrumentations")
      * @ORM\JoinColumns({
@@ -32,7 +32,7 @@ class Instrumentation
     private $codeOeuvre;
 
     /**
-     * @var \Instrument
+     * @var Instrument
      *
      * @ORM\ManyToOne(targetEntity="Instrument", inversedBy="instrumentations")
      * @ORM\JoinColumns({
@@ -42,11 +42,10 @@ class Instrumentation
     private $codeInstrument;
 
 
-
     /**
      * Get codeInstrumentation
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeInstrumentation()
     {
@@ -56,10 +55,11 @@ class Instrumentation
     /**
      * Set codeOeuvre
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Oeuvre $codeOeuvre
+     * @param Oeuvre $codeOeuvre
+     *
      * @return Instrumentation
      */
-    public function setCodeOeuvre(\ProjetWeb\ClassiqueBundle\Entity\Oeuvre $codeOeuvre = null)
+    public function setCodeOeuvre(Oeuvre $codeOeuvre = null)
     {
         $this->codeOeuvre = $codeOeuvre;
 
@@ -69,7 +69,7 @@ class Instrumentation
     /**
      * Get codeOeuvre
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Oeuvre 
+     * @return Oeuvre
      */
     public function getCodeOeuvre()
     {
@@ -79,10 +79,11 @@ class Instrumentation
     /**
      * Set codeInstrument
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Instrument $codeInstrument
+     * @param Instrument $codeInstrument
+     *
      * @return Instrumentation
      */
-    public function setCodeInstrument(\ProjetWeb\ClassiqueBundle\Entity\Instrument $codeInstrument = null)
+    public function setCodeInstrument(Instrument $codeInstrument = null)
     {
         $this->codeInstrument = $codeInstrument;
 
@@ -92,7 +93,7 @@ class Instrumentation
     /**
      * Get codeInstrument
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Instrument 
+     * @return Instrument
      */
     public function getCodeInstrument()
     {

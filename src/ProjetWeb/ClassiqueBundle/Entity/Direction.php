@@ -22,7 +22,7 @@ class Direction
     private $codeDirection;
 
     /**
-     * @var \Orchestres
+     * @var Orchestres
      *
      * @ORM\ManyToOne(targetEntity="Orchestres")
      * @ORM\JoinColumns({
@@ -32,7 +32,7 @@ class Direction
     private $codeOrchestre;
 
     /**
-     * @var \Musicien
+     * @var Musicien
      *
      * @ORM\ManyToOne(targetEntity="Musicien", inversedBy="directions")
      * @ORM\JoinColumns({
@@ -42,7 +42,7 @@ class Direction
     private $codeMusicien;
 
     /**
-     * @var \Enregistrement
+     * @var Enregistrement
      *
      * @ORM\ManyToOne(targetEntity="Enregistrement", inversedBy="directions")
      * @ORM\JoinColumns({
@@ -52,11 +52,10 @@ class Direction
     private $codeMorceau;
 
 
-
     /**
      * Get codeDirection
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeDirection()
     {
@@ -66,10 +65,11 @@ class Direction
     /**
      * Set codeOrchestre
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Orchestres $codeOrchestre
+     * @param Orchestres $codeOrchestre
+     *
      * @return Direction
      */
-    public function setCodeOrchestre(\ProjetWeb\ClassiqueBundle\Entity\Orchestres $codeOrchestre = null)
+    public function setCodeOrchestre(Orchestres $codeOrchestre = null)
     {
         $this->codeOrchestre = $codeOrchestre;
 
@@ -79,7 +79,7 @@ class Direction
     /**
      * Get codeOrchestre
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Orchestres 
+     * @return Orchestres
      */
     public function getCodeOrchestre()
     {
@@ -89,10 +89,11 @@ class Direction
     /**
      * Set codeMusicien
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Musicien $codeMusicien
+     * @param Musicien $codeMusicien
+     *
      * @return Direction
      */
-    public function setCodeMusicien(\ProjetWeb\ClassiqueBundle\Entity\Musicien $codeMusicien = null)
+    public function setCodeMusicien(Musicien $codeMusicien = null)
     {
         $this->codeMusicien = $codeMusicien;
 
@@ -102,7 +103,7 @@ class Direction
     /**
      * Get codeMusicien
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Musicien 
+     * @return Musicien
      */
     public function getCodeMusicien()
     {
@@ -112,10 +113,11 @@ class Direction
     /**
      * Set codeMorceau
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Enregistrement $codeMorceau
+     * @param Enregistrement $codeMorceau
+     *
      * @return Direction
      */
-    public function setCodeMorceau(\ProjetWeb\ClassiqueBundle\Entity\Enregistrement $codeMorceau = null)
+    public function setCodeMorceau(Enregistrement $codeMorceau = null)
     {
         $this->codeMorceau = $codeMorceau;
 
@@ -125,7 +127,7 @@ class Direction
     /**
      * Get codeMorceau
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Enregistrement 
+     * @return Enregistrement
      */
     public function getCodeMorceau()
     {

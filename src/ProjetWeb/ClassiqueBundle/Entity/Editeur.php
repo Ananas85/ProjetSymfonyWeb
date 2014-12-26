@@ -29,7 +29,7 @@ class Editeur
     private $nomEditeur;
 
     /**
-     * @var \Pays
+     * @var Pays
      *
      * @ORM\ManyToOne(targetEntity="Pays")
      * @ORM\JoinColumns({
@@ -39,11 +39,10 @@ class Editeur
     private $codePays;
 
 
-
     /**
      * Get codeEditeur
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeEditeur()
     {
@@ -54,6 +53,7 @@ class Editeur
      * Set nomEditeur
      *
      * @param string $nomEditeur
+     *
      * @return Editeur
      */
     public function setNomEditeur($nomEditeur)
@@ -66,7 +66,7 @@ class Editeur
     /**
      * Get nomEditeur
      *
-     * @return string 
+     * @return string
      */
     public function getNomEditeur()
     {
@@ -76,10 +76,11 @@ class Editeur
     /**
      * Set codePays
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Pays $codePays
+     * @param Pays $codePays
+     *
      * @return Editeur
      */
-    public function setCodePays(\ProjetWeb\ClassiqueBundle\Entity\Pays $codePays = null)
+    public function setCodePays(Pays $codePays = null)
     {
         $this->codePays = $codePays;
 
@@ -89,7 +90,7 @@ class Editeur
     /**
      * Get codePays
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Pays 
+     * @return Pays
      */
     public function getCodePays()
     {

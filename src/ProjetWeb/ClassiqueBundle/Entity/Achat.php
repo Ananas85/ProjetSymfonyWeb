@@ -22,7 +22,7 @@ class Achat
     private $codeAchat;
 
     /**
-     * @var \Enregistrement
+     * @var Enregistrement
      *
      * @ORM\ManyToOne(targetEntity="Enregistrement")
      * @ORM\JoinColumns({
@@ -32,7 +32,7 @@ class Achat
     private $codeEnregistrement;
 
     /**
-     * @var \Abonné
+     * @var Abonne
      *
      * @ORM\ManyToOne(targetEntity="Abonné")
      * @ORM\JoinColumns({
@@ -42,11 +42,10 @@ class Achat
     private $codeAbonné;
 
 
-
     /**
      * Get codeAchat
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeAchat()
     {
@@ -56,10 +55,11 @@ class Achat
     /**
      * Set codeEnregistrement
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Enregistrement $codeEnregistrement
+     * @param Enregistrement $codeEnregistrement
+     *
      * @return Achat
      */
-    public function setCodeEnregistrement(\ProjetWeb\ClassiqueBundle\Entity\Enregistrement $codeEnregistrement = null)
+    public function setCodeEnregistrement(Enregistrement $codeEnregistrement = null)
     {
         $this->codeEnregistrement = $codeEnregistrement;
 
@@ -69,7 +69,7 @@ class Achat
     /**
      * Get codeEnregistrement
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Enregistrement 
+     * @return Enregistrement
      */
     public function getCodeEnregistrement()
     {
@@ -79,10 +79,11 @@ class Achat
     /**
      * Set codeAbonné
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Abonné $codeAbonné
+     * @param Abonne $codeAbonné
+     *
      * @return Achat
      */
-    public function setCodeAbonné(\ProjetWeb\ClassiqueBundle\Entity\Abonné $codeAbonné = null)
+    public function setCodeAbonne(Abonne $codeAbonné = null)
     {
         $this->codeAbonné = $codeAbonné;
 
@@ -92,9 +93,9 @@ class Achat
     /**
      * Get codeAbonné
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Abonné 
+     * @return Abonne
      */
-    public function getCodeAbonné()
+    public function getCodeAbonne()
     {
         return $this->codeAbonné;
     }

@@ -29,7 +29,7 @@ class CompositionDisque
     private $position;
 
     /**
-     * @var \Disque
+     * @var Disque
      *
      * @ORM\ManyToOne(targetEntity="Disque", inversedBy="compositiondisques")
      * @ORM\JoinColumns({
@@ -39,7 +39,7 @@ class CompositionDisque
     private $codeDisque;
 
     /**
-     * @var \Enregistrement
+     * @var Enregistrement
      *
      * @ORM\ManyToOne(targetEntity="Enregistrement", inversedBy="compositiondisques")
      * @ORM\JoinColumns({
@@ -49,11 +49,10 @@ class CompositionDisque
     private $codeMorceau;
 
 
-
     /**
      * Get codeContenir
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeContenir()
     {
@@ -64,6 +63,7 @@ class CompositionDisque
      * Set position
      *
      * @param integer $position
+     *
      * @return CompositionDisque
      */
     public function setPosition($position)
@@ -76,7 +76,7 @@ class CompositionDisque
     /**
      * Get position
      *
-     * @return integer 
+     * @return integer
      */
     public function getPosition()
     {
@@ -86,10 +86,11 @@ class CompositionDisque
     /**
      * Set codeDisque
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Disque $codeDisque
+     * @param Disque $codeDisque
+     *
      * @return CompositionDisque
      */
-    public function setCodeDisque(\ProjetWeb\ClassiqueBundle\Entity\Disque $codeDisque = null)
+    public function setCodeDisque(Disque $codeDisque = null)
     {
         $this->codeDisque = $codeDisque;
 
@@ -99,7 +100,7 @@ class CompositionDisque
     /**
      * Get codeDisque
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Disque 
+     * @return Disque
      */
     public function getCodeDisque()
     {
@@ -109,10 +110,11 @@ class CompositionDisque
     /**
      * Set codeMorceau
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Enregistrement $codeMorceau
+     * @param Enregistrement $codeMorceau
+     *
      * @return CompositionDisque
      */
-    public function setCodeMorceau(\ProjetWeb\ClassiqueBundle\Entity\Enregistrement $codeMorceau = null)
+    public function setCodeMorceau(Enregistrement $codeMorceau = null)
     {
         $this->codeMorceau = $codeMorceau;
 
@@ -122,7 +124,7 @@ class CompositionDisque
     /**
      * Get codeMorceau
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Enregistrement 
+     * @return Enregistrement
      */
     public function getCodeMorceau()
     {

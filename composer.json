@@ -22,7 +22,11 @@
         "exeu/apai-io": "dev-master"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "~2.3",
+        "phpunit/phpunit": "4.*",
+        "phpmd/phpmd": "2.*",
+        "sebastian/phpcpd": "2.0.*@dev",
+        "squizlabs/php_codesniffer": "2.*"
     },
     "scripts": {
         "post-root-package-install": [

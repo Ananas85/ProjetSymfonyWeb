@@ -36,11 +36,10 @@ class TypeMorceaux
     private $description;
 
 
-
     /**
      * Get codeType
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeType()
     {
@@ -51,9 +50,10 @@ class TypeMorceaux
      * Set libelléType
      *
      * @param string $libelléType
+     *
      * @return TypeMorceaux
      */
-    public function setLibelléType($libelléType)
+    public function setLibelleType($libelléType)
     {
         $this->libelléType = $libelléType;
 
@@ -63,9 +63,9 @@ class TypeMorceaux
     /**
      * Get libelléType
      *
-     * @return string 
+     * @return string
      */
-    public function getLibelléType()
+    public function getLibelleType()
     {
         return $this->libelléType;
     }
@@ -74,6 +74,7 @@ class TypeMorceaux
      * Set description
      *
      * @param string $description
+     *
      * @return TypeMorceaux
      */
     public function setDescription($description)
@@ -86,7 +87,7 @@ class TypeMorceaux
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {

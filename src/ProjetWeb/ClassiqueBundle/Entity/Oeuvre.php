@@ -88,16 +88,19 @@ class Oeuvre
      */
     private $instrumentations;
 
-
-    public function __construct() {
-        $this->composers = new ArrayCollection();
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->composers        = new ArrayCollection();
         $this->instrumentations = new ArrayCollection();
     }
 
     /**
      * Get codeOeuvre
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeOeuvre()
     {
@@ -108,6 +111,7 @@ class Oeuvre
      * Set titreOeuvre
      *
      * @param string $titreOeuvre
+     *
      * @return Oeuvre
      */
     public function setTitreOeuvre($titreOeuvre)
@@ -120,7 +124,7 @@ class Oeuvre
     /**
      * Get titreOeuvre
      *
-     * @return string 
+     * @return string
      */
     public function getTitreOeuvre()
     {
@@ -131,6 +135,7 @@ class Oeuvre
      * Set sousTitre
      *
      * @param string $sousTitre
+     *
      * @return Oeuvre
      */
     public function setSousTitre($sousTitre)
@@ -143,7 +148,7 @@ class Oeuvre
     /**
      * Get sousTitre
      *
-     * @return string 
+     * @return string
      */
     public function getSousTitre()
     {
@@ -154,9 +159,10 @@ class Oeuvre
      * Set tonalité
      *
      * @param string $tonalité
+     *
      * @return Oeuvre
      */
-    public function setTonalité($tonalité)
+    public function setTonalite($tonalité)
     {
         $this->tonalité = $tonalité;
 
@@ -166,9 +172,9 @@ class Oeuvre
     /**
      * Get tonalité
      *
-     * @return string 
+     * @return string
      */
-    public function getTonalité()
+    public function getTonalite()
     {
         return $this->tonalité;
     }
@@ -177,9 +183,10 @@ class Oeuvre
      * Set année
      *
      * @param integer $année
+     *
      * @return Oeuvre
      */
-    public function setAnnée($année)
+    public function setAnnee($année)
     {
         $this->année = $année;
 
@@ -189,9 +196,9 @@ class Oeuvre
     /**
      * Get année
      *
-     * @return integer 
+     * @return integer
      */
-    public function getAnnée()
+    public function getAnnee()
     {
         return $this->année;
     }
@@ -200,6 +207,7 @@ class Oeuvre
      * Set opus
      *
      * @param string $opus
+     *
      * @return Oeuvre
      */
     public function setOpus($opus)
@@ -212,7 +220,7 @@ class Oeuvre
     /**
      * Get opus
      *
-     * @return string 
+     * @return string
      */
     public function getOpus()
     {
@@ -223,9 +231,10 @@ class Oeuvre
      * Set numéroOpus
      *
      * @param integer $numéroOpus
+     *
      * @return Oeuvre
      */
-    public function setNuméroOpus($numéroOpus)
+    public function setNumeroOpus($numéroOpus)
     {
         $this->numéroOpus = $numéroOpus;
 
@@ -235,9 +244,9 @@ class Oeuvre
     /**
      * Get numéroOpus
      *
-     * @return integer 
+     * @return integer
      */
-    public function getNuméroOpus()
+    public function getNumeroOpus()
     {
         return $this->numéroOpus;
     }
@@ -245,10 +254,11 @@ class Oeuvre
     /**
      * Set codeType
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\TypeMorceaux $codeType
+     * @param TypeMorceaux $codeType
+     *
      * @return Oeuvre
      */
-    public function setCodeType(\ProjetWeb\ClassiqueBundle\Entity\TypeMorceaux $codeType = null)
+    public function setCodeType(TypeMorceaux $codeType = null)
     {
         $this->codeType = $codeType;
 
@@ -258,7 +268,7 @@ class Oeuvre
     /**
      * Get codeType
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\TypeMorceaux 
+     * @return TypeMorceaux
      */
     public function getCodeType()
     {
@@ -276,7 +286,7 @@ class Oeuvre
     /**
      * @param array $composers
      */
-    public function setComposers( $composers )
+    public function setComposers($composers)
     {
         $this->composers = $composers;
 
@@ -294,7 +304,7 @@ class Oeuvre
     /**
      * @param array $instrumentations
      */
-    public function setInstrumentations( $instrumentations )
+    public function setInstrumentations($instrumentations)
     {
         $this->instrumentations = $instrumentations;
 

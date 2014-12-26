@@ -37,7 +37,7 @@ class Disque
     private $référenceDisque;
 
     /**
-     * @var \Album
+     * @var Album
      *
      * @ORM\ManyToOne(targetEntity="Album", inversedBy="disques")
      * @ORM\JoinColumns({
@@ -54,14 +54,15 @@ class Disque
     private $compositiondisques;
 
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->compositiondisques = new ArrayCollection();
     }
 
     /**
      * Get codeDisque
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeDisque()
     {
@@ -72,9 +73,10 @@ class Disque
      * Set référenceAlbum
      *
      * @param string $référenceAlbum
+     *
      * @return Disque
      */
-    public function setRéférenceAlbum($référenceAlbum)
+    public function setReferenceAlbum($référenceAlbum)
     {
         $this->référenceAlbum = $référenceAlbum;
 
@@ -84,9 +86,9 @@ class Disque
     /**
      * Get référenceAlbum
      *
-     * @return string 
+     * @return string
      */
-    public function getRéférenceAlbum()
+    public function getReferenceAlbum()
     {
         return $this->référenceAlbum;
     }
@@ -95,9 +97,10 @@ class Disque
      * Set référenceDisque
      *
      * @param string $référenceDisque
+     *
      * @return Disque
      */
-    public function setRéférenceDisque($référenceDisque)
+    public function setReferenceDisque($référenceDisque)
     {
         $this->référenceDisque = $référenceDisque;
 
@@ -107,9 +110,9 @@ class Disque
     /**
      * Get référenceDisque
      *
-     * @return string 
+     * @return string
      */
-    public function getRéférenceDisque()
+    public function getReferenceDisque()
     {
         return $this->référenceDisque;
     }
@@ -117,10 +120,11 @@ class Disque
     /**
      * Set codeAlbum
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Album $codeAlbum
+     * @param Album $codeAlbum
+     *
      * @return Disque
      */
-    public function setCodeAlbum(\ProjetWeb\ClassiqueBundle\Entity\Album $codeAlbum = null)
+    public function setCodeAlbum(Album $codeAlbum = null)
     {
         $this->codeAlbum = $codeAlbum;
 
@@ -130,7 +134,7 @@ class Disque
     /**
      * Get codeAlbum
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Album 
+     * @return Album
      */
     public function getCodeAlbum()
     {
@@ -148,23 +152,25 @@ class Disque
     /**
      * @param array $compositiondisques
      */
-    public function setCompositiondisques( $compositiondisques )
+    public function setCompositiondisques($compositiondisques)
     {
         $this->compositiondisques = $compositiondisques;
 
         return $this;
     }
 
-    public function getPrice() {
+    public function getPrice()
+    {
         $price = 0;
-        foreach( $this->compositiondisques as $cd ) {
+        foreach ($this->compositiondisques as $cd) {
             $price += $cd->getCodeMorceau()->getPrix();
         }
 
         return $price;
     }
 
-    public function getNbEnregistrement() {
+    public function getNbEnregistrement()
+    {
         return count($this->compositiondisques);
     }
 }
