@@ -10,28 +10,57 @@
 
 {% block classiqueweb_body %}
 
-    <h2>Liste des Compositeurs</h2>
+    <div class="row">
+        <h2>Liste des Compositeurs</h2> <br/>
 
-    <input type="text" id="compopletion" />
 
 
-    <div>Sélection {{ contexte }} :
+
+    </div>
+
+
+
+
+
+
+    <div>
+        <div class="row">
+        Sélection {{ contexte }} :
         {% if initial is defined %}
-            {{ initial }} <br/>
-
-            {{ form_start(form) }}
+            {{ initial }}
+        </div>
+        <ul class="pagination">
+            {% for letter in 'a'|upper..'z'|upper %}
+                <li><a href="{{ path('compositeursinitial', { 'initial' : letter }   ) }}">{{ letter }}</a></li>
+            {% endfor %}
+        </ul>
+        <br/><br/>
+            {{ form_start(form, { 'attr' : { 'class' : 'form-inline'} }) }}
                 {{ form_errors(form) }}
 
-            <div>
+            <div class="form-group">
                 {{ form_label(form.initial) }}
                 {{ form_errors(form.initial) }}
-                {{ form_widget(form.initial) }}
+                {{ form_widget(form.initial, { 'attr' : { 'class' : 'form-control', 'placeholder' : 'Initial de votre compositeur' }}) }}
+
+                {{ form_widget(form.go, { 'attr' : { 'class' : 'btn btn-default'}}) }}
             </div>
 
 
             {{ form_end(form) }}
+        <br/>
         {% elseif contexte == "par année de naissance" %}
             entre {{ naissance }} et {{ fin }}
+        {% elseif contexte == "Tous" %}
+
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="RechercheCompositeur">Recherchez votre compositeur ( nom )</label>
+                    <input type="text" class="form-control" placeholder="Compositeur" id="compopletion" />
+                </div>
+            </form>
+            <br/>
+
         {% endif %}
 
     </div>
@@ -40,7 +69,7 @@
         {%  for musicien in pager.currentPageResults  %}
 
             <li>
-            <a href="{{ path('compositeurview',{'codeMusicien': musicien.codeMusicien }) }}">{{ musicien.nomMusicien }} {{ musicien.prénomMusicien }}</a>
+            <a href="{{ path('compositeurview',{'codeMusicien': musicien.codeMusicien }) }}">{{ musicien.nomMusicien }} {{ musicien.prénomMusicien }} ( {{ musicien.anneeNaissance }} - {{ musicien.anneeMort }} ) </a>
             </li>
         {%  endfor  %}
     </ul>

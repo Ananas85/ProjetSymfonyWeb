@@ -36,9 +36,8 @@ class Musicien  extends EntityRepository {
     public function findCompositeurByNaissanceAdapter($naissance) {
         $query = $this->createQueryBuilder( "m" );
         $query->join( "m.composers", "c" );
-        $query->where('m.anneeNaissance > :naissance');
+        $query->where('m.anneeNaissance BETWEEN :naissance AND :fin');
         $query->setParameter('naissance',$naissance);
-        $query->andWhere('m.anneeNaissance > :fin');
         $query->setParameter('fin',$naissance + 10);
         $query->orderBy("m.nomMusicien",'ASC');
 

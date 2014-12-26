@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new ProjetWeb\ClassiqueBundle\ProjetWebClassiqueBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new ProjetWeb\HomeBundle\ProjetWebHomeBundle(),
+            new ProjetWeb\UserBundle\ProjetWebUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

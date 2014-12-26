@@ -48,7 +48,7 @@ class CompositeurController extends Controller {
      */
     public function initialAction($initial, $page = 1, Request  $request){
 
-        $defaultData = array('initial'=>'Tapez le début de votre compositeur');
+        $defaultData = array('initial'=>'');
 
 
         $formulaire = $this->createFormBuilder($defaultData)
@@ -79,7 +79,7 @@ class CompositeurController extends Controller {
 
     /**
      * @Route("/compositeurs/search", name="compositeurssearch")
-     * @Method( {"GET"})
+     * @Method( {"GET"} )
      */
     public function searchAction(Request $request){
 
@@ -87,7 +87,7 @@ class CompositeurController extends Controller {
         $results = $this->getDoctrine()->getRepository( "ProjetWebClassiqueBundle:Musicien" )->findCompositeurByPattern( $pattern );
         $suggestions = array();
         foreach( $results as $result ) {
-            $suggestions[] = array( 'value' => $result->getNomMusicien(), 'data' => $result->getCodeMusicien() );
+            $suggestions[] = array( 'value' => $result->getNomPrenomMusicien(), 'data' => $result->getCodeMusicien() );
         }
         return new JsonResponse( array( "suggestions" => $suggestions ) );
     }

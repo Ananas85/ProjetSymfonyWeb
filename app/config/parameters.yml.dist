@@ -22,3 +22,7 @@ parameters:
     debug_toolbar:          true
     debug_redirects:        false
     use_assetic_controller: true
+
+    amazon_api_key: XXXXX
+    amazon_api_secret_key: XXXX
+    amazon_api_associate_tag: XXXX

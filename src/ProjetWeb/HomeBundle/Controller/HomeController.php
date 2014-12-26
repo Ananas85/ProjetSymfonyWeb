@@ -26,6 +26,7 @@ class HomeController extends Controller {
      * @Template()
      */
     public function indexAction() {
+        $user = $this->getUser();
         return [];
     }
 
