@@ -71,14 +71,15 @@ class Album
     private $disques;
 
 
-
-    public function __construct() {
+    public function __construct()
+    {
         $this->disques = new ArrayCollection();
     }
+
     /**
      * Get codeAlbum
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeAlbum()
     {
@@ -89,6 +90,7 @@ class Album
      * Set titreAlbum
      *
      * @param string $titreAlbum
+     *
      * @return Album
      */
     public function setTitreAlbum($titreAlbum)
@@ -101,7 +103,7 @@ class Album
     /**
      * Get titreAlbum
      *
-     * @return string 
+     * @return string
      */
     public function getTitreAlbum()
     {
@@ -112,9 +114,10 @@ class Album
      * Set annéeAlbum
      *
      * @param integer $annéeAlbum
+     *
      * @return Album
      */
-    public function setAnnéeAlbum($annéeAlbum)
+    public function setAnneeAlbum($annéeAlbum)
     {
         $this->annéeAlbum = $annéeAlbum;
 
@@ -124,9 +127,9 @@ class Album
     /**
      * Get annéeAlbum
      *
-     * @return integer 
+     * @return integer
      */
-    public function getAnnéeAlbum()
+    public function getAnneeAlbum()
     {
         return $this->annéeAlbum;
     }
@@ -135,6 +138,7 @@ class Album
      * Set pochette
      *
      * @param string $pochette
+     *
      * @return Album
      */
     public function setPochette($pochette)
@@ -147,7 +151,7 @@ class Album
     /**
      * Get pochette
      *
-     * @return string 
+     * @return string
      */
     public function getPochette()
     {
@@ -157,10 +161,11 @@ class Album
     /**
      * Set codeGenre
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Genre $codeGenre
+     * @param Genre $codeGenre
+     *
      * @return Album
      */
-    public function setCodeGenre(\ProjetWeb\ClassiqueBundle\Entity\Genre $codeGenre = null)
+    public function setCodeGenre(Genre $codeGenre = null)
     {
         $this->codeGenre = $codeGenre;
 
@@ -170,7 +175,7 @@ class Album
     /**
      * Get codeGenre
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Genre 
+     * @return Genre
      */
     public function getCodeGenre()
     {
@@ -180,10 +185,11 @@ class Album
     /**
      * Set codeEditeur
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Editeur $codeEditeur
+     * @param Editeur $codeEditeur
+     *
      * @return Album
      */
-    public function setCodeEditeur(\ProjetWeb\ClassiqueBundle\Entity\Editeur $codeEditeur = null)
+    public function setCodeEditeur(Editeur $codeEditeur = null)
     {
         $this->codeEditeur = $codeEditeur;
 
@@ -193,7 +199,7 @@ class Album
     /**
      * Get codeEditeur
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Editeur 
+     * @return Editeur
      */
     public function getCodeEditeur()
     {
@@ -211,31 +217,44 @@ class Album
     /**
      * @param array $disques
      */
-    public function setDisques( $disques )
+    public function setDisques($disques)
     {
         $this->disques = $disques;
 
         return $this;
     }
 
-    public function getPrice() {
+    /**
+     * @return int
+     */
+    public function getPrice()
+    {
         $price = 0;
-        foreach ( $this->disques as $disc ) {
+        foreach ($this->disques as $disc) {
             $price += $disc->getPrice();
         }
 
         return $price;
     }
 
-    public function getNbDisque() {
+    /**
+     * @return int
+     */
+    public function getNbDisque()
+    {
         return count($this->disques);
     }
 
-    public function getNbEnregistrement() {
+    /**
+     * @return int
+     */
+    public function getNbEnregistrement()
+    {
         $nbTotal = 0;
-        foreach( $this->disques as $disc ) {
+        foreach ($this->disques as $disc) {
             $nbTotal += $disc->getNbEnregistrement();
         }
+
         return $nbTotal;
     }
 }

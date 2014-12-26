@@ -33,4 +33,7 @@
 # Composer PHAR
 /composer.phar
 
-.idea/workspace.xml
+.idea/
+
+/CodingStandard/metrics/
+!/CodingStandard/metrics/.gitkeep

@@ -22,7 +22,7 @@ class Interpreter
     private $codeInterpréter;
 
     /**
-     * @var \Musicien
+     * @var Musicien
      *
      * @ORM\ManyToOne(targetEntity="Musicien", inversedBy="interpreters")
      * @ORM\JoinColumns({
@@ -32,7 +32,7 @@ class Interpreter
     private $codeMusicien;
 
     /**
-     * @var \Enregistrement
+     * @var Enregistrement
      *
      * @ORM\ManyToOne(targetEntity="Enregistrement", inversedBy="interpreters")
      * @ORM\JoinColumns({
@@ -42,7 +42,7 @@ class Interpreter
     private $codeMorceau;
 
     /**
-     * @var \Instrument
+     * @var Instrument
      *
      * @ORM\ManyToOne(targetEntity="Instrument")
      * @ORM\JoinColumns({
@@ -52,13 +52,12 @@ class Interpreter
     private $codeInstrument;
 
 
-
     /**
      * Get codeInterpréter
      *
-     * @return integer 
+     * @return integer
      */
-    public function getCodeInterpréter()
+    public function getCodeInterpreter()
     {
         return $this->codeInterpréter;
     }
@@ -66,10 +65,11 @@ class Interpreter
     /**
      * Set codeMusicien
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Musicien $codeMusicien
-     * @return Interpréter
+     * @param Musicien $codeMusicien
+     *
+     * @return Interpreter
      */
-    public function setCodeMusicien(\ProjetWeb\ClassiqueBundle\Entity\Musicien $codeMusicien = null)
+    public function setCodeMusicien(Musicien $codeMusicien = null)
     {
         $this->codeMusicien = $codeMusicien;
 
@@ -79,7 +79,7 @@ class Interpreter
     /**
      * Get codeMusicien
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Musicien 
+     * @return Musicien
      */
     public function getCodeMusicien()
     {
@@ -89,10 +89,11 @@ class Interpreter
     /**
      * Set codeMorceau
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Enregistrement $codeMorceau
-     * @return Interpréter
+     * @param Enregistrement $codeMorceau
+     *
+     * @return Interpreter
      */
-    public function setCodeMorceau(\ProjetWeb\ClassiqueBundle\Entity\Enregistrement $codeMorceau = null)
+    public function setCodeMorceau(Enregistrement $codeMorceau = null)
     {
         $this->codeMorceau = $codeMorceau;
 
@@ -102,7 +103,7 @@ class Interpreter
     /**
      * Get codeMorceau
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Enregistrement 
+     * @return Enregistrement
      */
     public function getCodeMorceau()
     {
@@ -112,10 +113,11 @@ class Interpreter
     /**
      * Set codeInstrument
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Instrument $codeInstrument
-     * @return Interpréter
+     * @param Instrument $codeInstrument
+     *
+     * @return Interpreter
      */
-    public function setCodeInstrument(\ProjetWeb\ClassiqueBundle\Entity\Instrument $codeInstrument = null)
+    public function setCodeInstrument(Instrument $codeInstrument = null)
     {
         $this->codeInstrument = $codeInstrument;
 
@@ -125,7 +127,7 @@ class Interpreter
     /**
      * Get codeInstrument
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Instrument 
+     * @return Instrument
      */
     public function getCodeInstrument()
     {

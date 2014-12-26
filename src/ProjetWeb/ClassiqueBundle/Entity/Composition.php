@@ -52,7 +52,8 @@ class Composition
     private $compositionoeuvres;
 
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->compositionoeuvres = new ArrayCollection();
     }
 
@@ -60,7 +61,7 @@ class Composition
     /**
      * Get codeComposition
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeComposition()
     {
@@ -71,6 +72,7 @@ class Composition
      * Set titreComposition
      *
      * @param string $titreComposition
+     *
      * @return Composition
      */
     public function setTitreComposition($titreComposition)
@@ -83,7 +85,7 @@ class Composition
     /**
      * Get titreComposition
      *
-     * @return string 
+     * @return string
      */
     public function getTitreComposition()
     {
@@ -94,9 +96,10 @@ class Composition
      * Set année
      *
      * @param integer $année
+     *
      * @return Composition
      */
-    public function setAnnée($année)
+    public function setAnnee($année)
     {
         $this->année = $année;
 
@@ -106,9 +109,9 @@ class Composition
     /**
      * Get année
      *
-     * @return integer 
+     * @return integer
      */
-    public function getAnnée()
+    public function getAnnee()
     {
         return $this->année;
     }
@@ -117,6 +120,7 @@ class Composition
      * Set composanteComposition
      *
      * @param string $composanteComposition
+     *
      * @return Composition
      */
     public function setComposanteComposition($composanteComposition)
@@ -129,7 +133,7 @@ class Composition
     /**
      * Get composanteComposition
      *
-     * @return string 
+     * @return string
      */
     public function getComposanteComposition()
     {
@@ -147,7 +151,7 @@ class Composition
     /**
      * @param array $compositionoeuvres
      */
-    public function setCompositionoeuvres( $compositionoeuvres )
+    public function setCompositionoeuvres($compositionoeuvres)
     {
         $this->compositionoeuvres = $compositionoeuvres;
 

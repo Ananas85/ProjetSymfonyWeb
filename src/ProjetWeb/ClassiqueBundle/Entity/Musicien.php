@@ -58,7 +58,7 @@ class Musicien
     private $photo;
 
     /**
-     * @var \Pays
+     * @var Pays
      *
      * @ORM\ManyToOne(targetEntity="Pays")
      * @ORM\JoinColumns({
@@ -68,7 +68,7 @@ class Musicien
     private $codePays;
 
     /**
-     * @var \Genre
+     * @var Genre
      *
      * @ORM\ManyToOne(targetEntity="Genre", inversedBy="musiciens")
      * @ORM\JoinColumns({
@@ -78,7 +78,7 @@ class Musicien
     private $codeGenre;
 
     /**
-     * @var \Instrument
+     * @var Instrument
      *
      * @ORM\ManyToOne(targetEntity="Instrument")
      * @ORM\JoinColumns({
@@ -109,17 +109,21 @@ class Musicien
     private $directions;
 
 
-
-    public function __construct() {
-        $this->composers = new ArrayCollection();
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->composers    = new ArrayCollection();
         $this->interpreters = new ArrayCollection();
-        $this->directions = new ArrayCollection();
+        $this->directions   = new ArrayCollection();
 
     }
+
     /**
      * Get codeMusicien
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeMusicien()
     {
@@ -130,6 +134,7 @@ class Musicien
      * Set nomMusicien
      *
      * @param string $nomMusicien
+     *
      * @return Musicien
      */
     public function setNomMusicien($nomMusicien)
@@ -142,7 +147,7 @@ class Musicien
     /**
      * Get nomMusicien
      *
-     * @return string 
+     * @return string
      */
     public function getNomMusicien()
     {
@@ -153,9 +158,10 @@ class Musicien
      * Set prénomMusicien
      *
      * @param string $prénomMusicien
+     *
      * @return Musicien
      */
-    public function setPrénomMusicien($prénomMusicien)
+    public function setPrenomMusicien($prénomMusicien)
     {
         $this->prénomMusicien = $prénomMusicien;
 
@@ -165,9 +171,9 @@ class Musicien
     /**
      * Get prénomMusicien
      *
-     * @return string 
+     * @return string
      */
-    public function getPrénomMusicien()
+    public function getPrenomMusicien()
     {
         return $this->prénomMusicien;
     }
@@ -176,6 +182,7 @@ class Musicien
      * Set annéeNaissance
      *
      * @param integer $annéeNaissance
+     *
      * @return Musicien
      */
     public function setAnneeNaissance($annéeNaissance)
@@ -188,7 +195,7 @@ class Musicien
     /**
      * Get annéeNaissance
      *
-     * @return integer 
+     * @return integer
      */
     public function getAnneeNaissance()
     {
@@ -199,11 +206,12 @@ class Musicien
      * Set annéeMort
      *
      * @param integer $annéeMort
+     *
      * @return Musicien
      */
     public function setAnneeMort($annéeMort)
     {
-        $this->anneeMort = $anneeMort;
+        $this->anneeMort = $annéeMort;
 
         return $this;
     }
@@ -211,7 +219,7 @@ class Musicien
     /**
      * Get annéeMort
      *
-     * @return integer 
+     * @return integer
      */
     public function getAnneeMort()
     {
@@ -222,6 +230,7 @@ class Musicien
      * Set photo
      *
      * @param string $photo
+     *
      * @return Musicien
      */
     public function setPhoto($photo)
@@ -234,7 +243,7 @@ class Musicien
     /**
      * Get photo
      *
-     * @return string 
+     * @return string
      */
     public function getPhoto()
     {
@@ -244,10 +253,11 @@ class Musicien
     /**
      * Set codePays
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Pays $codePays
+     * @param Pays $codePays
+     *
      * @return Musicien
      */
-    public function setCodePays(\ProjetWeb\ClassiqueBundle\Entity\Pays $codePays = null)
+    public function setCodePays(Pays $codePays = null)
     {
         $this->codePays = $codePays;
 
@@ -257,7 +267,7 @@ class Musicien
     /**
      * Get codePays
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Pays 
+     * @return Pays
      */
     public function getCodePays()
     {
@@ -267,10 +277,11 @@ class Musicien
     /**
      * Set codeGenre
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Genre $codeGenre
+     * @param Genre $codeGenre
+     *
      * @return Musicien
      */
-    public function setCodeGenre(\ProjetWeb\ClassiqueBundle\Entity\Genre $codeGenre = null)
+    public function setCodeGenre(Genre $codeGenre = null)
     {
         $this->codeGenre = $codeGenre;
 
@@ -280,7 +291,7 @@ class Musicien
     /**
      * Get codeGenre
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Genre 
+     * @return Genre
      */
     public function getCodeGenre()
     {
@@ -290,10 +301,11 @@ class Musicien
     /**
      * Set codeInstrument
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Instrument $codeInstrument
+     * @param Instrument $codeInstrument
+     *
      * @return Musicien
      */
-    public function setCodeInstrument(\ProjetWeb\ClassiqueBundle\Entity\Instrument $codeInstrument = null)
+    public function setCodeInstrument(Instrument $codeInstrument = null)
     {
         $this->codeInstrument = $codeInstrument;
 
@@ -303,7 +315,7 @@ class Musicien
     /**
      * Get codeInstrument
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Instrument 
+     * @return Instrument
      */
     public function getCodeInstrument()
     {
@@ -321,7 +333,7 @@ class Musicien
     /**
      * @param array $composers
      */
-    public function setComposers( $composers )
+    public function setComposers($composers)
     {
         $this->composers = $composers;
 
@@ -339,7 +351,7 @@ class Musicien
     /**
      * @param array $interpreters
      */
-    public function setInterpreters( $interpreters )
+    public function setInterpreters($interpreters)
     {
         $this->interpreters = $interpreters;
 
@@ -357,7 +369,7 @@ class Musicien
     /**
      * @param array $directions
      */
-    public function setDirections( $directions )
+    public function setDirections($directions)
     {
         $this->directions = $directions;
 

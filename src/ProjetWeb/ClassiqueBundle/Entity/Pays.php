@@ -29,11 +29,10 @@ class Pays
     private $nomPays;
 
 
-
     /**
      * Get codePays
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodePays()
     {
@@ -44,6 +43,7 @@ class Pays
      * Set nomPays
      *
      * @param string $nomPays
+     *
      * @return Pays
      */
     public function setNomPays($nomPays)
@@ -56,7 +56,7 @@ class Pays
     /**
      * Get nomPays
      *
-     * @return string 
+     * @return string
      */
     public function getNomPays()
     {

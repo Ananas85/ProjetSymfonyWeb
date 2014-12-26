@@ -85,7 +85,7 @@ class Abonne
     private $userid;
 
     /**
-     * @var \Pays
+     * @var Pays
      *
      * @ORM\ManyToOne(targetEntity="Pays")
      * @ORM\JoinColumns({
@@ -94,14 +94,12 @@ class Abonne
      */
     private $codePays;
 
-
-
     /**
      * Get codeAbonné
      *
-     * @return integer 
+     * @return integer
      */
-    public function getCodeAbonné()
+    public function getCodeAbonne()
     {
         return $this->codeAbonné;
     }
@@ -110,9 +108,10 @@ class Abonne
      * Set nomAbonné
      *
      * @param string $nomAbonné
-     * @return Abonné
+     *
+     * @return Abonne
      */
-    public function setNomAbonné($nomAbonné)
+    public function setNomAbonne($nomAbonné)
     {
         $this->nomAbonné = $nomAbonné;
 
@@ -122,9 +121,9 @@ class Abonne
     /**
      * Get nomAbonné
      *
-     * @return string 
+     * @return string
      */
-    public function getNomAbonné()
+    public function getNomAbonne()
     {
         return $this->nomAbonné;
     }
@@ -133,9 +132,10 @@ class Abonne
      * Set prénomAbonné
      *
      * @param string $prénomAbonné
-     * @return Abonné
+     *
+     * @return Abonne
      */
-    public function setPrénomAbonné($prénomAbonné)
+    public function setPrenomAbonne($prénomAbonné)
     {
         $this->prénomAbonné = $prénomAbonné;
 
@@ -145,9 +145,9 @@ class Abonne
     /**
      * Get prénomAbonné
      *
-     * @return string 
+     * @return string
      */
-    public function getPrénomAbonné()
+    public function getPrenomAbonne()
     {
         return $this->prénomAbonné;
     }
@@ -156,7 +156,8 @@ class Abonne
      * Set login
      *
      * @param string $login
-     * @return Abonné
+     *
+     * @return Abonne
      */
     public function setLogin($login)
     {
@@ -168,7 +169,7 @@ class Abonne
     /**
      * Get login
      *
-     * @return string 
+     * @return string
      */
     public function getLogin()
     {
@@ -179,7 +180,8 @@ class Abonne
      * Set password
      *
      * @param string $password
-     * @return Abonné
+     *
+     * @return Abonne
      */
     public function setPassword($password)
     {
@@ -191,7 +193,7 @@ class Abonne
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
@@ -202,7 +204,8 @@ class Abonne
      * Set adresse
      *
      * @param string $adresse
-     * @return Abonné
+     *
+     * @return Abonne
      */
     public function setAdresse($adresse)
     {
@@ -214,7 +217,7 @@ class Abonne
     /**
      * Get adresse
      *
-     * @return string 
+     * @return string
      */
     public function getAdresse()
     {
@@ -225,7 +228,8 @@ class Abonne
      * Set ville
      *
      * @param string $ville
-     * @return Abonné
+     *
+     * @return Abonne
      */
     public function setVille($ville)
     {
@@ -237,7 +241,7 @@ class Abonne
     /**
      * Get ville
      *
-     * @return string 
+     * @return string
      */
     public function getVille()
     {
@@ -248,7 +252,8 @@ class Abonne
      * Set codePostal
      *
      * @param string $codePostal
-     * @return Abonné
+     *
+     * @return Abonne
      */
     public function setCodePostal($codePostal)
     {
@@ -260,7 +265,7 @@ class Abonne
     /**
      * Get codePostal
      *
-     * @return string 
+     * @return string
      */
     public function getCodePostal()
     {
@@ -271,7 +276,8 @@ class Abonne
      * Set email
      *
      * @param string $email
-     * @return Abonné
+     *
+     * @return Abonne
      */
     public function setEmail($email)
     {
@@ -283,7 +289,7 @@ class Abonne
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -294,7 +300,8 @@ class Abonne
      * Set userid
      *
      * @param string $userid
-     * @return Abonné
+     *
+     * @return Abonne
      */
     public function setUserid($userid)
     {
@@ -306,7 +313,7 @@ class Abonne
     /**
      * Get userid
      *
-     * @return string 
+     * @return string
      */
     public function getUserid()
     {
@@ -317,7 +324,8 @@ class Abonne
      * Set codePays
      *
      * @param \ProjetWeb\ClassiqueBundle\Entity\Pays $codePays
-     * @return Abonné
+     *
+     * @return Abonne
      */
     public function setCodePays(\ProjetWeb\ClassiqueBundle\Entity\Pays $codePays = null)
     {
@@ -329,7 +337,7 @@ class Abonne
     /**
      * Get codePays
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Pays 
+     * @return \ProjetWeb\ClassiqueBundle\Entity\Pays
      */
     public function getCodePays()
     {

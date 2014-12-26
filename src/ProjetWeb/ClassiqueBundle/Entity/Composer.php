@@ -22,7 +22,7 @@ class Composer
     private $codeComposer;
 
     /**
-     * @var \Musicien
+     * @var Musicien
      *
      * @ORM\ManyToOne(targetEntity="Musicien", inversedBy="composers")
      * @ORM\JoinColumns({
@@ -32,7 +32,7 @@ class Composer
     private $codeMusicien;
 
     /**
-     * @var \Oeuvre
+     * @var Oeuvre
      *
      * @ORM\ManyToOne(targetEntity="Oeuvre", inversedBy="composers")
      * @ORM\JoinColumns({
@@ -42,11 +42,10 @@ class Composer
     private $codeOeuvre;
 
 
-
     /**
      * Get codeComposer
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeComposer()
     {
@@ -56,10 +55,11 @@ class Composer
     /**
      * Set codeMusicien
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Musicien $codeMusicien
+     * @param Musicien $codeMusicien
+     *
      * @return Composer
      */
-    public function setCodeMusicien(\ProjetWeb\ClassiqueBundle\Entity\Musicien $codeMusicien = null)
+    public function setCodeMusicien(Musicien $codeMusicien = null)
     {
         $this->codeMusicien = $codeMusicien;
 
@@ -69,7 +69,7 @@ class Composer
     /**
      * Get codeMusicien
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Musicien 
+     * @return Musicien
      */
     public function getCodeMusicien()
     {
@@ -79,10 +79,11 @@ class Composer
     /**
      * Set codeOeuvre
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Oeuvre $codeOeuvre
+     * @param Oeuvre $codeOeuvre
+     *
      * @return Composer
      */
-    public function setCodeOeuvre(\ProjetWeb\ClassiqueBundle\Entity\Oeuvre $codeOeuvre = null)
+    public function setCodeOeuvre(Oeuvre $codeOeuvre = null)
     {
         $this->codeOeuvre = $codeOeuvre;
 
@@ -92,7 +93,7 @@ class Composer
     /**
      * Get codeOeuvre
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Oeuvre 
+     * @return Oeuvre
      */
     public function getCodeOeuvre()
     {

@@ -22,7 +22,7 @@ class CompositionOeuvre
     private $codeComposerOeuvre;
 
     /**
-     * @var \Oeuvre
+     * @var Oeuvre
      *
      * @ORM\ManyToOne(targetEntity="Oeuvre")
      * @ORM\JoinColumns({
@@ -32,7 +32,7 @@ class CompositionOeuvre
     private $codeOeuvre;
 
     /**
-     * @var \Composition
+     * @var Composition
      *
      * @ORM\ManyToOne(targetEntity="Composition", inversedBy="compositionoeuvres")
      * @ORM\JoinColumns({
@@ -42,11 +42,10 @@ class CompositionOeuvre
     private $codeComposition;
 
 
-
     /**
      * Get codeComposerOeuvre
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeComposerOeuvre()
     {
@@ -56,10 +55,11 @@ class CompositionOeuvre
     /**
      * Set codeOeuvre
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Oeuvre $codeOeuvre
+     * @param Oeuvre $codeOeuvre
+     *
      * @return CompositionOeuvre
      */
-    public function setCodeOeuvre(\ProjetWeb\ClassiqueBundle\Entity\Oeuvre $codeOeuvre = null)
+    public function setCodeOeuvre(Oeuvre $codeOeuvre = null)
     {
         $this->codeOeuvre = $codeOeuvre;
 
@@ -69,7 +69,7 @@ class CompositionOeuvre
     /**
      * Get codeOeuvre
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Oeuvre 
+     * @return Oeuvre
      */
     public function getCodeOeuvre()
     {
@@ -79,10 +79,11 @@ class CompositionOeuvre
     /**
      * Set codeComposition
      *
-     * @param \ProjetWeb\ClassiqueBundle\Entity\Composition $codeComposition
+     * @param Composition $codeComposition
+     *
      * @return CompositionOeuvre
      */
-    public function setCodeComposition(\ProjetWeb\ClassiqueBundle\Entity\Composition $codeComposition = null)
+    public function setCodeComposition(Composition $codeComposition = null)
     {
         $this->codeComposition = $codeComposition;
 
@@ -92,7 +93,7 @@ class CompositionOeuvre
     /**
      * Get codeComposition
      *
-     * @return \ProjetWeb\ClassiqueBundle\Entity\Composition 
+     * @return Composition
      */
     public function getCodeComposition()
     {

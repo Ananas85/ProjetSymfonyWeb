@@ -29,11 +29,10 @@ class Orchestres
     private $nomOrchestre;
 
 
-
     /**
      * Get codeOrchestre
      *
-     * @return integer 
+     * @return integer
      */
     public function getCodeOrchestre()
     {
@@ -44,6 +43,7 @@ class Orchestres
      * Set nomOrchestre
      *
      * @param string $nomOrchestre
+     *
      * @return Orchestres
      */
     public function setNomOrchestre($nomOrchestre)
@@ -56,7 +56,7 @@ class Orchestres
     /**
      * Get nomOrchestre
      *
-     * @return string 
+     * @return string
      */
     public function getNomOrchestre()
     {
