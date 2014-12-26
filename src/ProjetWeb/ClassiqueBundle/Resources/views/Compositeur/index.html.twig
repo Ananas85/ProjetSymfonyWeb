@@ -56,7 +56,7 @@
             <form class="form-inline">
                 <div class="form-group">
                     <label for="RechercheCompositeur">Recherchez votre compositeur ( nom )</label>
-                    <input type="text" class="form-control" placeholder="Compositeur" id="compopletion" />
+                    <input type="text" class="form-control" placeholder="Compositeur" id="compopletion" data-urlpattern="{{ path("compositeurview", { codeMusicien: 9999  } ) }}"/>
                 </div>
             </form>
             <br/>
@@ -90,8 +90,8 @@
                     serviceUrl: '{{ path( 'compositeurssearch' ) }}',
                     dataType: 'json',
                     onSelect: function (suggestion) {
-                        location.href = "/ProjetWebServeur/web/app_dev.php/compositeur/"+suggestion.data;
-                        //return false;
+                        location.href = $(this).data('urlpattern').replace(9999, suggestion.data)
+                        return false;
                     }
                 });
             } );

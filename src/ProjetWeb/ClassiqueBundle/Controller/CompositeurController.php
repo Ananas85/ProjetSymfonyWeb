@@ -111,9 +111,6 @@ class CompositeurController extends Controller
     }
 
     /**
-     * @param
-     *
-     * @return
      * @Route("/compositeur/{codeMusicien}", requirements={"codeMusicien"="\d+"}, name="compositeurview")
      * @Template()
      */

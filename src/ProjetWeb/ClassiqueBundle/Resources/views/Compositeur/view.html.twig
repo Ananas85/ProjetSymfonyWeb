@@ -20,23 +20,22 @@
 
         function handlePaginator() {
             $( 'a[rel="ChangePage"]' ).on( "click", function() {
-                var page = $( this ).data( "page" );
-                loadPage( page );
+                var url = $( this ).data( "url" );
+                loadPage( url );
                 return false;
             });
         }
 
-        function loadPage( page ) {
+        function loadPage( url ) {
             $( '#albums' ).html( '<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">' );
             var musicienId = {{ musicien.codeMusicien  }};
-            var url = '/ProjetWebServeur/web/app_dev.php/albums/compositeur/' + musicienId + '/page/' + page;
             $( "#albums" ).load( url, function() {
                 handlePaginator();
             } );
         }
 
         $( function() {
-            loadPage(1);
+            loadPage( "{{path("albumCompositeur", { codeMusicien:musicien.codeMusicien }) }}");
         } );
     </script>
 {% endblock %}
