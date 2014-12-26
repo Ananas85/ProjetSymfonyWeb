@@ -1,0 +1,7 @@
+{% if is_granted("ROLE_USER") %}
+    <li><a href="{{ path("cart_show") }}">Mon Panier</a></li>
+    <li><a href="{{ path("logout") }}">Se délogguer</a></li>
+
+{% else %}
+    <li><a href="{{ path("login") }}">Se logger</a></li>
+{% endif %}
