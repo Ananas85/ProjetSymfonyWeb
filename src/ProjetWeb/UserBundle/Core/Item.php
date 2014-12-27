@@ -1,7 +1,7 @@
 <?php
 namespace ProjetWeb\UserBundle\Core;
 
-class Item
+class Item implements \Serializable
 {
     /**
      * @var object
@@ -12,6 +12,41 @@ class Item
      * @var integer
      */
     private $quantity;
+
+    /**
+     * Optimise le stockage en session
+     * @var string
+     */
+    private $key;
+
+    /**
+     * Optimise le stockage en session
+     * @return string
+     */
+    public function serialize()
+    {
+        return serialize([ $this->key, $this->quantity ]);
+    }
+
+    /**
+     * Optimise le stockage en session
+     *
+     * @param string $data
+     */
+    public function unserialize($data)
+    {
+        $tmp            = unserialize($data);
+        $this->key      = $tmp[0];
+        $this->quantity = $tmp[1];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
 
     /**
      * @return object
@@ -26,6 +61,7 @@ class Item
      */
     public function setProduct($product)
     {
+        $this->key = $product->getKey();
         $this->product = $product;
 
         return $this;
@@ -44,7 +80,7 @@ class Item
      */
     public function setQuantity($quantity)
     {
-        if ( $quantity < 0 ) {
+        if ($quantity < 0) {
             $quantity = 0;
         }
         $this->quantity = $quantity;
@@ -55,7 +91,8 @@ class Item
     /**
      * @return double
      */
-    public function getPrice() {
+    public function getPrice()
+    {
         return $this->getQuantity() * $this->product->getPrice();
     }
 }

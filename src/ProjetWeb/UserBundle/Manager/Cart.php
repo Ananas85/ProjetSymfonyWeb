@@ -51,7 +51,7 @@ class Cart
                 /**
                  * @var Item $item
                  */
-                list($entityName, $code) = explode("-", $item->getProduct()->getKey() );
+                list($entityName, $code) = explode("-", $item->getKey() );
                 $product =$this->entityManager->getRepository("ProjetWebClassiqueBundle:{$entityName}")->findOneBy(
                     [ "code{$entityName}" => $code ]
                 );
