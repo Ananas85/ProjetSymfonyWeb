@@ -1,7 +1,6 @@
 <?php
 namespace ProjetWeb\UserBundle\Manager;
 
-
 use ProjetWeb\UserBundle\Core\Item;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use ProjetWeb\UserBundle\Core\ProductInterface;
@@ -32,7 +31,7 @@ class Cart
      */
     public function __construct(SessionInterface $session, EntityManager $entityManager)
     {
-        $this->entityManager = $entityManager;;
+        $this->entityManager = $entityManager;
         $this->session = $session;
     }
 
@@ -51,13 +50,14 @@ class Cart
                 /**
                  * @var Item $item
                  */
-                list($entityName, $code) = explode("-", $item->getKey() );
-                $product =$this->entityManager->getRepository("ProjetWebClassiqueBundle:{$entityName}")->findOneBy(
+                list($entityName, $code) = explode("-", $item->getKey());
+                $product = $this->entityManager->getRepository("ProjetWebClassiqueBundle:{$entityName}")->findOneBy(
                     [ "code{$entityName}" => $code ]
                 );
-                $item->setProduct( $product );
+                $item->setProduct($product);
             }
         }
+
         return $this->cart;
     }
 

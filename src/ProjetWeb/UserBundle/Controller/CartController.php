@@ -24,7 +24,7 @@ class CartController extends Controller
      */
     public function miniAction()
     {
-        return [ 'cart' =>  $this->get("projetwebclassique.cart_manager")->getCart() ];
+        return [ 'cart' => $this->get("projetwebclassique.cart_manager")->getCart() ];
     }
 
 
@@ -36,7 +36,7 @@ class CartController extends Controller
      */
     public function showAction()
     {
-        return [ 'cart' =>  $this->get("projetwebclassique.cart_manager")->getCart() ];
+        return [ 'cart' => $this->get("projetwebclassique.cart_manager")->getCart() ];
     }
 
     /**
@@ -60,5 +60,4 @@ class CartController extends Controller
 
         return $this->redirect($this->generateUrl("cart_show"));
     }
-
 }

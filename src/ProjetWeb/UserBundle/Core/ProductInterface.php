@@ -1,7 +1,8 @@
 <?php
 namespace ProjetWeb\UserBundle\Core;
 
-interface ProductInterface {
+interface ProductInterface
+{
     /**
      * @return string
      */

@@ -17,7 +17,6 @@ class Cart
         $this->items = array();
     }
 
-
     /**
      * @param ProductInterface $product
      * @param int              $quantity
@@ -118,5 +117,4 @@ class Cart
     {
         return $this->getPriceHT() * (1 + $this->getTVA() / 100);
     }
-
 }
