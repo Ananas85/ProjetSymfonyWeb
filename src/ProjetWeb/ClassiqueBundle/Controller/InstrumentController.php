@@ -86,7 +86,7 @@ class InstrumentController extends Controller
             file_put_contents($file,$image);
             return $response->setContent($image);
         }
-
+        $response->setMaxAge(3600);
         return $response->setContent(file_get_contents($file));
 
     }

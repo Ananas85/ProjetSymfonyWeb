@@ -52,6 +52,7 @@ class EnregistrementController extends Controller
             file_put_contents($file,$extrait);
             return $response->setContent($extrait);
         }
+        $response->setMaxAge(3600);
 
         return $response->setContent(file_get_contents($file));
     }
