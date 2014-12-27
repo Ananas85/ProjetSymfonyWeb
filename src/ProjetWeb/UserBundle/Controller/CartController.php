@@ -2,9 +2,11 @@
 namespace ProjetWeb\UserBundle\Controller;
 
 use ProjetWeb\ClassiqueBundle\Entity\Abonne;
+use ProjetWeb\UserBundle\Core\ProductInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -14,7 +16,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 /**
  * @Route("/cart")
  */
-
 class CartController extends Controller
 {
     /**
@@ -23,7 +24,7 @@ class CartController extends Controller
      */
     public function miniAction()
     {
-        return [];
+        return [ 'cart' =>  $this->get("projetwebclassique.cart_manager")->getCart() ];
     }
 
 
@@ -35,6 +36,29 @@ class CartController extends Controller
      */
     public function showAction()
     {
-        return [];
+        return [ 'cart' =>  $this->get("projetwebclassique.cart_manager")->getCart() ];
     }
+
+    /**
+     * @Route("/add/{key}/{quantity}", name="cart_add_product", requirements={"quantity"="\d+"}, defaults={"quantity"=1},)
+     * @Security("has_role('ROLE_USER')")
+     * @return Response
+     */
+    public function addProductAction($key, $quantity = 1)
+    {
+        list($entityName, $code) = explode("-", $key);
+        $product = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:{$entityName}")->findOneBy(
+            [ "code{$entityName}" => $code ]
+        );
+        /**
+         * @var ProductInterface $produc
+         */
+        if (!$product instanceof ProductInterface) {
+            throw new AccessDeniedHttpException("Vous ne pouvez pas ajoute ce genre de produit");
+        }
+        $this->get("projetwebclassique.cart_manager")->addProduct($product, $quantity);
+
+        return $this->redirect($this->generateUrl("cart_show"));
+    }
+
 }

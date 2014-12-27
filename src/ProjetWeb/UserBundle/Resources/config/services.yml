@@ -1,0 +1,8 @@
+parameters:
+
+
+services:
+
+    projetwebclassique.cart_manager:
+        class: ProjetWeb\UserBundle\Manager\Cart
+        arguments: [@session, @doctrine.orm.entity_manager]

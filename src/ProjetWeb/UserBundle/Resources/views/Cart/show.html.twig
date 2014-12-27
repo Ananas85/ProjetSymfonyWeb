@@ -8,7 +8,37 @@
     </div>
     <div>
         <div class="row">
-            PLOP
+            <table>
+                <tr>
+                    <th>Produit</th>
+                    <th>Quantite</th>
+                    <th>Prix Unitaire</th>
+                    <th>Prix</th>
+                    <th>&nbsp;</th>
+                </tr>
+                {% for item in cart.items %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.product.price }}</td>
+                        <td>{{ item.price }}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td>Total HT</td>
+                    <td>{{ cart.itemsQuantity }}</td>
+                    <td>&nbsp;</td>
+                    <td>{{ cart.priceHT }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">TVA</td>
+                    <td>{{ cart.TVA }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">TOTAL TTC</td>
+                    <td>{{ cart.priceTTC }}</td>
+                </tr>
+            </table>
         </div>
     </div>
 

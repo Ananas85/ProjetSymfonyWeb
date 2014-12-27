@@ -4,6 +4,7 @@ namespace ProjetWeb\ClassiqueBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use ProjetWeb\UserBundle\Core\ProductInterface;
 
 /**
  * Album
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="Album", indexes={@ORM\Index(name="IDX_F8594147E1990660", columns={"Code_Genre"}), @ORM\Index(name="IDX_F8594147EA8CE117", columns={"Code_Editeur"})})
  * @ORM\Entity(repositoryClass="ProjetWeb\ClassiqueBundle\Repository\Album")
  */
-class Album
+class Album implements ProductInterface
 {
     /**
      * @var integer
@@ -44,7 +45,7 @@ class Album
     private $pochette;
 
     /**
-     * @var \Genre
+     * @var Genre
      *
      * @ORM\ManyToOne(targetEntity="Genre", inversedBy="albums")
      * @ORM\JoinColumns({
@@ -54,7 +55,7 @@ class Album
     private $codeGenre;
 
     /**
-     * @var \Editeur
+     * @var Editeur
      *
      * @ORM\ManyToOne(targetEntity="Editeur")
      * @ORM\JoinColumns({
@@ -233,7 +234,6 @@ class Album
         foreach ($this->disques as $disc) {
             $price += $disc->getPrice();
         }
-
         return $price;
     }
 
@@ -256,5 +256,21 @@ class Album
         }
 
         return $nbTotal;
+    }
+
+    /**
+     * @return string
+     */
+    public function getkey()
+    {
+        return "Album-{$this->codeAlbum}";
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->getTitreAlbum();
     }
 }

@@ -1,6 +1,6 @@
 
 <ul>
     {% for enr in enregistrements %}
-        <li><audio src="{{ path('enregistrementson',{'codeMorceau': enr.codeMorceau }) }}" controls></audio>{{ enr.titre }} ( {{ enr.durée }} )</li>
+        <li><audio src="{{ path('enregistrementson',{'codeMorceau': enr.codeMorceau }) }}" controls></audio>{{ enr.titre }} ( {{ enr.duree }} )</li>
     {% endfor %}
 </ul>

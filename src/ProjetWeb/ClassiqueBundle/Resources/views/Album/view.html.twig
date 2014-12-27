@@ -7,6 +7,8 @@
 {% block classiqueweb_body %}
     <h1 class="text-primary">Fiche d'un Album</h1>
 
+    <a href="{{ path("cart_add_product", { key: album.key, quantity:1}) }}">Ajouter au panier</a>
+
     <div class="row">
         <div class="col-lg-2">
             <img src="{{ image }}" class="img-circle" width="100px" height="100px">
