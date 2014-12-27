@@ -69,7 +69,7 @@ class InstrumentController extends Controller
         $fs = new Filesystem();
 
         $path = $this->get('service_container')->getParameter('img_instrument_storage');
-        if (!$fs->exists($path)){
+        if (!$fs->exists($path)) {
             $fs->mkdir($path);
         }
 
@@ -79,11 +79,12 @@ class InstrumentController extends Controller
         $response->headers->set('Content-type', 'image/jpeg');
         $response->headers->set('Content-Transfer-Encoding', 'binary');
 
-        if ( !$fs->exists($file))
-        {
+        if (!$fs->exists($file)) {
             $image    = stream_get_contents($instrument->getImage());
-            //$image    = pack("H*", $image);
-            file_put_contents($file,$image);
+            if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+                $image = pack("H*", $image);
+            }
+            file_put_contents($file, $image);
             return $response->setContent($image);
         }
         $response->setMaxAge(3600);

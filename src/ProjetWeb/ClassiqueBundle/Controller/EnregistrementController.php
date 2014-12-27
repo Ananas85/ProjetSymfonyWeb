@@ -35,7 +35,7 @@ class EnregistrementController extends Controller
         $fs = new Filesystem();
 
         $path = $this->get('service_container')->getParameter('enr_album_storage');
-        if (!$fs->exists($path)){
+        if (!$fs->exists($path)) {
             $fs->mkdir($path);
         }
 
@@ -45,11 +45,12 @@ class EnregistrementController extends Controller
         $response->headers->set('Content-type', 'audio/mpeg');
         $response->headers->set('Content-Transfer-Encoding', 'binary');
 
-        if ( !$fs->exists($file))
-        {
+        if (!$fs->exists($file)) {
             $extrait    = stream_get_contents($enregistrement->getExtrait());
-            //$image    = pack("H*", $image);
-            file_put_contents($file,$extrait);
+            if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+                $extrait = pack("H*", $extrait);
+            }
+            file_put_contents($file, $extrait);
             return $response->setContent($extrait);
         }
         $response->setMaxAge(3600);

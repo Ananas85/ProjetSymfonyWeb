@@ -10,6 +10,7 @@
     <rule ref="rulesets/design.xml" />
     <rule ref="rulesets/naming.xml">
         <exclude name="LongVariable"/>
+        <exclude name="ShortVariable"/>
     </rule>
     <rule ref="rulesets/cleancode.xml">
         <exclude name="StaticAccess"/>
@@ -26,6 +27,11 @@
     <rule ref="rulesets/naming.xml/LongVariable">
         <properties>
             <property name="maximum" value="30"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/naming.xml/ShortVariable">
+        <properties>
+            <property name="exceptions" value="fs" />
         </properties>
     </rule>
 </ruleset>
