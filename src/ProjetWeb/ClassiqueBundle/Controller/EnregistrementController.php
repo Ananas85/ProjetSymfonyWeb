@@ -6,6 +6,7 @@ use ProjetWeb\ClassiqueBundle\Entity\Enregistrement;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Response;
 
 class EnregistrementController extends Controller
@@ -27,18 +28,31 @@ class EnregistrementController extends Controller
     /**
      * @Route("/enregistrement/son/{codeMorceau}", requirements={ "codeMorceau"="\d+"}, name="enregistrementson")
      * @param Enregistrement $instrument
-     *
      * @return Response
      */
     public function soundAction(Enregistrement $enregistrement)
     {
-        $extrait  = stream_get_contents($enregistrement->getExtrait());
-        $extrait  = pack("H*", $extrait);
+        $fs = new Filesystem();
+
+        $path = $this->get('service_container')->getParameter('enr_album_storage');
+        if (!$fs->exists($path)){
+            $fs->mkdir($path);
+        }
+
+        $file = "{$path}/Enregistrement-{$enregistrement->getCodeMorceau()}.mp3";
+
         $response = new Response();
         $response->headers->set('Content-type', 'audio/mpeg');
         $response->headers->set('Content-Transfer-Encoding', 'binary');
-        $response->setContent($extrait);
 
-        return $response;
+        if ( !$fs->exists($file))
+        {
+            $extrait    = stream_get_contents($enregistrement->getExtrait());
+            //$image    = pack("H*", $image);
+            file_put_contents($file,$extrait);
+            return $response->setContent($extrait);
+        }
+
+        return $response->setContent(file_get_contents($file));
     }
 }

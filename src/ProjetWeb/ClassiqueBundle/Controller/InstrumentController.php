@@ -3,6 +3,7 @@ namespace ProjetWeb\ClassiqueBundle\Controller;
 
 use ProjetWeb\ClassiqueBundle\Entity\Instrument;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -65,13 +66,28 @@ class InstrumentController extends Controller
      */
     public function imageAction(Instrument $instrument)
     {
-        $image    = stream_get_contents($instrument->getImage());
-        $image    = pack("H*", $image);
+        $fs = new Filesystem();
+
+        $path = $this->get('service_container')->getParameter('img_instrument_storage');
+        if (!$fs->exists($path)){
+            $fs->mkdir($path);
+        }
+
+        $file = "{$path}/Instrument-{$instrument->getCodeInstrument()}.jpeg";
+
         $response = new Response();
         $response->headers->set('Content-type', 'image/jpeg');
         $response->headers->set('Content-Transfer-Encoding', 'binary');
-        $response->setContent($image);
 
-        return $response;
+        if ( !$fs->exists($file))
+        {
+            $image    = stream_get_contents($instrument->getImage());
+            //$image    = pack("H*", $image);
+            file_put_contents($file,$image);
+            return $response->setContent($image);
+        }
+
+        return $response->setContent(file_get_contents($file));
+
     }
 }
