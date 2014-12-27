@@ -41,7 +41,6 @@ class MusicianController extends Controller
             return $response->setContent($image);
         }
         $response->setMaxAge(3600);
-        $response->setPublic();
         return $response->setContent(file_get_contents($file));
     }
 }
