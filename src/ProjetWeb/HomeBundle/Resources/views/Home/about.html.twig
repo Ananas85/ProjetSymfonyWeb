@@ -16,13 +16,17 @@
         <div class="row">
             <section class="jumbotron col-lg-10 col-lg-offset-1">
                 <h2 class="text-primary">Nous sommes Anaël CHARDAN et Marty LAMOUREUX et nous sommes fières de vous présenter ce site réaliser avec Symfony2</h2>
-                <p>Les technologies employées sont :
+                <div>Les technologies employées sont :
                     <ul>
                     <li>Symfony2, un framework français qui est désormais connu de l'intégralité du monde du Web</li>
                     <li>Le pagerFanta : un bundle permettant de gérer correctement la pagination et de manière automatique</li>
                     <li>Ajax : Il permet une génération dynamique d'une partie de la page, notamment la génération des Albums enregistrées.</li>
+                    <li>Les sessions de Symfony sont intégrés au sein du panier qui est "manager" en tant que service</li>
+                    <li>Un système de cache de Photo et enregistrement, si vous allez sur une page contenant un objet cité, il est enregistré sur le disque en prévision de la prochaine fois</li>
+                    <li>Un système de cache HTTP avec les annotations</li>
+                    <li>L'utilisation de l'API Amazon</li>
                     </ul>
-                </p>
+                </div>
             </section>
         </div>
     {% endblock %}
