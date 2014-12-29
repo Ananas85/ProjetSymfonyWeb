@@ -35,9 +35,9 @@ class MusicianController extends Controller
 
         if (!$fs->exists($file)) {
             $image    = stream_get_contents($musicien->getPhoto());
-            if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            /*if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
                 $image = pack("H*", $image);
-            }
+            }*/
             file_put_contents($file, $image);
             return $response->setContent($image);
         }
