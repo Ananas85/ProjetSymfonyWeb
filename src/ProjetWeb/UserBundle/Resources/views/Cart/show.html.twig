@@ -3,43 +3,67 @@
 {% block title %}Mon Panier{% endblock %}
 
 {% block classiqueweb_body %}
-    <div class="row">
-        <h2>Mon Panier</h2> <br/>
-    </div>
-    <div>
+
         <div class="row">
-            <table>
-                <tr>
-                    <th>Produit</th>
-                    <th>Quantite</th>
-                    <th>Prix Unitaire</th>
-                    <th>Prix</th>
-                    <th>&nbsp;</th>
-                </tr>
-                {% for item in cart.items %}
-                    <tr>
-                        <td>{{ item.product.name }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>{{ item.product.price }}</td>
-                        <td>{{ item.price }}</td>
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h3>Mon Panier <span class="glyphicon glyphicon-shopping-cart pull-right"></span></h3></div>
+
+                {% if cart.items is not empty  %}
+
+                <table class="table table-hover">
+                    <tr class="text-warning danger">
+                        <th class="text-center">Produit</th>
+                        <th class="text-center">Quantite</th>
+                        <th class="text-center">Prix Unitaire ( € )</th>
+                        <th class="text-center">Prix ( € )</th>
+                        <th class="text-center">Ajouter</th>
+                        <th class="text-center">Retirer</th>
+                        <th class="text-center">Supprimer</th>
                     </tr>
-                {% endfor %}
-                <tr>
-                    <td>Total HT</td>
-                    <td>{{ cart.itemsQuantity }}</td>
-                    <td>&nbsp;</td>
-                    <td>{{ cart.priceHT }}</td>
-                </tr>
-                <tr>
-                    <td colspan="2">TVA</td>
-                    <td>{{ cart.TVA }}</td>
-                </tr>
-                <tr>
-                    <td colspan="2">TOTAL TTC</td>
-                    <td>{{ cart.priceTTC }}</td>
-                </tr>
-            </table>
+                    {% for item in cart.items %}
+                        <tr class="text-center">
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.product.price }}</td>
+                            <td>{{ item.price }}</td>
+                            <td><a class="btn btn-info btn-xs" href="{{ path("cart_add_product", { key: item.key, quantity:1}) }}"><span class="glyphicon glyphicon-plus"></span></a></td>
+                            <td><a class="btn btn-danger btn-xs" href="{{ path("cart_remove_product", { key: item.key, quantity:1}) }}"><span class="glyphicon glyphicon-minus"></span></a></td>
+                            <td><a class="btn btn-warning btn-xs" href="{{ path("cart_delete_product", { key: item.key}) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
+                        </tr>
+                    {% endfor %}
+                    <tr class="text-center">
+                        <td class="info text-primary"><strong>Total HT</strong></td>
+                        <td class="info"><strong>{{ cart.itemsQuantity }}</strong></td>
+                        <td class="info">&nbsp;</td>
+                        <td class="info"><strong>{{ cart.priceHT }}</strong></td>
+                        <td class="info">&nbsp;</td>
+                        <td class="info">&nbsp;</td>
+                        <td class="info">&nbsp;</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td class="warning text-warning"><strong>TVA</strong></td>
+                        <td class="warning"><strong>{{ cart.TVA }} %</strong></td>
+                        <td class="warning">&nbsp;</td>
+                        <td class="warning">&nbsp;</td>
+                        <td class="warning">&nbsp;</td>
+                        <td class="warning">&nbsp;</td>
+                        <td class="warning">&nbsp;</td>
+                    </tr>
+                    <tr class="text-center success">
+                        <td class=" text-success"><strong>TOTAL TTC</strong></td>
+                        <td class="">&nbsp;</td>
+                        <td class="">&nbsp;</td>
+                        <td class=""><strong>{{ cart.priceTTC }}</strong></td>
+                        <td class="">&nbsp;</td>
+                        <td class="">&nbsp;</td>
+                        <td class="">&nbsp;</td>
+                    </tr>
+                </table>
+                {% else %}
+                    <h3 class="text-center text-info bg">Votre panier est vide</h3>
+                {% endif %}
+            </div>
         </div>
-    </div>
 
 {% endblock %}
+

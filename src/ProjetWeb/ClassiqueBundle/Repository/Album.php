@@ -10,6 +10,7 @@ use ProjetWeb\ClassiqueBundle\Entity\Instrument as InstrumentEntity;
 use ProjetWeb\ClassiqueBundle\Entity\Musicien as MusicienEntity;
 use ProjetWeb\ClassiqueBundle\Entity\Orchestres as OrchestresEntity;
 use ProjetWeb\ClassiqueBundle\Entity\Genre as GenreEntity;
+use ProjetWeb\ClassiqueBundle\Entity\Genre as AlbumEntity;
 
 class Album extends EntityRepository
 {

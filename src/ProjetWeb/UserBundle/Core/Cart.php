@@ -63,6 +63,19 @@ class Cart
     }
 
     /**
+     * @param ProductInterface $product
+     * @return $this
+     */
+    public function deleteItem(ProductInterface $product)
+    {
+        if (array_key_exists($product->getkey(), $this->items)) {
+            unset($this->items[$product->getkey()]);
+        }
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function getItems()

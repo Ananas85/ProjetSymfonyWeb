@@ -3,8 +3,8 @@ echo "****************************************"
 echo "Test Suite - ClassicWeb"
 
 BASEDIR=$(dirname $0)
-if [ -x /Applications/MAMP/bin/php/php5.5.10/bin/php ]; then
-    PHP="/Applications/MAMP/bin/php/php5.5.10/bin/php -d date.timezone='Europe/Paris'"
+if [ -x /Applications/MAMP/bin/php/php5.6.2/bin/php ]; then
+    PHP="/Applications/MAMP/bin/php/php5.6.2/bin/php -d date.timezone='Europe/Paris'"
 else
     PHP="php -d date.timezone='Europe/Paris'"
 fi

@@ -161,12 +161,7 @@ class Disque
 
     public function getPrice()
     {
-        $price = 0;
-        foreach ($this->compositiondisques as $cd) {
-            $price += $cd->getCodeMorceau()->getPrix();
-        }
-
-        return $price;
+        return $this->getNbEnregistrement();
     }
 
     public function getNbEnregistrement()

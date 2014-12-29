@@ -60,4 +60,48 @@ class CartController extends Controller
 
         return $this->redirect($this->generateUrl("cart_show"));
     }
+
+    /**
+     * @Route("/remove/{key}/{quantity}", name="cart_remove_product", requirements={"quantity"="\d+"}, defaults={"quantity"=1},)
+     * @Security("has_role('ROLE_USER')")
+     * @return Response
+     */
+    public function removeProductAction($key, $quantity = 1)
+    {
+        list($entityName, $code) = explode("-", $key);
+        $product = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:{$entityName}")->findOneBy(
+            [ "code{$entityName}" => $code ]
+        );
+        /**
+         * @var ProductInterface $produc
+         */
+        if (!$product instanceof ProductInterface) {
+            throw new AccessDeniedHttpException("Vous ne pouvez pas retirer ce genre de produit");
+        }
+        $this->get("projetwebclassique.cart_manager")->removeProduct($product, $quantity);
+
+        return $this->redirect($this->generateUrl("cart_show"));
+    }
+
+    /**
+     * @Route("/delete/{key}", name="cart_delete_product")
+     * @Security("has_role('ROLE_USER')")
+     * @return Response
+     */
+    public function deleteProductAction($key)
+    {
+        list($entityName, $code) = explode("-", $key);
+        $product = $this->getDoctrine()->getRepository("ProjetWebClassiqueBundle:{$entityName}")->findOneBy(
+            [ "code{$entityName}" => $code ]
+        );
+        /**
+         * @var ProductInterface $produc
+         */
+        if (!$product instanceof ProductInterface) {
+            throw new AccessDeniedHttpException("Vous ne pouvez pas effacer ce genre de produit");
+        }
+        $this->get("projetwebclassique.cart_manager")->deleteProduct($product);
+
+        return $this->redirect($this->generateUrl("cart_show"));
+    }
 }

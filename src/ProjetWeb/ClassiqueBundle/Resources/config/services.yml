@@ -1,0 +1,4 @@
+services:
+    projetwebclassique.amazon_music_search:
+        class: ProjetWeb\ClassiqueBundle\Amazon\AmazonMusicSearch
+        arguments: [@service_container, @doctrine.orm.entity_manager]

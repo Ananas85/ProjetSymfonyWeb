@@ -230,11 +230,7 @@ class Album implements ProductInterface
      */
     public function getPrice()
     {
-        $price = 0;
-        foreach ($this->disques as $disc) {
-            $price += $disc->getPrice();
-        }
-        return $price;
+        return $this->getNbEnregistrement();
     }
 
     /**

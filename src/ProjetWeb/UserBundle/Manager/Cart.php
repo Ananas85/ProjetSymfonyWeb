@@ -70,4 +70,23 @@ class Cart
         $cart = $this->getCart();
         $cart->addItem($product, $quantity);
     }
+
+    /**
+     * @param ProductInterface $product
+     * @param int              $quantity
+     */
+    public function removeProduct(ProductInterface $product, $quantity = 1)
+    {
+        $cart = $this->getCart();
+        $cart->removeItem($product, $quantity);
+    }
+
+    /**
+     * @param ProductInterface $product
+     */
+    public function deleteProduct(ProductInterface $product)
+    {
+        $cart = $this->getCart();
+        $cart->deleteItem($product);
+    }
 }

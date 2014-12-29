@@ -12,16 +12,7 @@
 
     <div class="row">
         <h2>Liste des Compositeurs</h2> <br/>
-
-
-
-
     </div>
-
-
-
-
-
 
     <div>
         <div class="row">
@@ -29,28 +20,32 @@
         {% if initial is defined %}
             {{ initial }}
         </div>
+
         <ul class="pagination">
             {% for letter in 'a'|upper..'z'|upper %}
                 <li><a href="{{ path('compositeursinitial', { 'initial' : letter }   ) }}">{{ letter }}</a></li>
             {% endfor %}
         </ul>
-        <br/><br/>
+
+        <br/>
+
+        {% elseif contexte == "par année de naissance" %}
+            entre {{ naissance }} et {{ fin }}
+
             {{ form_start(form, { 'attr' : { 'class' : 'form-inline'} }) }}
-                {{ form_errors(form) }}
+            {{ form_errors(form) }}
 
             <div class="form-group">
-                {{ form_label(form.initial) }}
-                {{ form_errors(form.initial) }}
-                {{ form_widget(form.initial, { 'attr' : { 'class' : 'form-control', 'placeholder' : 'Initial de votre compositeur' }}) }}
+                {{ form_label(form.naissance) }}
+                {{ form_errors(form.naissance) }}
+                {{ form_widget(form.naissance, { 'attr' : { 'class' : 'form-control', 'placeholder' : 'Naissance de votre compositeur' }}) }}
 
                 {{ form_widget(form.go, { 'attr' : { 'class' : 'btn btn-default'}}) }}
             </div>
 
-
             {{ form_end(form) }}
-        <br/>
-        {% elseif contexte == "par année de naissance" %}
-            entre {{ naissance }} et {{ fin }}
+            <br/>
+
         {% elseif contexte == "Tous" %}
 
             <form class="form-inline">

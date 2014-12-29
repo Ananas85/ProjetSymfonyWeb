@@ -37,26 +37,8 @@ class CompositeurController extends Controller
      * @Route("/compositeurs/initial/{initial}/{page}", requirements={"initial" = "\S", "page" ="\d+"}, defaults={"initial"= "A", "page"=1}, name="compositeursinitial")
      * @Template("ProjetWebClassiqueBundle:Compositeur:index.html.twig")
      */
-    public function initialAction(Request $request, $initial, $page = 1)
+    public function initialAction($initial, $page = 1)
     {
-        $defaultData = array( 'initial' => 'Tapez le début de votre compositeur' );
-
-
-        $formulaire = $this->createFormBuilder($defaultData)
-                           ->add('initial', 'text', array( 'label' => 'Initial : ' ))
-                           ->add('go', 'submit')
-                           ->getForm();
-
-        $formulaire->handleRequest($request);
-
-        if ($formulaire->isValid()) {
-            // Les données sont un tableau avec les clés "name";
-            $data = $formulaire->getData();
-            $init = $data['initial'];
-
-            return $this->redirect($this->generateUrl('compositeursinitial', array( 'initial' => $init )));
-        }
-
         $contexte = "avec initiale";
         $pager    = $this->getDoctrine()
                          ->getRepository("ProjetWebClassiqueBundle:Musicien")
@@ -65,9 +47,8 @@ class CompositeurController extends Controller
         $pager->setMaxPerPage(15);
         $pager->setCurrentPage($page);
 
-        $form = $formulaire->createView();
 
-        return compact('pager', 'contexte', 'initial', 'form');
+        return compact('pager', 'contexte', 'initial');
     }
 
 
@@ -96,8 +77,26 @@ class CompositeurController extends Controller
      * @Route("/compositeurs/naissance/{naissance}/{page}", requirements={"naissance" = "\d+", "page" ="\d+"}, defaults={"naissance"= 1900, "page"=1}, name="compositeursnaissance")
      * @Template("ProjetWebClassiqueBundle:Compositeur:index.html.twig")
      */
-    public function naissanceAction($naissance, $page = 1)
+    public function naissanceAction(Request $request, $naissance, $page = 1)
     {
+        $defaultData = array( 'naissance' => '' );
+
+
+        $formulaire = $this->createFormBuilder($defaultData)
+                           ->add('naissance', 'text', array( 'label' => 'Naissance : ' ))
+                           ->add('go', 'submit')
+                           ->getForm();
+
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isValid()) {
+            // Les données sont un tableau avec les clés "name";
+            $data = $formulaire->getData();
+            $year = $data['naissance'];
+
+            return $this->redirect($this->generateUrl('compositeursnaissance', array( 'naissance' => $year )));
+        }
+
         $contexte = "par année de naissance";
         $fin      = $naissance + 10;
         $pager    = $this->getDoctrine()
@@ -107,7 +106,8 @@ class CompositeurController extends Controller
         $pager->setMaxPerPage(15);
         $pager->setCurrentPage($page);
 
-        return compact('pager', 'contexte', 'naissance', 'fin');
+        $form = $formulaire->createView();
+        return compact('pager', 'contexte', 'naissance', 'fin', 'form');
     }
 
     /**
@@ -117,6 +117,8 @@ class CompositeurController extends Controller
     public function viewAction(Musicien $musicien)
     {
         $image = $this->generateUrl('musicienimage', array( 'codeMusicien' => $musicien->getCodeMusicien() ));
+        $formattedResponse = $this->get('projetwebclassique.amazon_music_search')->search($musicien);
+        var_dump($formattedResponse);
 
         return compact('musicien', 'image');
     }

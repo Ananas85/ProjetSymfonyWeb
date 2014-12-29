@@ -47,9 +47,9 @@ class EnregistrementController extends Controller
 
         if (!$fs->exists($file)) {
             $extrait    = stream_get_contents($enregistrement->getExtrait());
-            if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            /*if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
                 $extrait = pack("H*", $extrait);
-            }
+            }*/
             file_put_contents($file, $extrait);
             return $response->setContent($extrait);
         }

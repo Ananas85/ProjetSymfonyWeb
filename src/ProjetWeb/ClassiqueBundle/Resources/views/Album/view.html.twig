@@ -5,9 +5,7 @@
 {% endblock %}
 
 {% block classiqueweb_body %}
-    <h1 class="text-primary">Fiche d'un Album</h1>
-
-    <a href="{{ path("cart_add_product", { key: album.key, quantity:1}) }}">Ajouter au panier</a>
+    <h1 class="text-primary">Fiche d'un Album <a class="btn btn-info" href="{{ path("cart_add_product", { key: album.key, quantity:1}) }}">Ajouter au panier <span class="glyphicon glyphicon-gift"></span></a></h1>
 
     <div class="row">
         <div class="col-lg-2">
