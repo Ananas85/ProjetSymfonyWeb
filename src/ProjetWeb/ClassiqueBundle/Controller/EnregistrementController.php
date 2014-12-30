@@ -3,6 +3,7 @@ namespace ProjetWeb\ClassiqueBundle\Controller;
 
 use ProjetWeb\ClassiqueBundle\Entity\Disque;
 use ProjetWeb\ClassiqueBundle\Entity\Enregistrement;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,6 +16,7 @@ class EnregistrementController extends Controller
     /**
      * @param Disque $album
      * @Template()
+     * @Cache(smaxage=3600)
      */
     public function disqueAction(Disque $disque)
     {
@@ -28,6 +30,7 @@ class EnregistrementController extends Controller
     /**
      * @Route("/enregistrement/son/{codeMorceau}", requirements={ "codeMorceau"="\d+"}, name="enregistrementson")
      * @param Enregistrement $instrument
+     * @Cache(smaxage=3600)
      * @return Response
      */
     public function soundAction(Enregistrement $enregistrement)
@@ -47,9 +50,6 @@ class EnregistrementController extends Controller
 
         if (!$fs->exists($file)) {
             $extrait    = stream_get_contents($enregistrement->getExtrait());
-            /*if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-                $extrait = pack("H*", $extrait);
-            }*/
             file_put_contents($file, $extrait);
             return $response->setContent($extrait);
         }

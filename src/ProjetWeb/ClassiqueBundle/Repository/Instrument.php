@@ -31,11 +31,26 @@ class Instrument extends EntityRepository
     {
         $query = $this->createQueryBuilder('i');
         $query->where('i.nomInstrument LIKE :initial');
-        $query->setParameter('initial', $initial . '%');
+        $query->setParameter('initial', "{$initial}%");
         $query->orderBy("i.nomInstrument", 'ASC');
 
         $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
 
         return $pagerfanta;
+    }
+
+    /**
+     * @param $pattern
+     *
+     * @return array
+     */
+    public function findInstrumentByPattern($pattern)
+    {
+        $query = $this->createQueryBuilder("i");
+        $query->where('i.nomInstrument LIKE :pattern');
+        $query->setParameter('pattern', "%{$pattern}%");
+        $query->orderBy("i.nomInstrument", 'ASC');
+
+        return $query->getQuery()->getResult();
     }
 }

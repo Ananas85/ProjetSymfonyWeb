@@ -2,6 +2,7 @@
 namespace ProjetWeb\ClassiqueBundle\Controller;
 
 use ProjetWeb\ClassiqueBundle\Entity\Musicien;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +16,7 @@ class MusicianController extends Controller
     /**
      * @param Musicien $musicien
      * @Route("/musicien/image/{codeMusicien}", requirements={"codeMusicien"="\d+"}, name="musicienimage")
-     *
+     * @Cache(smaxage=3600)
      * @return Response
      */
     public function imageAction(Musicien $musicien)
@@ -35,9 +36,6 @@ class MusicianController extends Controller
 
         if (!$fs->exists($file)) {
             $image    = stream_get_contents($musicien->getPhoto());
-            /*if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-                $image = pack("H*", $image);
-            }*/
             file_put_contents($file, $image);
             return $response->setContent($image);
         }

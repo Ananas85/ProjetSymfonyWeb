@@ -17,15 +17,24 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        $(function(){
-            $('#albums').html('<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">');
-            var musicienId = $("#code").data("musicien");
-            var url = 'http://localhost/ProjetWebServeur/web/app_dev.php/albums/chef/'+ musicienId +'/page/1';
-            $("#albums").load(url);
 
-            $('a[rel="ChangePage"]').on("click",function() {
-                $("#albums").html('<p>Coucou</p>');
+        function handlePaginator() {
+            $( 'a[rel="ChangePage"]' ).on( "click", function() {
+                var url = $( this ).data( "url" );
+                loadPage( url );
+                return false;
             });
-        });
+        }
+
+        function loadPage( url ) {
+            $( '#albums' ).html( '<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">' );
+            $( "#albums" ).load( url, function() {
+                handlePaginator();
+            } );
+        }
+
+        $( function() {
+            loadPage( "{{path("albumChef", { codeMusicien:musicien.codeMusicien }) }}");
+        } );
     </script>
 {% endblock %}

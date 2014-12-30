@@ -1,5 +1,9 @@
 {% extends "ProjetWebClassiqueBundle::layout.html.twig" %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/projetwebclassique/css/autocompletion.css') }}">
 
+{% endblock %}
 {% block title %}
     Instruments
 {% endblock %}
@@ -8,12 +12,35 @@
 
     <h2>Liste des Instruments</h2>
 
-    <p>Sélection {{ contexte }} :
-        {% if initial is defined %}
+    <div>
+        <div class="row">
+            Sélection {{ contexte }} :
+            {% if initial is defined %}
             {{ initial }}
+        </div>
+
+        <ul class="pagination">
+            {% for letter in 'a'|upper..'z'|upper %}
+                <li><a href="{{ path('instrumentsinitial', { 'initial' : letter }   ) }}">{{ letter }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <br/>
+
+
+        {% elseif contexte == "Tous" %}
+
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="RechercheInstrument">Recherchez votre Instrument ( nom, un petit peu lent )</label>
+                    <input type="text" class="form-control" placeholder="Instrument" id="compopletion" data-urlpattern="{{ path("instrumentview", { codeInstrument: 9999  } ) }}"/>
+                </div>
+            </form>
+            <br/>
+
         {% endif %}
 
-    </p>
+    </div>
 
 
     <ul>
@@ -28,5 +55,23 @@
     <div class="pagerfanta">
         {{ pagerfanta(pager, 'twitter_bootstrap3') }}
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/projetwebclassique/js/jquery.autocomplete.min.js') }}"></script>
+    <script>
+        $( function() {
+            $('#compopletion').autocomplete({
+                serviceUrl: '{{ path( 'instrumentssearch' ) }}',
+                dataType: 'json',
+                onSelect: function (suggestion) {
+                    location.href = $(this).data('urlpattern').replace(9999, suggestion.data);
+                    return false;
+                }
+            });
+        } );
+    </script>
 
 {% endblock %}

@@ -1,24 +1,104 @@
 {% extends "ProjetWebClassiqueBundle::layout.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/projetwebclassique/css/autocompletion.css') }}">
+
+{% endblock %}
 {% block title %}
-    Liste Interprêtes
+    Liste Interprètes
 {% endblock %}
 
 {% block classiqueweb_body %}
 
-    <h2>Liste des Interprêtes</h2>
+    <div class="row">
+        <h2>Liste des interprètes</h2> <br/>
+    </div>
 
-    <p>Sélection {{ contexte }} :
-        {% if initial is defined %}
+    <div>
+        <div class="row">
+            Sélection {{ contexte }} :
+            {% if initial is defined %}
             {{ initial }}
+        </div>
+
+        <ul class="pagination">
+            {% for letter in 'a'|upper..'z'|upper %}
+                <li><a href="{{ path('interpretesinitial', { 'initial' : letter }   ) }}">{{ letter }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <br/>
+
         {% elseif contexte == "par année de naissance" %}
             entre {{ naissance }} et {{ fin }}
+
+            {% for message in app.session.flashbag.get('warning') %}
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Warning ! </strong>{{ message }}
+                </div>
+            {% endfor %}
+
+            {{ form_start(form, { 'attr' : { 'class' : 'form-inline'} }) }}
+            {{ form_errors(form) }}
+
+            <div class="form-group">
+                {{ form_label(form.naissance) }}
+                {{ form_errors(form.naissance) }}
+                {{ form_widget(form.naissance, { 'attr' : { 'class' : 'form-control', 'placeholder' : 'Naissance de votre interpretes' }}) }}
+
+                {{ form_widget(form.go, { 'attr' : { 'class' : 'btn btn-default'}}) }}
+            </div>
+
+            {{ form_end(form) }}
+            <br/>
+
+        {% elseif contexte == "Tous" %}
+
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="RechercheInterprete">Recherchez votre interprete ( nom, un petit peu lent )</label>
+                    <input type="text" class="form-control" placeholder="Interprete" id="compopletion" data-urlpattern="{{ path("interpreteview", { codeMusicien: 9999  } ) }}"/>
+                </div>
+            </form>
+            <br/>
+
         {% endif %}
 
-    </p>
+    </div>
 
+    <ul>
+        {%  for musicien in pager.currentPageResults  %}
 
-    {% include("ProjetWebClassiqueBundle:Interprete:instrument.html.twig") %}
+            <li>
+                <a href="{{ path('interpreteview',{'codeMusicien': musicien.codeMusicien }) }}">{{ musicien.nomMusicien }} {{ musicien.prenomMusicien }} ( {{ musicien.anneeNaissance }} - {{ musicien.anneeMort }} ) </a>
+            </li>
+        {%  endfor  %}
+
+    </ul>
+
+    <div class="pagerfanta">
+        {{ pagerfanta(pager, 'twitter_bootstrap3') }}
+    </div>
 
 
 {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('bundles/projetwebclassique/js/jquery.autocomplete.min.js') }}"></script>
+        <script>
+            $( function() {
+                $('#compopletion').autocomplete({
+                    serviceUrl: '{{ path( 'interpretessearch' ) }}',
+                    dataType: 'json',
+                    onSelect: function (suggestion) {
+                        location.href = $(this).data('urlpattern').replace(9999, suggestion.data);
+                        return false;
+                    }
+                });
+            } );
+        </script>
+
+    {% endblock %}

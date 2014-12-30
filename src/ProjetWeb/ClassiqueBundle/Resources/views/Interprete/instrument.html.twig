@@ -1,13 +1,39 @@
-<ul>
-    {%  for musicien in pager.currentPageResults  %}
+{% if interpretesPaged is not empty %}
+    <ul>
+        {% for interprete in interpretesPaged %}
+            <li><a href="{{ path('interpreteview',{'codeMusicien': interprete.codeMusicien}) }}">{{ interprete.nomMusicien }} {{ interprete.prenomMusicien }} ( {{ interprete.anneeNaissance }} - {{ interprete.anneeMort }} ) </a></li>
+        {% endfor %}
+    </ul>
 
-    <li>
-        <a href="{{ path('interpreteview',{'codeMusicien': musicien.codeMusicien }) }}">{{ musicien.nomMusicien }} {{ musicien.prenomMusicien }}</a>
-    </li>
-    {%  endfor  %}
 
-</ul>
+    {# Pager #}
+    {% if pager.haveToPaginate %}
+        <ul class="pagination">
 
-<div class="pagerfanta">
-    {{ pagerfanta(pager, 'twitter_bootstrap3') }}
-</div>
+            {# back #}
+            {% set state = '' %}
+            {% if  pager.getCurrentPage()  == 1 %}
+                {% set state = 'disabled' %}
+            {% endif %}
+            <li class="{{ state }}"><a rel="ChangeInterpretePage{{ state }}" data-url="{{path("interpretesinstrument", { codeInstrument:instrument.codeInstrument, page: pager.getCurrentPage() - 1}) }}">&laquo;</a></li>
+
+            {# pages 1 2 3 ... #}
+            {% for givenPage in 1..pager.getNbPages() %}
+                {% set state = '' %}
+                {% if  pager.getCurrentPage()  == givenPage %}
+                    {% set state = 'active' %}
+                {% endif %}
+                <li class="{{ state }}"><a rel="ChangeInterpretePage" data-url="{{path("interpretesinstrument", { codeInstrument:instrument.codeInstrument, page: givenPage }) }}">{{ givenPage }}</a></li>
+            {%  endfor %}
+
+            {# forward #}
+            {% set state = '' %}
+            {% if  pager.getCurrentPage() == pager.getNbPages() %}
+                {% set state = 'disabled' %}
+            {% endif %}
+            <li class="{{ state }}" ><a rel="ChangeInterpretePage{{ state }}" data-url="{{path("interpretesinstrument", { codeInstrument:instrument.codeInstrument, page: pager.getCurrentPage() + 1}) }}">&raquo;</a></li>
+        </ul>
+    {% endif %}
+{% else %}
+    <p>Pas d'interprete pour ces paramètres</p>
+{% endif %}

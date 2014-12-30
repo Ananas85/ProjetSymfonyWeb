@@ -12,8 +12,3 @@ projet_web_classique:
     resource: "@ProjetWebClassiqueBundle/Controller/"
     type:     annotation
     prefix:   /
-
-anachardan_general:
-    resource: "@AnachardanGeneralBundle/Controller/"
-    type:     annotation
-    prefix:   /

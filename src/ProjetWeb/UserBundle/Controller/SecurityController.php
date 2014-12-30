@@ -22,7 +22,9 @@ class SecurityController extends Controller
         // Si le visiteur est déjà identifié, on le redirige vers l'accueil
         $user = $this->getUser();
 
+
         if ($user != null) {
+            $this->get('session')->getFlashBag()->add('info', 'Vous êtes déjà connecté');
             return $this->redirect($this->generateUrl('homepage'));
         }
 
@@ -33,6 +35,7 @@ class SecurityController extends Controller
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
 
+        $this->get('session')->getFlashBag()->add('connexion', 'Bonjour');
         $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
 
         $params = array(

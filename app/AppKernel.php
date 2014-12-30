@@ -16,7 +16,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Anachardan\Bundle\GeneralBundle\AnachardanGeneralBundle(),
             new ProjetWeb\ClassiqueBundle\ProjetWebClassiqueBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new ProjetWeb\HomeBundle\ProjetWebHomeBundle(),

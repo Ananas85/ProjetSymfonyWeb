@@ -28,7 +28,6 @@
 
         function loadPage( url ) {
             $( '#albums' ).html( '<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">' );
-            var musicienId = {{ musicien.codeMusicien  }};
             $( "#albums" ).load( url, function() {
                 handlePaginator();
             } );

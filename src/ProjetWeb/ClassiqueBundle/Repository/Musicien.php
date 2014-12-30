@@ -26,6 +26,22 @@ class Musicien extends EntityRepository
     }
 
     /**
+     * @param $pattern
+     *
+     * @return array
+     */
+    public function findCompositeurByPattern($pattern)
+    {
+        $query = $this->createQueryBuilder("m");
+        $query->join("m.composers", "c");
+        $query->where('m.nomMusicien LIKE :pattern');
+        $query->setParameter('pattern', "%{$pattern}%");
+        $query->orderBy("m.nomMusicien", 'ASC');
+
+        return $query->getQuery()->getResult();
+    }
+
+    /**
      * @param $naissance
      *
      * @return Pagerfanta
@@ -34,10 +50,8 @@ class Musicien extends EntityRepository
     {
         $query = $this->createQueryBuilder("m");
         $query->join("m.composers", "c");
-        $query->where('m.anneeNaissance > :naissance');
-        $query->setParameter('naissance', $naissance);
-        $query->andWhere('m.anneeNaissance > :fin');
-        $query->setParameter('fin', $naissance + 10);
+        $query->where('m.anneeNaissance BETWEEN :naissance AND :fin');
+        $query->setParameters(["naissance"=>$naissance, "fin"=>$naissance+10]);
         $query->orderBy("m.nomMusicien", 'ASC');
 
         $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
@@ -55,7 +69,7 @@ class Musicien extends EntityRepository
         $query = $this->createQueryBuilder("m");
         $query->join("m.composers", "c");
         $query->where('m.nomMusicien LIKE :naissance');
-        $query->setParameter('naissance', $initial . '%');
+        $query->setParameter('naissance', "{$initial}%");
         $query->orderBy("m.nomMusicien", 'ASC');
 
 
@@ -79,6 +93,22 @@ class Musicien extends EntityRepository
     }
 
     /**
+     * @param $pattern
+     *
+     * @return array
+     */
+    public function findInterpreteByPattern($pattern)
+    {
+        $query = $this->createQueryBuilder("m");
+        $query->join("m.interpreters", "c");
+        $query->where('m.nomMusicien LIKE :pattern');
+        $query->setParameter('pattern', "%{$pattern}%");
+        $query->orderBy("m.nomMusicien", 'ASC');
+
+        return $query->getQuery()->getResult();
+    }
+
+    /**
      * @param $naissance
      *
      * @return Pagerfanta
@@ -87,10 +117,8 @@ class Musicien extends EntityRepository
     {
         $query = $this->createQueryBuilder("m");
         $query->join("m.interpreters", "i");
-        $query->where('m.anneeNaissance > :naissance');
-        $query->setParameter('naissance', $naissance);
-        $query->andWhere('m.anneeNaissance > :fin');
-        $query->setParameter('fin', $naissance + 10);
+        $query->where('m.anneeNaissance BETWEEN :naissance AND :fin');
+        $query->setParameters(["naissance"=>$naissance, "fin"=>$naissance+10]);
         $query->orderBy("m.nomMusicien", 'ASC');
 
         $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
@@ -108,7 +136,7 @@ class Musicien extends EntityRepository
         $query = $this->createQueryBuilder("m");
         $query->join("m.interpreters", "i");
         $query->where('m.nomMusicien LIKE :naissance');
-        $query->setParameter('naissance', $initial . '%');
+        $query->setParameter('naissance', "{$initial}%");
         $query->orderBy("m.nomMusicien", 'ASC');
 
 
@@ -128,7 +156,7 @@ class Musicien extends EntityRepository
         $query->join("m.interpreters", "i");
         $query->join("m.codeInstrument", "inst");
         $query->where('m.codeInstrument = :instrument');
-        $query->setParameter('instrument', $instrument);
+        $query->setParameter('instrument', $instrument->getCodeInstrument());
         $query->orderBy("m.nomMusicien", 'ASC');
 
         $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
@@ -151,6 +179,22 @@ class Musicien extends EntityRepository
     }
 
     /**
+     * @param $pattern
+     *
+     * @return array
+     */
+    public function findChefByPattern($pattern)
+    {
+        $query = $this->createQueryBuilder("m");
+        $query->join("m.directions", "c");
+        $query->where('m.nomMusicien LIKE :pattern');
+        $query->setParameter('pattern', "%{$pattern}%");
+        $query->orderBy("m.nomMusicien", 'ASC');
+
+        return $query->getQuery()->getResult();
+    }
+
+    /**
      * @param $naissance
      *
      * @return Pagerfanta
@@ -159,10 +203,8 @@ class Musicien extends EntityRepository
     {
         $query = $this->createQueryBuilder("m");
         $query->join("m.directions", "d");
-        $query->where('m.anneeNaissance > :naissance');
-        $query->setParameter('naissance', $naissance);
-        $query->andWhere('m.anneeNaissance > :fin');
-        $query->setParameter('fin', $naissance + 10);
+        $query->where('m.anneeNaissance BETWEEN :naissance AND :fin');
+        $query->setParameters(["naissance"=>$naissance, "fin"=>$naissance+10]);
         $query->orderBy("m.nomMusicien", 'ASC');
 
         $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
@@ -180,27 +222,11 @@ class Musicien extends EntityRepository
         $query = $this->createQueryBuilder("m");
         $query->join("m.directions", "d");
         $query->where('m.nomMusicien LIKE :naissance');
-        $query->setParameter('naissance', $initial . '%');
+        $query->setParameter('naissance', "{$initial}%");
         $query->orderBy("m.nomMusicien", 'ASC');
 
         $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
 
         return $pagerfanta;
-    }
-
-    /**
-     * @param $pattern
-     *
-     * @return array
-     */
-    public function findCompositeurByPattern($pattern)
-    {
-        $query = $this->createQueryBuilder("m");
-        $query->join("m.composers", "c");
-        $query->where('m.nomMusicien LIKE :pattern');
-        $query->setParameter('pattern', "%{$pattern}%");
-        $query->orderBy("m.nomMusicien", 'ASC');
-
-        return $query->getQuery()->getResult();
     }
 }

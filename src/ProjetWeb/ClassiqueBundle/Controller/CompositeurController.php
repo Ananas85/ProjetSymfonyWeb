@@ -4,6 +4,7 @@ namespace ProjetWeb\ClassiqueBundle\Controller;
 use Pagerfanta\Exception\NotValidCurrentPageException;
 use Pagerfanta\Pagerfanta;
 use ProjetWeb\ClassiqueBundle\Entity\Musicien;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +18,7 @@ class CompositeurController extends Controller
     /**
      * @return array
      * @Route("/compositeurs/{page}", requirements={"page" ="\d+"}, defaults={"page"=1}, name="compositeursindex")
+     * @Cache(smaxage=3600)
      * @Template()
      */
     public function indexAction($page = 1)
@@ -36,6 +38,7 @@ class CompositeurController extends Controller
     /**
      * @Route("/compositeurs/initial/{initial}/{page}", requirements={"initial" = "\S", "page" ="\d+"}, defaults={"initial"= "A", "page"=1}, name="compositeursinitial")
      * @Template("ProjetWebClassiqueBundle:Compositeur:index.html.twig")
+     * @Cache(smaxage=3600)
      */
     public function initialAction($initial, $page = 1)
     {
@@ -66,6 +69,7 @@ class CompositeurController extends Controller
                                 $pattern
                             );
         $suggestions = array();
+        /** @var Musicien $result */
         foreach ($results as $result) {
             $suggestions[] = array( 'value' => $result->getNomMusicien().' '.$result->getPrenomMusicien(), 'data' => $result->getCodeMusicien() );
         }
@@ -76,6 +80,7 @@ class CompositeurController extends Controller
     /**
      * @Route("/compositeurs/naissance/{naissance}/{page}", requirements={"naissance" = "\d+", "page" ="\d+"}, defaults={"naissance"= 1900, "page"=1}, name="compositeursnaissance")
      * @Template("ProjetWebClassiqueBundle:Compositeur:index.html.twig")
+     * @Cache(smaxage=3600)
      */
     public function naissanceAction(Request $request, $naissance, $page = 1)
     {
@@ -93,6 +98,12 @@ class CompositeurController extends Controller
             // Les données sont un tableau avec les clés "name";
             $data = $formulaire->getData();
             $year = $data['naissance'];
+
+            if (!is_numeric($year) || strlen($year) > 4) {
+                $this->get('session')->getFlashBag()->add('warning', "La date de naissance du Compositeur que vous avez indiquée n'est pas valide
+                , elle doit être numérique et ne pas dépasser les 4 chiffres");
+                return $this->redirect($this->generateUrl('compositeursnaissance', array( 'naissance' => 1900 )));
+            }
 
             return $this->redirect($this->generateUrl('compositeursnaissance', array( 'naissance' => $year )));
         }
@@ -112,6 +123,7 @@ class CompositeurController extends Controller
 
     /**
      * @Route("/compositeur/{codeMusicien}", requirements={"codeMusicien"="\d+"}, name="compositeurview")
+     * @Cache(smaxage=3600)
      * @Template()
      */
     public function viewAction(Musicien $musicien)

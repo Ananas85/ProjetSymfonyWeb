@@ -31,11 +31,26 @@ class Genre extends EntityRepository
     {
         $query = $this->createQueryBuilder('g');
         $query->where('g.libelleAbrege LIKE :initial');
-        $query->setParameter('initial', $initial . '%');
+        $query->setParameter('initial', "{$initial}%");
         $query->orderBy("g.libelleAbrege", 'ASC');
 
         $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
 
         return $pagerfanta;
+    }
+
+    /**
+     * @param $pattern
+     *
+     * @return array
+     */
+    public function findGenreByPattern($pattern)
+    {
+        $query = $this->createQueryBuilder('g');
+        $query->where('g.libelleAbrege LIKE :pattern');
+        $query->setParameter('pattern', "%{$pattern}%");
+        $query->orderBy("g.libelleAbrege", 'ASC');
+
+        return $query->getQuery()->getResult();
     }
 }

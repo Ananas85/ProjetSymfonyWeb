@@ -13,7 +13,6 @@ class HomeController extends Controller
 
     /**
      * @Route("/", name="homepage")
-     * @Cache(smaxage=3600)
      * @Template()
      */
     public function indexAction()
@@ -23,7 +22,6 @@ class HomeController extends Controller
 
     /**
      * @Route("/about", name="aboutpage")
-     * @Cache(smaxage=3600)
      * @Template()
      */
     public function aboutAction()

@@ -29,28 +29,50 @@
 
     </div>
 
+    <h2 class="text-info"> Interpretes de cet instrument</h2>
+
+    <div id="interpretes">
+
+    </div>
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script>
-        $(function(){
-            $('#albums').html('<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">');
-            var instrumentiD = $("#code").data("instrument");
-            var url = 'http://localhost/ProjetWebServeur/web/app_dev.php/albums/instrument/'+ instrumentiD +'/page/1';
-
-
-            $("#albums").load(url, function(){
-                $('a[rel="ChangePage"]').on("click",function() {
-                    $('#albums').html('<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">');
-                    var instrumentID = $(this).data("instrument");
-                    var page = $(this ).data("page");
-                    var url = 'http://localhost/ProjetWebServeur/web/app_dev.php/albums/instrument/'+ instrumentID +'/page/' + page;
-                    $("#albums").load(url);
-                });
+        function handleInterpretesPaginator() {
+            $( 'a[rel="ChangeInterpretePage"]' ).on( "click", function() {
+                var url = $( this ).data( "url" );
+                loadInterpretesPage( url );
+                return false;
             });
+        }
 
+        function loadInterpretesPage( url ) {
+            $( '#interpretes' ).html( '<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">' );
+            $( "#interpretes" ).load( url, function() {
+                handleInterpretesPaginator();
+            } );
+        }
 
-        });
+        function handleAlbumsPaginator() {
+            $( 'a[rel="ChangePage"]' ).on( "click", function() {
+                var url = $( this ).data( "url" );
+                loadAlbumsPage( url );
+                return false;
+            });
+        }
+
+        function loadAlbumsPage( url ) {
+            $( '#albums' ).html( '<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">' );
+            $( "#albums" ).load( url, function() {
+                handleAlbumsPaginator();
+            } );
+        }
+
+        $( function() {
+            loadAlbumsPage( "{{path("albumInstrument", { codeInstrument:instrument.codeInstrument }) }}");
+            loadInterpretesPage( "{{path("interpretesinstrument", { codeInstrument:instrument.codeInstrument }) }}");
+        } );
     </script>
 {% endblock %}
 

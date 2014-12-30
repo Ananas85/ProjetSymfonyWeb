@@ -32,6 +32,13 @@
         {% elseif contexte == "par année de naissance" %}
             entre {{ naissance }} et {{ fin }}
 
+            {% for message in app.session.flashbag.get('warning') %}
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Warning ! </strong>{{ message }}
+                </div>
+            {% endfor %}
+
             {{ form_start(form, { 'attr' : { 'class' : 'form-inline'} }) }}
             {{ form_errors(form) }}
 
@@ -50,7 +57,7 @@
 
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="RechercheCompositeur">Recherchez votre compositeur ( nom )</label>
+                    <label for="RechercheCompositeur">Recherchez votre compositeur ( nom, un petit peu lent )</label>
                     <input type="text" class="form-control" placeholder="Compositeur" id="compopletion" data-urlpattern="{{ path("compositeurview", { codeMusicien: 9999  } ) }}"/>
                 </div>
             </form>
@@ -76,20 +83,20 @@
 
 {% endblock %}
 
-    {% block javascripts %}
-        {{ parent() }}
-        <script src="{{ asset('bundles/projetwebclassique/js/jquery.autocomplete.min.js') }}"></script>
-        <script>
-            $( function() {
-                $('#compopletion').autocomplete({
-                    serviceUrl: '{{ path( 'compositeurssearch' ) }}',
-                    dataType: 'json',
-                    onSelect: function (suggestion) {
-                        location.href = $(this).data('urlpattern').replace(9999, suggestion.data)
-                        return false;
-                    }
-                });
-            } );
-        </script>
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/projetwebclassique/js/jquery.autocomplete.min.js') }}"></script>
+    <script>
+        $( function() {
+            $('#compopletion').autocomplete({
+                serviceUrl: '{{ path( 'compositeurssearch' ) }}',
+                dataType: 'json',
+                onSelect: function (suggestion) {
+                    location.href = $(this).data('urlpattern').replace(9999, suggestion.data);
+                    return false;
+                }
+            });
+        } );
+    </script>
 
-    {% endblock %}
+{% endblock %}

@@ -57,6 +57,7 @@ class CartController extends Controller
             throw new AccessDeniedHttpException("Vous ne pouvez pas ajoute ce genre de produit");
         }
         $this->get("projetwebclassique.cart_manager")->addProduct($product, $quantity);
+        $this->get('session')->getFlashBag()->add('info', "Votre {$entityName} a bien été ajouté au panier");
 
         return $this->redirect($this->generateUrl("cart_show"));
     }
@@ -79,6 +80,8 @@ class CartController extends Controller
             throw new AccessDeniedHttpException("Vous ne pouvez pas retirer ce genre de produit");
         }
         $this->get("projetwebclassique.cart_manager")->removeProduct($product, $quantity);
+        $this->get('session')->getFlashBag()->add('info', "Votre {$entityName} a bien été retirer du panier");
+
 
         return $this->redirect($this->generateUrl("cart_show"));
     }
@@ -101,6 +104,8 @@ class CartController extends Controller
             throw new AccessDeniedHttpException("Vous ne pouvez pas effacer ce genre de produit");
         }
         $this->get("projetwebclassique.cart_manager")->deleteProduct($product);
+        $this->get('session')->getFlashBag()->add('info', "Votre {$entityName} a bien été supprimé du panier");
+
 
         return $this->redirect($this->generateUrl("cart_show"));
     }

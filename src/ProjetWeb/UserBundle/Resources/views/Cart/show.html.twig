@@ -4,6 +4,21 @@
 
 {% block classiqueweb_body %}
 
+    {% for message in app.session.flashbag.get('connexion') %}
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Info ! </strong>{{ message }} {{ app.user.username }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Info ! </strong>{{ message }}
+        </div>
+    {% endfor %}
+
+
         <div class="row">
             <div class="panel panel-primary">
                 <div class="panel-heading"><h3>Mon Panier <span class="glyphicon glyphicon-shopping-cart pull-right"></span></h3></div>

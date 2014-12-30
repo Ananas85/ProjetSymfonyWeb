@@ -64,7 +64,7 @@ class AlbumController extends Controller
      * @param Musicien $musicien
      * @Cache(smaxage=3600)
      * @Route("/albums/compositeur/{codeMusicien}/page/{page}", requirements={"codeMusicien"="\d+", "page"="\d+"}, defaults={"page"=1}, name="albumCompositeur")
-     * @Template("ProjetWebClassiqueBundle:Album:musicien.html.twig")
+     * @Template()
      */
     public function compositeurAction(Musicien $musicien, $page = 1)
     {
@@ -80,7 +80,7 @@ class AlbumController extends Controller
      * @param Musicien $musicien
      * @Cache(smaxage=3600)
      * @Route("/albums/interprete/{codeMusicien}/page/{page}", requirements={"codeMusicien"="\d+", "page"="\d+"}, defaults={"page"=1}, name="albumInterprete")
-     * @Template("ProjetWebClassiqueBundle:Album:musicien.html.twig")
+     * @Template()
      */
     public function interpreteAction(Musicien $musicien, $page = 1)
     {
@@ -96,7 +96,7 @@ class AlbumController extends Controller
      * @param Musicien $musicien
      * @Cache(smaxage=3600)
      * @Route("/albums/chef/{codeMusicien}/page/{page}", requirements={"codeMusicien"="\d+", "page"="\d+"}, defaults={"page"=1}, name="albumChef")
-     * @Template("ProjetWebClassiqueBundle:Album:musicien.html.twig")
+     * @Template()
      */
     public function chefAction(Musicien $musicien, $page = 1)
     {
@@ -110,7 +110,7 @@ class AlbumController extends Controller
      * @param Musicien $musicien
      * @Cache(smaxage=3600)
      * @Route("/albums/orchestre/{codeOrchestre}/page/{page}", requirements={"codeOrchestre"="\d+", "page"="\d+"}, defaults={"page"=1}, name="albumOrchestre")
-     * @Template("ProjetWebClassiqueBundle:Album:orchestre.html.twig")
+     * @Template()
      */
     public function orchestreAction(Orchestres $orchestre, $page = 1)
     {
@@ -126,7 +126,7 @@ class AlbumController extends Controller
      * @Route("/albums/genre/{codeGenre}/page/{page}", requirements={"codeGenre"="\d+", "page"="\d+"}, defaults={"page"=1}, name="albumGenre")
      * @param Genre $genre
      * @Cache(smaxage=3600)
-     * @Template("ProjetWebClassiqueBundle:Album:genre.html.twig")
+     * @Template()
      */
     public function genreAction(Genre $genre, $page = 1)
     {
@@ -139,8 +139,8 @@ class AlbumController extends Controller
     /**
      * @param Instrument instrument
      * @Cache(smaxage=3600)
-     * @Route("/albums/instrument/{codeInstrument}/page/{page}", requirements={"codeGenre"="\d+", "page"="\d+"}, defaults={"page"=1}, name="albumGenre")
-     * @Template("ProjetWebClassiqueBundle:Album:instrument.html.twig")
+     * @Route("/albums/instrument/{codeInstrument}/page/{page}", requirements={"codeGenre"="\d+", "page"="\d+"}, defaults={"page"=1}, name="albumInstrument")
+     * @Template()
      */
     public function instrumentAction(Instrument $instrument, $page = 1)
     {

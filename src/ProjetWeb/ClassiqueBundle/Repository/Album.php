@@ -52,7 +52,7 @@ class Album extends EntityRepository
         $query->join("enr.interpreters", "i");
         $query->join("i.codeMusicien", "m");
         $query->where("m.codeMusicien = :musicien");
-        $query->setParameter("musicien", $musicien);
+        $query->setParameter("musicien", $musicien->getCodeMusicien());
 
         $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
 
@@ -73,7 +73,7 @@ class Album extends EntityRepository
         $query->join("enr.directions", "di");
         $query->join("di.codeMusicien", "m");
         $query->where("m.codeMusicien = :musicien");
-        $query->setParameter("musicien", $musicien);
+        $query->setParameter("musicien", $musicien->getCodeMusicien());
 
         $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
 
@@ -94,7 +94,7 @@ class Album extends EntityRepository
         $query->join("enr.directions", "di");
         $query->join("di.codeOrchestre", "o");
         $query->where("o.codeOrchestre = :orchestre");
-        $query->setParameter("orchestre", $orchestres);
+        $query->setParameter("orchestre", $orchestres->getCodeOrchestre());
 
         $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
 
@@ -110,7 +110,7 @@ class Album extends EntityRepository
     {
         $query = $this->createQueryBuilder('a');
         $query->where("a.codeGenre = :genre");
-        $query->setParameter("genre", $genre);
+        $query->setParameter("genre", $genre->getCodeGenre());
 
         $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
 
@@ -131,7 +131,7 @@ class Album extends EntityRepository
         $query->join("enr.interpreters", "int");
         $query->join("int.codeInstrument", "inst");
         $query->where("inst.codeInstrument = :instrument");
-        $query->setParameter("instrument", $instrument);
+        $query->setParameter("instrument", $instrument->getCodeInstrument());
 
         $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));
 

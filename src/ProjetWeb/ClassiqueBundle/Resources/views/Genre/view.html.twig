@@ -19,19 +19,24 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        $(function(){
-            $('#albums').html('<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">');
-            var genreId = $("#code").data("genre");
-            var url = 'http://localhost/ProjetWebServeur/web/app_dev.php/albums/genre/'+ genreId +'/page/1';
-            $("#albums").load(url, function(){
-                $('a[rel="ChangePage"]').on("click",function() {
-                    $('#albums').html('<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">');
-                    var genreID = $(this).data("genre");
-                    var page = $(this ).data("page");
-                    var url = 'http://localhost/ProjetWebServeur/web/app_dev.php/albums/genre/'+ genreID +'/page/' + page;
-                    $("#albums").load(url);
-                });
+
+        function handlePaginator() {
+            $( 'a[rel="ChangePage"]' ).on( "click", function() {
+                var url = $( this ).data( "url" );
+                loadPage( url );
+                return false;
             });
-        });
+        }
+
+        function loadPage( url ) {
+            $( '#albums' ).html( '<img src="http://www.mediaforma.com/sdz/jquery/ajax-loader.gif">' );
+            $( "#albums" ).load( url, function() {
+                handlePaginator();
+            } );
+        }
+
+        $( function() {
+            loadPage( "{{path("albumGenre", { codeGenre:genre.codeGenre }) }}");
+        } );
     </script>
 {% endblock %}

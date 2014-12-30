@@ -2,8 +2,11 @@
 namespace ProjetWeb\ClassiqueBundle\Controller;
 
 use ProjetWeb\ClassiqueBundle\Entity\Instrument;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -17,6 +20,7 @@ class InstrumentController extends Controller
      * @return array
      * @Route("/instruments/{page}", requirements={"page" ="\d+"}, defaults={"page"=1}, name="instrumentsindex")
      * @Template()
+     * @Cache(smaxage=3600)
      */
     public function indexAction($page = 1)
     {
@@ -32,6 +36,7 @@ class InstrumentController extends Controller
     /**
      * @Route("/instruments/initial/{initial}/{page}", requirements={"initial" = "\S", "page" ="\d+"}, defaults={"initial"= "A", "page"=1}, name="instrumentsinitial")
      * @Template("ProjetWebClassiqueBundle:Instrument:index.html.twig")
+     * @Cache(smaxage=3600)
      */
     public function initialAction($initial, $page = 1)
     {
@@ -47,9 +52,33 @@ class InstrumentController extends Controller
     }
 
     /**
+     * @Route("/instruments/search", name="instrumentssearch")
+     * @Method( {"GET"})
+     * @Cache(smaxage=3600)
+     */
+    public function searchAction(Request $request)
+    {
+
+        $pattern     = $request->query->get('query');
+        $results     = $this->getDoctrine()
+                            ->getRepository("ProjetWebClassiqueBundle:Instrument")
+                            ->findInstrumentByPattern(
+                                $pattern
+                            );
+        $suggestions = array();
+        /** @var Instrument $result */
+        foreach ($results as $result) {
+            $suggestions[] = array( 'value' => $result->getNomInstrument(), 'data' => $result->getCodeInstrument() );
+        }
+
+        return new JsonResponse(array( "suggestions" => $suggestions ));
+    }
+
+    /**
      * @param
      * @Route("/instrument/{codeInstrument}", requirements={"codeInstrument"="\d+"}, name="instrumentview")
      * @Template()
+     * @Cache(smaxage=3600)
      */
     public function viewAction(Instrument $instrument)
     {
@@ -61,7 +90,7 @@ class InstrumentController extends Controller
     /**
      * @Route("/instrument/image/{codeInstrument}", requirements={ "codeMusicien"="\d+"}, name="instrumentimage")
      * @param Instrument $instrument
-     *
+     * @Cache(smaxage=3600)
      * @return Response
      */
     public function imageAction(Instrument $instrument)
@@ -81,13 +110,10 @@ class InstrumentController extends Controller
 
         if (!$fs->exists($file)) {
             $image    = stream_get_contents($instrument->getImage());
-            /*if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-                $image = pack("H*", $image);
-            }*/
             file_put_contents($file, $image);
             return $response->setContent($image);
         }
-        $response->setMaxAge(3600);
+
         return $response->setContent(file_get_contents($file));
 
     }

@@ -25,6 +25,21 @@ class Orchestres extends EntityRepository
     }
 
     /**
+     * @param $pattern
+     *
+     * @return array
+     */
+    public function findOrchestreByPattern($pattern)
+    {
+        $query = $this->createQueryBuilder("o");
+        $query->where('o.nomOrchestre LIKE :pattern');
+        $query->setParameter('pattern', "%{$pattern}%");
+        $query->orderBy("o.nomOrchestre", 'ASC');
+
+        return $query->getQuery()->getResult();
+    }
+
+    /**
      * @param $initial
      *
      * @return Pagerfanta
@@ -33,7 +48,7 @@ class Orchestres extends EntityRepository
     {
         $query = $this->createQueryBuilder('o');
         $query->where('o.nomOrchestre LIKE :initial');
-        $query->setParameter('initial', $initial . '%');
+        $query->setParameter('initial', "{$initial}%");
         $query->orderBy("o.nomOrchestre", 'ASC');
 
         $pagerfanta = new Pagerfanta(new DoctrineORMAdapter($query));

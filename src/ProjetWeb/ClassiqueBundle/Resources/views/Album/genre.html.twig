@@ -15,7 +15,7 @@
             {% if  pager.getCurrentPage()  == 1 %}
                 {% set state = 'disabled' %}
             {% endif %}
-            <li class="{{ state }}"><a href="#" rel="ChangePage" data-genre="{{ genre.codeGenre }}" data-page="{{ pager.getCurrentPage() -1 }}">&laquo;</a></li>
+            <li class="{{ state }}"><a rel="ChangePage{{ state }}" data-url="{{path("albumGenre", { codeGenre:genre.codeGenre, page: pager.getCurrentPage() - 1}) }}">&laquo;</a></li>
 
             {# pages 1 2 3 ... #}
             {% for givenPage in 1..pager.getNbPages() %}
@@ -23,7 +23,7 @@
                 {% if  pager.getCurrentPage()  == givenPage %}
                     {% set state = 'active' %}
                 {% endif %}
-                <li class="{{ state }}"><a href="#" rel="ChangePage" data-genre="{{ genre.codeGenre }}" data-page="{{ givenPage }}">{{ givenPage }}</a></li>
+                <li class="{{ state }}"><a rel="ChangePage" data-url="{{path("albumGenre", { codeGenre:genre.codeGenre, page: givenPage }) }}">{{ givenPage }}</a></li>
             {%  endfor %}
 
             {# forward #}
@@ -31,7 +31,7 @@
             {% if  pager.getCurrentPage() == pager.getNbPages() %}
                 {% set state = 'disabled' %}
             {% endif %}
-            <li class="{{ state }}" ><a href="#" rel="ChangePage" data-genre="{{ genre.codeGenre }}" data-page="{{ pager.getCurrentPage() + 1 }}">&raquo;</a></li>
+            <li class="{{ state }}" ><a rel="ChangePage{{ state }}" data-url="{{path("albumGenre", { codeGenre:genre.codeGenre, page: pager.getCurrentPage() + 1}) }}">&raquo;</a></li>
         </ul>
     {% endif %}
 {% else %}
