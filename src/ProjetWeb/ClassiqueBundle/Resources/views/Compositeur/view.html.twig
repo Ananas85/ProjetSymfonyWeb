@@ -7,10 +7,31 @@
 {% block classiqueweb_body %}
     <h1 class="text-primary">Fiche d'un Compositeur</h1>
     {% include"ProjetWebClassiqueBundle:Musicien:view.html.twig" %}
-    <h2 class="text-info">Oeuvres enregistrées</h2>
 
-    <div id="albums">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-info">Oeuvres enregistrées</h2>
+            <div id="albums">
 
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2 class="text-info">Sur Amazon</h2>
+            <ul>
+                {%  for item in pager.currentPageResults  %}
+
+                    <li>
+                        <a href="{{ item.url }}" target="_blank">
+                            {{ item.title }}
+                        </a>
+                    </li>
+                {%  endfor  %}
+            </ul>
+
+            <div class="pagerfanta">
+                {{ pagerfanta(pager, 'twitter_bootstrap3', { 'pageParameter': '[page]' } ) }}
+            </div>
+        </div>
     </div>
 
 {% endblock %}

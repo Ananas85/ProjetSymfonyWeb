@@ -180,7 +180,7 @@ class Musicien
 
     public function getNomPrenomMusicien()
     {
-        return $this->getNomMusicien()." ".$this->getPrénomMusicien();
+        return $this->getNomMusicien()." ".$this->getPrenomMusicien();
     }
 
     /**

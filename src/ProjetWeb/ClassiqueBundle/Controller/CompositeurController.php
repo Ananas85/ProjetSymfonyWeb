@@ -1,6 +1,7 @@
 <?php
 namespace ProjetWeb\ClassiqueBundle\Controller;
 
+use Pagerfanta\Adapter\ArrayAdapter;
 use Pagerfanta\Exception\NotValidCurrentPageException;
 use Pagerfanta\Pagerfanta;
 use ProjetWeb\ClassiqueBundle\Entity\Musicien;
@@ -122,16 +123,20 @@ class CompositeurController extends Controller
     }
 
     /**
-     * @Route("/compositeur/{codeMusicien}", requirements={"codeMusicien"="\d+"}, name="compositeurview")
+     * @Route("/compositeur/{codeMusicien}/{page}", requirements={"codeMusicien"="\d+", "page"="\d+"}, defaults={"page"=1}, name="compositeurview")
      * @Cache(smaxage=3600)
      * @Template()
      */
-    public function viewAction(Musicien $musicien)
+    public function viewAction(Musicien $musicien, $page = 1)
     {
         $image = $this->generateUrl('musicienimage', array( 'codeMusicien' => $musicien->getCodeMusicien() ));
-        $formattedResponse = $this->get('projetwebclassique.amazon_music_search')->search($musicien);
-        var_dump($formattedResponse);
+        $amazonItems = $this->get('projetwebclassique.amazon_music_search')->search($musicien);
 
-        return compact('musicien', 'image');
+
+        $pager = new Pagerfanta(new ArrayAdapter($amazonItems));
+        $pager->setMaxPerPage(10);
+        $pager->setCurrentPage($page);
+
+        return compact('musicien', 'image', 'pager');
     }
 }

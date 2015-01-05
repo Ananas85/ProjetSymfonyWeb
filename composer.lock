@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "54e42b1845332d080e0a7a22f8029b54",
+    "hash": "ba74e3b3e49f973ee5dcacef6fe304fd",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -711,6 +711,58 @@
                 "orm"
             ],
             "time": "2014-10-06 13:22:50"
+        },
+        {
+            "name": "exeu/apai-io",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Exeu/apai-io.git",
+                "reference": "e3896f09f8b648bf5b7a8dde24c053e35b8e61de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Exeu/apai-io/zipball/e3896f09f8b648bf5b7a8dde24c053e35b8e61de",
+                "reference": "e3896f09f8b648bf5b7a8dde24c053e35b8e61de",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "ApaiIO": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Eichhorn",
+                    "email": "exeu65@googlemail.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Dejan Spasic",
+                    "email": "dejan.spasic@bitweise.biz",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Amazon Product Advertising PHP Library",
+            "homepage": "https://github.com/Exeu/apai-io",
+            "keywords": [
+                "ECS",
+                "Product Advertising",
+                "amazon",
+                "products",
+                "rest",
+                "soap"
+            ],
+            "time": "2014-09-30 15:25:33"
         },
         {
             "name": "incenteev/composer-parameter-handler",
